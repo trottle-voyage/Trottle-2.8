@@ -7,7 +7,9 @@
       "Bash(git credential-osxkeychain:*)",
       "Bash(cmdkey /list:git:https://github.com)",
       "Bash(cmdkey /delete:git:https://github.com)",
-      "Bash(curl -L \"https://drive.google.com/uc?export=download&id=1KSFrf7igHBAfxca7fUx46s1KbhMTicCP\" -o \"C:/Trottle 2.8/assets/animations/splash.gif\" -w \"\\\\nHTTP Status: %{http_code}\\\\nContent-Type: %{content_type}\\\\nSize: %{size_download} bytes\")"
+      "Bash(curl -L \"https://drive.google.com/uc?export=download&id=1KSFrf7igHBAfxca7fUx46s1KbhMTicCP\" -o \"C:/Trottle 2.8/assets/animations/splash.gif\" -w \"\\\\nHTTP Status: %{http_code}\\\\nContent-Type: %{content_type}\\\\nSize: %{size_download} bytes\")",
+      "Bash(curl -L \"https://drive.google.com/uc?export=download&id=15uj6aG-pS7A39uhQXVWp595cEMZyiFTz\" -o \"C:/Trottle 2.8/assets/images/logo_1\" -w \"File1 → HTTP:%{http_code} | Type:%{content_type} | Size:%{size_download}b\\\\n\" --silent)",
+      "Bash(curl -L \"https://drive.google.com/uc?export=download&id=1R6-v7VGXN1Lz_L_bBIG-0kE5tkS-4-qD\" -o \"C:/Trottle 2.8/assets/images/logo_2\" -w \"File2 → HTTP:%{http_code} | Type:%{content_type} | Size:%{size_download}b\\\\n\" --silent)"
     ]
   }
 }

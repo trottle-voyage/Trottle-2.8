@@ -19,33 +19,38 @@ class _SplashScreenState extends State<SplashScreen> {
     _videoController = VideoPlayerController.asset('assets/animations/splash.mp4')
       ..initialize().then((_) {
         setState(() {});
-        _videoController.play();
         _videoController.setLooping(false);
+        _videoController.play();
       });
 
     _videoController.addListener(_onVideoUpdate);
   }
 
   void _onVideoUpdate() {
-    if (!_loginShown &&
-        _videoController.value.isInitialized &&
-        !_videoController.value.isPlaying &&
-        _videoController.value.position >= _videoController.value.duration) {
+    if (_loginShown) return;
+    final pos = _videoController.value.position;
+    final dur = _videoController.value.duration;
+    if (_videoController.value.isInitialized &&
+        dur.inMilliseconds > 0 &&
+        pos.inMilliseconds >= dur.inMilliseconds - 200) {
       _loginShown = true;
-      _showLogin();
+      WidgetsBinding.instance.addPostFrameCallback((_) => _showLogin());
     }
   }
 
   void _showLogin() {
-    showModalBottomSheet(
+    showGeneralDialog(
       context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      isDismissible: false,
-      builder: (_) => const FractionallySizedBox(
-        heightFactor: 0.9,
-        child: LoginScreen(),
-      ),
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      pageBuilder: (_, __, ___) => const LoginScreen(),
+      transitionBuilder: (_, anim, __, child) {
+        return FadeTransition(
+          opacity: anim,
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 400),
     );
   }
 
