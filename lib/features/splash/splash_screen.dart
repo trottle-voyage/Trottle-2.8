@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 import '../auth/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -8,77 +9,76 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class _SplashScreenState extends State<SplashScreen> {
+  late VideoPlayerController _videoController;
+  bool _loginShown = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 3));
-    _controller.forward();
+    _videoController = VideoPlayerController.asset('assets/animations/splash.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+        _videoController.setLooping(false);
+        _videoController.play();
+      });
 
-    // Affiche le login une fois l'animation terminée
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed && mounted) {
-        _showLogin();
-      }
-    });
+    _videoController.addListener(_onVideoUpdate);
+  }
+
+  void _onVideoUpdate() {
+    if (_loginShown) return;
+    final pos = _videoController.value.position;
+    final dur = _videoController.value.duration;
+    if (_videoController.value.isInitialized &&
+        dur.inMilliseconds > 0 &&
+        pos.inMilliseconds >= dur.inMilliseconds - 200) {
+      _loginShown = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) => _showLogin());
+    }
   }
 
   void _showLogin() {
-    showModalBottomSheet(
+    showGeneralDialog(
       context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      isDismissible: false,
-      builder: (_) => const FractionallySizedBox(
-        heightFactor: 0.9,
-        child: LoginScreen(),
-      ),
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      pageBuilder: (_, __, ___) => const LoginScreen(),
+      transitionBuilder: (_, anim, __, child) {
+        return FadeTransition(
+          opacity: anim,
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 400),
     );
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _videoController.removeListener(_onVideoUpdate);
+    _videoController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Animation de démarrage
-          // Remplacer par le fichier assets/animations/splash.gif ou Lottie
-          // une fois le fichier téléchargé depuis Google Drive
-          Image.asset(
-            'assets/animations/splash.gif',
-            fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFF6C63FF), Color(0xFF03DAC6)],
+      backgroundColor: Colors.black,
+      body: _videoController.value.isInitialized
+          ? SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _videoController.value.size.width,
+                  height: _videoController.value.size.height,
+                  child: VideoPlayer(_videoController),
                 ),
               ),
-              child: const Center(
-                child: Text(
-                  'Trottle',
-                  style: TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 4,
-                  ),
-                ),
-              ),
+            )
+          : const Center(
+              child: CircularProgressIndicator(color: Colors.white),
             ),
-          ),
-        ],
-      ),
     );
   }
 }
