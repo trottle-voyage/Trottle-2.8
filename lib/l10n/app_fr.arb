@@ -19,12 +19,12 @@
   "txtForgotPasswordEmailHint": "Adresse@email.com",
   "txtForgotPasswordButton": "Envoyer",
 
-  "registerTitle": "Créer un compte",
-  "registerEmailHint": "Adresse@email.com",
-  "registerPasswordHint": "Mot de passe",
-  "registerConfirmPasswordHint": "Confirmer le mot de passe",
-  "registerNextButton": "Suivant",
-  "registerOrContinueWith": "Ou continuer avec",
+  "txtRegisterTitle": "Créer un compte",
+  "txtRegisterEmailHint": "Adresse@email.com",
+  "txtRegisterPasswordHint": "Mot de passe",
+  "txtRegisterConfirmPasswordHint": "Confirmer le mot de passe",
+  "txtRegisterNextButton": "Suivant",
+  "txtRegisterOrContinueWith": "Ou continuer avec",
 
   "welcomeTitle": "Bienvenue sur Trottle",
   "welcomeTripNameHint": "Champ (titre du voyage)",
