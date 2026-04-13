@@ -6,7 +6,8 @@
       "Bash(git credential-manager:*)",
       "Bash(git credential-osxkeychain:*)",
       "Bash(cmdkey /list:git:https://github.com)",
-      "Bash(cmdkey /delete:git:https://github.com)"
+      "Bash(cmdkey /delete:git:https://github.com)",
+      "Bash(curl -L \"https://drive.google.com/uc?export=download&id=1KSFrf7igHBAfxca7fUx46s1KbhMTicCP\" -o \"C:/Trottle 2.8/assets/animations/splash.gif\" -w \"\\\\nHTTP Status: %{http_code}\\\\nContent-Type: %{content_type}\\\\nSize: %{size_download} bytes\")"
     ]
   }
 }
