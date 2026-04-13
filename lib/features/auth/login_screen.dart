@@ -28,10 +28,13 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
-          // Card centrée
-          Center(
+          // Card alignée sous le papillon (~40% du haut)
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.40,
+            left: 20,
+            right: 20,
+            bottom: 40,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: _buildCard(context),
             ),
           ),
