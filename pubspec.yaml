@@ -3,6 +3,13 @@ description: Trottle 2.8 - Flutter Application
 publish_to: 'none'
 version: 2.8.0+1
 
+# Trottle App Metadata
+trottle:
+  app_name: "Trottle"
+  year: "2018"
+  app_version: "2.8.0"
+  info_version: "Trottle 2018-2026 - v2.8.0"
+
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
@@ -10,7 +17,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
-  video_player: ^2.11.1
+  battery_plus: ^6.0.1
+  connectivity_plus: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +30,23 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+
+  fonts:
+    - family: LeagueSpartan
+      fonts:
+        - asset: assets/fonts/LeagueSpartan-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/LeagueSpartan-SemiBold.ttf
+          weight: 600
+
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
+
+    - family: LeagueGothic
+      fonts:
+        - asset: assets/fonts/LeagueGothic-Regular.ttf
+          weight: 400
