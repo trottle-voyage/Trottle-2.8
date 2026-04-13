@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmdkey /list)",
+      "Bash(git config:*)",
+      "Bash(git credential-manager:*)",
+      "Bash(git credential-osxkeychain:*)",
+      "Bash(cmdkey /list:git:https://github.com)",
+      "Bash(cmdkey /delete:git:https://github.com)"
+    ]
+  }
+}

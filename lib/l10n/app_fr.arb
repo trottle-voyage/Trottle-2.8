@@ -1,0 +1,39 @@
+{
+  "@@locale": "fr",
+
+  "appName": "Trottle",
+
+  "loginTitle": "Connexion",
+  "loginEmailHint": "Adresse@email.com",
+  "loginPasswordHint": "Mot de passe",
+  "loginButton": "Se connecter",
+  "loginForgotPassword": "Mot de passe oublié ?",
+  "loginCreateAccount": "Créer un nouveau compte",
+  "loginOrContinueWith": "Ou continuer avec",
+
+  "forgotPasswordTitle": "Mot de passe oublié",
+  "forgotPasswordEmailHint": "Adresse@email.com",
+  "forgotPasswordButton": "Envoyer",
+
+  "registerTitle": "Créer un compte",
+  "registerEmailHint": "Adresse@email.com",
+  "registerPasswordHint": "Mot de passe",
+  "registerConfirmPasswordHint": "Confirmer le mot de passe",
+  "registerNextButton": "Suivant",
+  "registerOrContinueWith": "Ou continuer avec",
+
+  "welcomeTitle": "Bienvenue sur Trottle",
+  "welcomeTripNameHint": "Champ (titre du voyage)",
+  "welcomeDestinationHint": "Destination",
+  "welcomeParticipantsHint": "Participants",
+  "welcomeDateHint": "Dates",
+  "welcomeBudgetHint": "Budget",
+  "welcomeDescriptionHint": "Description",
+  "welcomeSearchInterests": "Recherchez plus de 50 activités...",
+  "welcomeTagMonument": "Monument",
+  "welcomeTagHiking": "Randonnée",
+  "welcomeTagNature": "Nature",
+  "welcomeTagStreetArt": "Street Art",
+  "welcomeTagFilming": "Lieu de Tournage",
+  "welcomeCreateButton": "Créer"
+}
