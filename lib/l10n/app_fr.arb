@@ -3,6 +3,7 @@
 
   "appName": "Trottle",
 
+// Panneau Connexion
   "txtLoginTitle": "Connexion",
   "txtLoginEmail": "e-mail ou utilisateur",
   "txtLoginEmailHint": "utilisateur@mail.com",
@@ -14,30 +15,38 @@
   "txtLoginCreateAccount1": "Pas encore de compte ?",
   "txtLoginCreateAccount2": "Créez-le gratuitement",
 
+// Panneau Mot de passe oublié
   "txtForgotPasswordTitle": "Mot de passe oublié",
   "txtForgotPasswordEmail": "Saisissez votre e-mail",
-  "txtForgotPasswordEmailHint": "Adresse@email.com",
+  "txtForgotPasswordEmailHint": "utilisateur@mail.com",
   "txtForgotPasswordButton": "Envoyer",
 
+// Panneau Créer un compte
   "txtRegisterTitle": "Créer un compte",
-  "txtRegisterEmailHint": "Adresse@email.com",
-  "txtRegisterPasswordHint": "Mot de passe",
-  "txtRegisterConfirmPasswordHint": "Confirmer le mot de passe",
+  "txtRegisterEmail": "e-mail",
+  "txtRegisterEmailHint": "utilisateur@mail.com",
+  "txtRegisterPassword": "Mot de passe",
+  "txtRegisterPasswordHint": "mot de passe",
+  "txtRegisterConfirmPassword": "Confirmer le mot de passe",
+  "txtRegisterConfirmPasswordHint": "mot de pass",
   "txtRegisterNextButton": "Suivant",
-  "txtRegisterOrContinueWith": "Ou continuer avec",
 
-  "welcomeTitle": "Bienvenue sur Trottle",
-  "welcomeTripNameHint": "Champ (titre du voyage)",
-  "welcomeDestinationHint": "Destination",
-  "welcomeParticipantsHint": "Participants",
-  "welcomeDateHint": "Dates",
-  "welcomeBudgetHint": "Budget",
-  "welcomeDescriptionHint": "Description",
-  "welcomeSearchInterests": "Recherchez plus de 50 activités...",
-  "welcomeTagMonument": "Monument",
-  "welcomeTagHiking": "Randonnée",
-  "welcomeTagNature": "Nature",
-  "welcomeTagStreetArt": "Street Art",
-  "welcomeTagFilming": "Lieu de Tournage",
-  "welcomeCreateButton": "Créer"
+// Panneau Créer un compte
+  "txtWelcomeTitle": "Bienvenue sur Trottle",
+  "txtWelcomePP": "Photo de profil",
+  "txtWelcomePPHint": "Charger une image",
+  "txtWelcomePseudo": "Pseudonyme",
+  "txtWelcomePseudoHint": "Pseudonyme",
+  "txtWelcomeInstagram": "Votre compte Instagram",
+  "txtWelcomeInstagramHint": "Instagram.com/",
+  "txtWelcomeInstagramDisclaimer": "Cette information est importante pour nous permettre de vous identifier !",
+  "txtWelcomeBirth": "Date de naissance",
+  "txtWelcomeBirthHint": "JJ/MM/AAAA",
+  "txtWelcomeGender": "Genre",
+  "txtWelcomeGenderHint": "Non renseigné",
+  "txtWelcomeProfil": "Profil",
+  "txtWelcomeProfilHint": "Non renseigné",
+  "txtWelcomeCity": "Ville",
+  "txtWelcomeSearch": "Que recherchez-vous ?",
+  "txtWelcomeCreateButton": "Créer"
 }
