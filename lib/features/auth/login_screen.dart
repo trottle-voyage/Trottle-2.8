@@ -28,19 +28,17 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
-          // Card alignée sous le papillon (~40% du haut)
+          // Card : top aligné sous le papillon, étirée jusqu'au footer
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.40,
+            top: MediaQuery.of(context).size.height * 0.36,
             left: 20,
             right: 20,
-            bottom: 40,
-            child: SingleChildScrollView(
-              child: _buildCard(context),
-            ),
+            bottom: 36,
+            child: _buildCard(context),
           ),
           // Footer en bas
           const Positioned(
-            bottom: 20,
+            bottom: 10,
             left: 0,
             right: 0,
             child: Text(
@@ -79,9 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 36),
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Titre
@@ -95,62 +94,65 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 24),
 
               // E-mail
-              _label('E-mail ou utilisateur'),
-              const SizedBox(height: 6),
-              _field(
-                controller: _emailController,
-                hint: 'utilisateur@mail.com',
-                keyboardType: TextInputType.emailAddress,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _label('E-mail ou utilisateur'),
+                  const SizedBox(height: 5),
+                  _field(
+                    controller: _emailController,
+                    hint: 'utilisateur@mail.com',
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                ],
               ),
-              const SizedBox(height: 14),
 
               // Mot de passe
-              _label('Mot de passe'),
-              const SizedBox(height: 6),
-              _field(
-                controller: _passwordController,
-                hint: 'mot de passe',
-                obscure: _obscurePassword,
-                suffixIcon: GestureDetector(
-                  onTap: () => setState(() => _obscurePassword = !_obscurePassword),
-                  child: Icon(
-                    _obscurePassword
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 6),
-
-              // Mot de passe oublié
-              Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton(
-                  onPressed: () => _showForgotPassword(context),
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: const Text(
-                    'Mot de passe oublié ?',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 12,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _label('Mot de passe'),
+                  const SizedBox(height: 5),
+                  _field(
+                    controller: _passwordController,
+                    hint: 'mot de passe',
+                    obscure: _obscurePassword,
+                    suffixIcon: GestureDetector(
+                      onTap: () => setState(() => _obscurePassword = !_obscurePassword),
+                      child: Icon(
+                        _obscurePassword
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(height: 4),
+                  // Mot de passe oublié
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton(
+                      onPressed: () => _showForgotPassword(context),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: const Text(
+                        'Mot de passe oublié ?',
+                        style: TextStyle(color: Colors.white70, fontSize: 12),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 18),
 
               // Bouton Se connecter
               SizedBox(
-                height: 48,
+                height: 46,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
@@ -171,40 +173,42 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 22),
 
-              // ou continuer avec
-              Row(
+              // ou continuer avec + sociaux
+              Column(
                 children: [
-                  Expanded(
-                    child: Divider(color: Colors.white.withOpacity(0.35), thickness: 0.5),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                            color: Colors.white.withOpacity(0.35), thickness: 0.5),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          'ou continuer avec :',
+                          style: TextStyle(color: Colors.white60, fontSize: 12),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                            color: Colors.white.withOpacity(0.35), thickness: 0.5),
+                      ),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      'ou continuer avec :',
-                      style: TextStyle(color: Colors.white60, fontSize: 12),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(color: Colors.white.withOpacity(0.35), thickness: 0.5),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _socialBtn(icon: Icons.facebook, color: const Color(0xFF1877F2)),
+                      const SizedBox(width: 16),
+                      _socialBtn(icon: Icons.apple, color: Colors.white),
+                      const SizedBox(width: 16),
+                      _socialBtn(label: 'G', color: const Color(0xFFDB4437)),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-
-              // Boutons sociaux
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _socialBtn(icon: Icons.facebook, color: const Color(0xFF1877F2)),
-                  const SizedBox(width: 16),
-                  _socialBtn(icon: Icons.apple, color: Colors.white),
-                  const SizedBox(width: 16),
-                  _socialBtn(label: 'G', color: const Color(0xFFDB4437)),
-                ],
-              ),
-              const SizedBox(height: 22),
 
               // Pas encore de compte
               Row(
