@@ -1,25 +1,10 @@
 {
   "@@locale": "fr",
 
-  "appName": "Trottle",
-
-// Panneau Connexion
-  "txtLoginTitle": "Connexion",
-  "txtLoginEmail": "e-mail ou utilisateur",
-  "txtLoginEmailHint": "utilisateur@mail.com",
-  "txtLoginPassword": "Mot de passe",
-  "txtLoginPasswordHint": "mot de passe",
-  "txtLoginForgotPassword": "Mot de passe oublié ?",
-  "txtLoginButton": "Se connecter",
-  "txtLoginOrContinueWith": "Ou continuer avec",
-  "txtLoginCreateAccount1": "Pas encore de compte ?",
-  "txtLoginCreateAccount2": "Créez-le gratuitement",
-
-// Panneau Mot de passe oublié
-  "txtForgotPasswordTitle": "Mot de passe oublié",
-  "txtForgotPasswordEmail": "Saisissez votre e-mail",
-  "txtForgotPasswordEmailHint": "utilisateur@mail.com",
-  "txtForgotPasswordButton": "Envoyer",
+  "forgotPasswordTitle": "Mot de passe oublié",
+  "forgotPasswordEmailLabel": "E-mail ou utilisateur",
+  "forgotPasswordEmailHint": "utilisateur@mail.com",
+  "forgotPasswordButton": "Envoyer",
 
 // Panneau Créer un compte
   "txtRegisterTitle": "Créer un compte",
