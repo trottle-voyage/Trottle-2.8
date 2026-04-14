@@ -7,7 +7,7 @@ class AppTheme {
   static ThemeData get light => ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
+          seedColor: AppColors.trottleMain,
           brightness: Brightness.light,
         ),
         appBarTheme: const AppBarTheme(
@@ -19,7 +19,7 @@ class AppTheme {
   static ThemeData get dark => ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
+          seedColor: AppColors.trottleMain,
           brightness: Brightness.dark,
         ),
         appBarTheme: const AppBarTheme(
