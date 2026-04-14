@@ -15,11 +15,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final GpsService      _gps        = GpsService.instance;
+  final GpsService      _gps           = GpsService.instance;
   final MapController   _mapController = MapController();
   List<String> _imageUrls    = [];
   bool         _imagesLoading = false;
   String?      _storageError;
+  bool         _menuOpen      = false;
 
   @override
   void initState() {
@@ -51,18 +52,24 @@ class _MainScreenState extends State<MainScreen> {
 
   // ── Helpers menu ─────────────────────────────────────────────────────────
 
-  static const double _bandeauH  = 152; // hauteur bandeau
-  static const double _gap       = 10;  // espacement entre cercles
-  static const double _mainSize  = 42;  // taille bouton principal
-  static const double _buttSize  = 36;  // taille boutons secondaires
-  static const double _rightEdge = 10;  // marge droite
+  static const double _bandeauH  = 152;
+  static const double _gap       = 10;
+  static const double _mainSize  = 42;
+  static const double _buttSize  = 36;
+  static const double _rightEdge = 10;
 
-  // Centre du bouton principal
-  static const double _mainBottom = _bandeauH + _gap;              // 162
-  static const double _mainCenterH = _rightEdge + _mainSize / 2;   // 31 depuis right
-  static const double _mainCenterV = _mainBottom + _mainSize / 2;  // 183 depuis bottom
+  static const double _mainBottom  = _bandeauH + _gap;                      // 162
+  static const double _mainCenterR = _rightEdge + _mainSize / 2;            // 31 (depuis right)
+  static const double _mainCenterB = _mainBottom + _mainSize / 2;           // 183 (depuis bottom)
 
-  Widget _menuCircle(double size) => ClipOval(
+  // Position de repli : tous les cercles secondaires partent du centre de menuButt
+  static const double _closedBottom = _mainBottom + (_mainSize - _buttSize) / 2; // 165
+  static const double _closedRight  = _rightEdge + (_mainSize - _buttSize) / 2;  // 13
+
+  static const Duration _animDuration = Duration(milliseconds: 350);
+  static const Curve    _animCurve    = Curves.easeOutBack;
+
+  Widget _menuCircle(double size, {String? icon}) => ClipOval(
         child: BackdropFilter(
           filter: AppDecorations.bgBlur,
           child: Container(
@@ -71,34 +78,50 @@ class _MainScreenState extends State<MainScreen> {
               color: AppColors.trottleBgDark.withOpacity(0.9),
               shape: BoxShape.circle,
             ),
+            child: icon != null
+                ? Center(
+                    child: Image.asset(icon,
+                        width: size * 0.6, height: size * 0.6),
+                  )
+                : null,
           ),
         ),
       );
 
-  // Rangée horizontale : H01, H02, H03 — à gauche du bouton principal
+  // Rangée horizontale : menuButtH01, H02, H03
   List<Widget> _buildMenuHRow() {
-    final double bottomPos = _mainCenterV - _buttSize / 2; // centré avec main
     return List.generate(3, (i) {
-      final double rightPos =
-          _rightEdge + _mainSize + _gap + i * (_buttSize + _gap);
-      return Positioned(
-        bottom: bottomPos,
-        right: rightPos,
-        child: _menuCircle(_buttSize),
+      final double openBottom = _mainCenterB - _buttSize / 2; // 165
+      final double openRight  = _rightEdge + _mainSize + _gap + i * (_buttSize + _gap);
+      return AnimatedPositioned(
+        duration: _animDuration,
+        curve: _animCurve,
+        bottom: _menuOpen ? openBottom : _closedBottom,
+        right:  _menuOpen ? openRight  : _closedRight,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 200),
+          opacity: _menuOpen ? 1.0 : 0.0,
+          child: _menuCircle(_buttSize),
+        ),
       );
     });
   }
 
-  // Colonne verticale : V01, V02, V03, V04 — au-dessus du bouton principal
+  // Colonne verticale : menuButtV01, V02, V03, V04
   List<Widget> _buildMenuVCol() {
-    final double rightPos = _mainCenterH - _buttSize / 2; // centré avec main
     return List.generate(4, (i) {
-      final double bottomPos =
-          _mainBottom + _mainSize + _gap + i * (_buttSize + _gap);
-      return Positioned(
-        bottom: bottomPos,
-        right: rightPos,
-        child: _menuCircle(_buttSize),
+      final double openRight  = _mainCenterR - _buttSize / 2; // 13
+      final double openBottom = _mainBottom + _mainSize + _gap + i * (_buttSize + _gap);
+      return AnimatedPositioned(
+        duration: _animDuration,
+        curve: _animCurve,
+        bottom: _menuOpen ? openBottom : _closedBottom,
+        right:  _menuOpen ? openRight  : _closedRight,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 200),
+          opacity: _menuOpen ? 1.0 : 0.0,
+          child: _menuCircle(_buttSize),
+        ),
       );
     });
   }
@@ -238,10 +261,13 @@ class _MainScreenState extends State<MainScreen> {
           // menuButtV01 – V02 – V03 – V04 (colonne verticale, 36px)
           ..._buildMenuVCol(),
 
-          // Bouton principal (42px)
+          // menuButt — bouton principal (42px)
           Positioned(
-            bottom: 162, right: 10,
-            child: _menuCircle(42),
+            bottom: _mainBottom, right: _rightEdge,
+            child: GestureDetector(
+              onTap: () => setState(() => _menuOpen = !_menuOpen),
+              child: _menuCircle(_mainSize, icon: 'assets/icones/trottle_32.webp'),
+            ),
           ),
         ],
       ),
