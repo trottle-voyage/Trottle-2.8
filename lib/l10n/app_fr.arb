@@ -3,6 +3,7 @@
 
   "appName": "Trottle",
 
+// Panneau Connexion
   "txtLoginTitle": "Connexion",
   "txtLoginEmail": "e-mail ou utilisateur",
   "txtLoginEmailHint": "utilisateur@mail.com",
@@ -14,9 +15,10 @@
   "txtLoginCreateAccount1": "Pas encore de compte ?",
   "txtLoginCreateAccount2": "Créez-le gratuitement",
 
+// Panneau Mot de passe oublié
   "txtForgotPasswordTitle": "Mot de passe oublié",
   "txtForgotPasswordEmail": "Saisissez votre e-mail",
-  "txtForgotPasswordEmailHint": "Adresse@email.com",
+  "txtForgotPasswordEmailHint": "utilisateur@mail.com",
   "txtForgotPasswordButton": "Envoyer",
 
   "txtRegisterTitle": "Créer un compte",
