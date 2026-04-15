@@ -69,58 +69,88 @@ class _MainScreenState extends State<MainScreen> {
   static const Duration _animDuration = Duration(milliseconds: 350);
   static const Curve    _animCurve    = Curves.easeOutBack;
 
-  Widget _menuCircle(double size, {String? icon}) => ClipOval(
+  Widget _menuCircle(double size, {Widget? child, VoidCallback? onTap}) {
+    final circle = SizedBox(
+      width: size, height: size,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(size / 2),
         child: BackdropFilter(
           filter: AppDecorations.bgBlur,
           child: Container(
-            width: size, height: size,
             decoration: BoxDecoration(
               color: AppColors.trottleBgDark.withOpacity(0.9),
-              shape: BoxShape.circle,
             ),
-            child: icon != null
-                ? Center(
-                    child: Image.asset(icon,
-                        width: size * 0.6, height: size * 0.6),
-                  )
-                : null,
+            child: child != null ? Center(child: child) : null,
           ),
         ),
-      );
+      ),
+    );
+    return onTap != null
+        ? GestureDetector(onTap: onTap, child: circle)
+        : circle;
+  }
 
-  // Rangée horizontale : menuButtH01, H02, H03
+  void _recenterMap() {
+    if (_gps.valueGPS != null) {
+      try { _mapController.moveAndRotate(_gps.valueGPS!, 17, 0); } catch (_) {}
+    }
+  }
+
+  // Rangée horizontale — index 0 = H03 (le plus à droite), index 2 = H01
   List<Widget> _buildMenuHRow() {
-    return List.generate(3, (i) {
-      final double openBottom = _mainCenterB - _buttSize / 2; // 165
+    final configs = [
+      // H03 — recentrage carte
+      (child: const Icon(Icons.my_location, color: AppColors.trottleWhite, size: 20),
+       onTap: _recenterMap as VoidCallback?),
+      // H02 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+      // H01 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+    ];
+
+    return List.generate(configs.length, (i) {
+      final cfg = configs[i];
+      final double openBottom = _mainCenterB - _buttSize / 2;
       final double openRight  = _rightEdge + _mainSize + _gap + i * (_buttSize + _gap);
       return AnimatedPositioned(
-        duration: _animDuration,
-        curve: _animCurve,
+        duration: _animDuration, curve: _animCurve,
         bottom: _menuOpen ? openBottom : _closedBottom,
         right:  _menuOpen ? openRight  : _closedRight,
         child: AnimatedOpacity(
           duration: const Duration(milliseconds: 200),
           opacity: _menuOpen ? 1.0 : 0.0,
-          child: _menuCircle(_buttSize),
+          child: _menuCircle(_buttSize, child: cfg.child, onTap: cfg.onTap),
         ),
       );
     });
   }
 
-  // Colonne verticale : menuButtV01, V02, V03, V04
+  // Colonne verticale — index 0 = V04 (le plus bas), index 3 = V01 (le plus haut)
   List<Widget> _buildMenuVCol() {
-    return List.generate(4, (i) {
-      final double openRight  = _mainCenterR - _buttSize / 2; // 13
+    final configs = [
+      // V04 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+      // V03 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+      // V02 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+      // V01 — profil
+      (child: const Icon(Icons.person, color: AppColors.trottleWhite, size: 20),
+       onTap: null as VoidCallback?), // navigation vers profil — à brancher
+    ];
+
+    return List.generate(configs.length, (i) {
+      final cfg = configs[i];
+      final double openRight  = _mainCenterR - _buttSize / 2;
       final double openBottom = _mainBottom + _mainSize + _gap + i * (_buttSize + _gap);
       return AnimatedPositioned(
-        duration: _animDuration,
-        curve: _animCurve,
+        duration: _animDuration, curve: _animCurve,
         bottom: _menuOpen ? openBottom : _closedBottom,
         right:  _menuOpen ? openRight  : _closedRight,
         child: AnimatedOpacity(
           duration: const Duration(milliseconds: 200),
           opacity: _menuOpen ? 1.0 : 0.0,
-          child: _menuCircle(_buttSize),
+          child: _menuCircle(_buttSize, child: cfg.child, onTap: cfg.onTap),
         ),
       );
     });
@@ -212,7 +242,9 @@ class _MainScreenState extends State<MainScreen> {
               child: BackdropFilter(
                 filter: AppDecorations.bgBlur,
                 child: Container(
-                  color: AppColors.trottleBgDark.withOpacity(0.9),
+                  decoration: BoxDecoration(
+                    color: AppColors.trottleBgDark.withOpacity(0.9),
+                  ),
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   height: 128 + 24,
                   child: _imagesLoading
@@ -266,7 +298,9 @@ class _MainScreenState extends State<MainScreen> {
             bottom: _mainBottom, right: _rightEdge,
             child: GestureDetector(
               onTap: () => setState(() => _menuOpen = !_menuOpen),
-              child: _menuCircle(_mainSize, icon: 'assets/icones/trottle_32.webp'),
+              child: _menuCircle(_mainSize,
+                  child: Image.asset('assets/icones/trottle_32.webp',
+                      width: _mainSize * 0.6, height: _mainSize * 0.6)),
             ),
           ),
         ],

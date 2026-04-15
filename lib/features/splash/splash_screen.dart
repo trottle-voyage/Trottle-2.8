@@ -18,7 +18,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   // Heure
   late Timer _timer;
   late DateTime _now;
@@ -62,6 +63,11 @@ class _SplashScreenState extends State<SplashScreen> {
   bool _showRegister       = false;
   bool _showWelcome        = false;
 
+  // Slide
+  late final AnimationController _slideController;
+  Widget? _oldFrame;       // cadre sortant pendant le slide
+  bool    _slideForward = true;
+
   @override
   void initState() {
     super.initState();
@@ -69,6 +75,14 @@ class _SplashScreenState extends State<SplashScreen> {
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       setState(() => _now = DateTime.now());
     });
+    _slideController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          setState(() => _oldFrame = null);
+        }
+      });
     _instagramFocus = FocusNode()..addListener(_onInstagramFocus);
     GpsService.instance.addListener(_onGpsChanged);
     _initBattery();
@@ -97,6 +111,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void dispose() {
+    _slideController.dispose();
     _timer.cancel();
     _emailController.dispose();
     _passwordController.dispose();
@@ -338,6 +353,114 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  // ── Slide navigation ──────────────────────────────────────────────────────────
+
+  Widget _currentFormWidget(AppLocalizations l) {
+    if (_showForgotPassword) return _buildForgotContent(l);
+    if (_showWelcome) return _buildWelcomeContent(l);
+    if (_showRegister) return _buildRegisterContent(l);
+    return _buildLoginContent(l);
+  }
+
+  void _goToMain() {
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 500),
+        pageBuilder: (_, __, ___) => const MainScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 1),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _slideTo({required bool forward, required VoidCallback updateFlags}) {
+    final l = AppLocalizations.of(context)!;
+    // Capture le panneau actuel AVANT de changer les flags
+    final oldContent = _currentFormWidget(l);
+    setState(() {
+      _oldFrame = _buildFrame(oldContent);
+      _slideForward = forward;
+      updateFlags();
+    });
+    _slideController.forward(from: 0);
+  }
+
+  Widget _buildSlide({required Widget oldFrame, required Widget newFrame}) {
+    final enterBegin = _slideForward
+        ? const Offset(1.0, 0)
+        : const Offset(-1.0, 0);
+    final exitEnd = _slideForward
+        ? const Offset(-1.0, 0)
+        : const Offset(1.0, 0);
+
+    final curved = CurvedAnimation(
+      parent: _slideController,
+      curve: Curves.easeInOut,
+    );
+
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      clipBehavior: Clip.none,
+      children: [
+        SlideTransition(
+          position: Tween(begin: Offset.zero, end: exitEnd).animate(curved),
+          child: oldFrame,
+        ),
+        SlideTransition(
+          position: Tween(begin: enterBegin, end: Offset.zero).animate(curved),
+          child: newFrame,
+        ),
+      ],
+    );
+  }
+
+  // ── Cadre glassmorphique complet ─────────────────────────────────────────────
+
+  Widget _buildFrame(Widget content) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [AppDecorations.dropShadow],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: BackdropFilter(
+          filter: AppDecorations.bgBlur,
+          child: Stack(
+            children: [
+              Container(
+                decoration: AppDecorations.trottleCadre,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: SizedBox(
+                      width: 250,
+                      child: content,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: CustomPaint(painter: _GradientBorderPainter()),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _label(String text) =>
       Text(text, style: AppTextStyles.text.copyWith(color: AppColors.trottleWhite));
 
@@ -384,13 +507,14 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         const SizedBox(height: 10),
         GestureDetector(
-          onTap: () => setState(() => _showForgotPassword = true),
+          onTap: () => _slideTo(
+            forward: true,
+            updateFlags: () => _showForgotPassword = true,
+          ),
           child: _label(l.txtLoginForgotPassword),
         ),
         const SizedBox(height: 20),
-        _primaryButton(l.txtLoginButton,
-            onTap: () => Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (_) => const MainScreen()))),
+        _primaryButton(l.txtLoginButton, onTap: _goToMain),
         const SizedBox(height: 16),
         Align(
           alignment: Alignment.center,
@@ -405,7 +529,10 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         const SizedBox(height: 4),
         GestureDetector(
-          onTap: () => setState(() => _showRegister = true),
+          onTap: () => _slideTo(
+            forward: true,
+            updateFlags: () => _showRegister = true,
+          ),
           child: Align(
             alignment: Alignment.center,
             child: Text(l.txtLoginCreateAccount2,
@@ -424,7 +551,10 @@ class _SplashScreenState extends State<SplashScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        _backArrow(() => setState(() => _showForgotPassword = false)),
+        _backArrow(() => _slideTo(
+          forward: false,
+          updateFlags: () => _showForgotPassword = false,
+        )),
         const SizedBox(height: 16),
         _titleLabel(l.txtForgotPasswordTitle),
         const SizedBox(height: 16),
@@ -449,7 +579,10 @@ class _SplashScreenState extends State<SplashScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        _backArrow(() => setState(() => _showRegister = false)),
+        _backArrow(() => _slideTo(
+          forward: false,
+          updateFlags: () => _showRegister = false,
+        )),
         const SizedBox(height: 16),
         _titleLabel(l.txtRegisterTitle),
         const SizedBox(height: 24),
@@ -484,11 +617,14 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         const SizedBox(height: 20),
         _primaryButton(l.txtRegisterNextButton,
-            onTap: () => setState(() {
-                  _showRegister = false;
-                  _showWelcome  = true;
-                  GpsService.instance.fetchCurrentPosition();
-                })),
+            onTap: () => _slideTo(
+                  forward: true,
+                  updateFlags: () {
+                    _showRegister = false;
+                    _showWelcome  = true;
+                    GpsService.instance.fetchCurrentPosition();
+                  },
+                )),
         const SizedBox(height: 16),
         Align(
           alignment: Alignment.center,
@@ -529,10 +665,13 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _backArrow(() => setState(() {
-                  _showWelcome  = false;
-                  _showRegister = true;
-                })),
+            _backArrow(() => _slideTo(
+                  forward: false,
+                  updateFlags: () {
+                    _showWelcome  = false;
+                    _showRegister = true;
+                  },
+                )),
             const SizedBox(height: 12),
             _titleLabel(l.txtWelcomeTitle),
             const SizedBox(height: 16),
@@ -655,9 +794,7 @@ class _SplashScreenState extends State<SplashScreen> {
             _label(l.txtWelcomeSearch),
             const SizedBox(height: 20),
 
-            _primaryButton(l.txtWelcomeCreateButton,
-                onTap: () => Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (_) => const MainScreen()))),
+            _primaryButton(l.txtWelcomeCreateButton, onTap: _goToMain),
             const SizedBox(height: 16),
           ],
         ),
@@ -676,25 +813,12 @@ class _SplashScreenState extends State<SplashScreen> {
     final hasWifi   = _connectivity.contains(ConnectivityResult.wifi);
     final hasMobile = _connectivity.contains(ConnectivityResult.mobile);
 
-    Widget currentForm;
-    double frameHeight;
-    if (_showForgotPassword) {
-      currentForm = _buildForgotContent(l);
-      frameHeight = 260.0;
-    } else if (_showWelcome) {
-      currentForm = _buildWelcomeContent(l);
-      frameHeight = 780.0;
-    } else if (_showRegister) {
-      currentForm = _buildRegisterContent(l);
-      frameHeight = 460.0;
-    } else {
-      currentForm = _buildLoginContent(l);
-      frameHeight = 460.0;
-    }
+    final newFrame = _buildFrame(_currentFormWidget(l));
 
     return Scaffold(
       backgroundColor: AppColors.trottleMain,
-      body: Stack(
+      body: ClipRect(
+        child: Stack(
         children: [
           SizedBox.expand(
             child: Image.asset('assets/images/main_logo.webp', fit: BoxFit.cover),
@@ -706,41 +830,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: AnimatedOpacity(
               opacity: _frameVisible ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 400),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                height: frameHeight,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [AppDecorations.dropShadow],
-                ),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(24),
-                      child: BackdropFilter(
-                        filter: AppDecorations.bgBlur,
-                        child: Container(
-                          decoration: AppDecorations.trottleCadre,
-                          child: Center(
-                            child: SizedBox(
-                              width: 250,
-                              child: AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 200),
-                                child: currentForm,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    IgnorePointer(
-                      child: CustomPaint(painter: _GradientBorderPainter()),
-                    ),
-                  ],
-                ),
-              ),
+              child: _oldFrame != null
+                  ? _buildSlide(oldFrame: _oldFrame!, newFrame: newFrame)
+                  : newFrame,
             ),
           ),
           Align(
@@ -779,7 +871,8 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
         ],
-      ),
+      ), // Stack
+      ), // ClipRect
     );
   }
 }
