@@ -159,4 +159,193 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get txtWelcomeCreateButton => 'Créer';
+
+  @override
+  String get txtRoute => 'Parcours';
+
+  @override
+  String get txtRouteSalute => 'Salut ';
+
+  @override
+  String get txtRouteQuestion => 'Où est-ce qu\'on part aujourd\'hui ?';
+
+  @override
+  String get txtMyPictures => 'Mes photos';
+
+  @override
+  String get txtMyPicturesPublished => 'Publiées';
+
+  @override
+  String get txtMyPicturesDraft => 'Brouillon';
+
+  @override
+  String get txtMyPicturesAdd => 'Ajouter mes photos';
+
+  @override
+  String get txtMyRoutes => 'Mes parcours';
+
+  @override
+  String get txtMyRoutesCreated => 'Mes parcours créés';
+
+  @override
+  String get txtMyRoutesAdd => 'Créer un parcours';
+
+  @override
+  String get txtFav => 'Enregistrés';
+
+  @override
+  String get txtFavLike => 'Like';
+
+  @override
+  String get txtFavFav => 'Favoris';
+
+  @override
+  String get txtFavAdd => 'Ajouter à un Dossier';
+
+  @override
+  String get txtPurchase => 'Achats';
+
+  @override
+  String get txtPurchaseRoute => 'Parcours';
+
+  @override
+  String get txtPurchaseMap => 'Cartes';
+
+  @override
+  String get txtTrip => 'Voyage';
+
+  @override
+  String get txtTripUpcoming => 'À venir';
+
+  @override
+  String get txtTripPast => 'Passés';
+
+  @override
+  String get txtTrophy => 'Trophées';
+
+  @override
+  String get txtTrophyPassport => 'Passeport';
+
+  @override
+  String get txtTrophyRewards => 'Accomplissements';
+
+  @override
+  String get txtProfile => 'Profil';
+
+  @override
+  String get txtProfileUser => 'P.H.';
+
+  @override
+  String get txtProfileMenu => 'Mon profil';
+
+  @override
+  String get txtProfilePictures => 'Mes photos';
+
+  @override
+  String get txtProfileFavorite => 'Enregistrés';
+
+  @override
+  String get txtProfileRoute => 'Mes parcours';
+
+  @override
+  String get txtProfilePurchase => 'Achats';
+
+  @override
+  String get txtProfileTrip => 'Voyages';
+
+  @override
+  String get txtProfileTrophy => 'Trophées';
+
+  @override
+  String get txtProfileStats => 'Statistiques';
+
+  @override
+  String get txtProfileSettings => 'Réglages et confidentialité';
+
+  @override
+  String get txtVersion => 'Version';
+
+  @override
+  String get txtEditProfileSave => 'Enregistrer';
+
+  @override
+  String get txtEditProfile => 'Éditer le profil';
+
+  @override
+  String get txtEditProfilePseudo => 'Pseudo';
+
+  @override
+  String get txtEditProfilePseudoHint => 'P.H.';
+
+  @override
+  String get txtEditProfileInsta => 'Instagram';
+
+  @override
+  String get txtEditProfileInstaHint => 'LePointGenius';
+
+  @override
+  String get txtEditProfileLocation => 'Localisation';
+
+  @override
+  String get txtEditProfileLocationHint => 'Paris, France';
+
+  @override
+  String get txtEditProfileProfil => 'Profil';
+
+  @override
+  String get txtEditProfileHashtag => 'Mots clés';
+
+  @override
+  String get txtEditProfileAccess => 'Accessibilité';
+
+  @override
+  String get txtEditProfileLanguage => 'Langue';
+
+  @override
+  String get txtEditProfileLanguageHint => 'Français';
+
+  @override
+  String get txtEditProfileBirth => 'Date de naissance';
+
+  @override
+  String get txtEditProfileBirthHint => '01 janvier 1980';
+
+  @override
+  String get txtEditProfileGender => 'Genre';
+
+  @override
+  String get txtEditProfileGenderHint => 'Homme';
+
+  @override
+  String get txtEditProfileGuide => 'Devenir Guide';
+
+  @override
+  String get txtSettingsMailPassword => 'Changer e-mail et Mot de passe';
+
+  @override
+  String get txtSettingsHelp => 'Aide';
+
+  @override
+  String get txtSettingsStatus => 'Statut du compte';
+
+  @override
+  String get txtSettingsSubscription => 'Abonnement';
+
+  @override
+  String get txtSettingsAuth => 'Autorisations';
+
+  @override
+  String get txtSettingsNotifications => 'Notifications';
+
+  @override
+  String get txtSettingsAbout => 'À propos';
+
+  @override
+  String get txtSettingsLogOut => 'Se déconnecter';
+
+  @override
+  String get txtSettingsLegal => 'Mentions légales';
+
+  @override
+  String get txtSettingsGeneral => 'Conditions générales';
 }

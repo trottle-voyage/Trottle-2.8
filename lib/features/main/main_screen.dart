@@ -6,6 +6,8 @@ import '../../core/services/storage_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../nav/route_screen.dart';
+import '../profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,11 +17,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final GpsService      _gps        = GpsService.instance;
+  final GpsService      _gps           = GpsService.instance;
   final MapController   _mapController = MapController();
   List<String> _imageUrls    = [];
   bool         _imagesLoading = false;
   String?      _storageError;
+  bool         _menuOpen      = false;
 
   @override
   void initState() {
@@ -51,54 +54,149 @@ class _MainScreenState extends State<MainScreen> {
 
   // ── Helpers menu ─────────────────────────────────────────────────────────
 
-  static const double _bandeauH  = 152; // hauteur bandeau
-  static const double _gap       = 10;  // espacement entre cercles
-  static const double _mainSize  = 42;  // taille bouton principal
-  static const double _buttSize  = 36;  // taille boutons secondaires
-  static const double _rightEdge = 10;  // marge droite
+  static const double _bandeauH  = 152;
+  static const double _gap       = 10;
+  static const double _mainSize  = 42;
+  static const double _buttSize  = 36;
+  static const double _rightEdge = 10;
 
-  // Centre du bouton principal
-  static const double _mainBottom = _bandeauH + _gap;              // 162
-  static const double _mainCenterH = _rightEdge + _mainSize / 2;   // 31 depuis right
-  static const double _mainCenterV = _mainBottom + _mainSize / 2;  // 183 depuis bottom
+  static const double _mainBottom  = _bandeauH + _gap;                      // 162
+  static const double _mainCenterR = _rightEdge + _mainSize / 2;            // 31 (depuis right)
+  static const double _mainCenterB = _mainBottom + _mainSize / 2;           // 183 (depuis bottom)
 
-  Widget _menuCircle(double size) => ClipOval(
+  // Position de repli : tous les cercles secondaires partent du centre de menuButt
+  static const double _closedBottom = _mainBottom + (_mainSize - _buttSize) / 2; // 165
+  static const double _closedRight  = _rightEdge + (_mainSize - _buttSize) / 2;  // 13
+
+  static const Duration _animDuration = Duration(milliseconds: 350);
+  static const Curve    _animCurve    = Curves.easeOutBack;
+
+  Widget _menuCircle(double size, {Widget? child, VoidCallback? onTap}) {
+    final circle = SizedBox(
+      width: size, height: size,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(size / 2),
         child: BackdropFilter(
           filter: AppDecorations.bgBlur,
           child: Container(
-            width: size, height: size,
             decoration: BoxDecoration(
               color: AppColors.trottleBgDark.withOpacity(0.9),
-              shape: BoxShape.circle,
             ),
+            child: child != null ? Center(child: child) : null,
           ),
         ),
-      );
+      ),
+    );
+    return onTap != null
+        ? GestureDetector(onTap: onTap, child: circle)
+        : circle;
+  }
 
-  // Rangée horizontale : H01, H02, H03 — à gauche du bouton principal
+  void _recenterMap() {
+    if (_gps.valueGPS != null) {
+      try { _mapController.moveAndRotate(_gps.valueGPS!, 17, 0); } catch (_) {}
+    }
+  }
+
+  void _openProfile() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const ProfileScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openRoute() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const RouteScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  // Rangée horizontale — index 0 = H03 (le plus à droite), index 2 = H01
   List<Widget> _buildMenuHRow() {
-    final double bottomPos = _mainCenterV - _buttSize / 2; // centré avec main
-    return List.generate(3, (i) {
-      final double rightPos =
-          _rightEdge + _mainSize + _gap + i * (_buttSize + _gap);
-      return Positioned(
-        bottom: bottomPos,
-        right: rightPos,
-        child: _menuCircle(_buttSize),
+    final configs = [
+      // H03 — recentrage carte
+      (child: const Icon(Icons.my_location, color: AppColors.trottleWhite, size: 20),
+       onTap: _recenterMap as VoidCallback?),
+      // H02 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+      // H01 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+    ];
+
+    return List.generate(configs.length, (i) {
+      final cfg = configs[i];
+      final double openBottom = _mainCenterB - _buttSize / 2;
+      final double openRight  = _rightEdge + _mainSize + _gap + i * (_buttSize + _gap);
+      return AnimatedPositioned(
+        duration: _animDuration, curve: _animCurve,
+        bottom: _menuOpen ? openBottom : _closedBottom,
+        right:  _menuOpen ? openRight  : _closedRight,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 200),
+          opacity: _menuOpen ? 1.0 : 0.0,
+          child: _menuCircle(_buttSize, child: cfg.child, onTap: cfg.onTap),
+        ),
       );
     });
   }
 
-  // Colonne verticale : V01, V02, V03, V04 — au-dessus du bouton principal
+  // Colonne verticale — index 0 = V04 (le plus bas), index 3 = V01 (le plus haut)
   List<Widget> _buildMenuVCol() {
-    final double rightPos = _mainCenterH - _buttSize / 2; // centré avec main
-    return List.generate(4, (i) {
-      final double bottomPos =
-          _mainBottom + _mainSize + _gap + i * (_buttSize + _gap);
-      return Positioned(
-        bottom: bottomPos,
-        right: rightPos,
-        child: _menuCircle(_buttSize),
+    final configs = [
+      // V04 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+      // V03 — vide pour l'instant
+      (child: null as Widget?, onTap: null as VoidCallback?),
+      // V02 — parcours
+      (child: const Icon(Icons.route_outlined, color: AppColors.trottleWhite, size: 20),
+       onTap: _openRoute as VoidCallback?),
+      // V01 — profil
+      (child: const Icon(Icons.person, color: AppColors.trottleWhite, size: 20),
+       onTap: _openProfile as VoidCallback?),
+    ];
+
+    return List.generate(configs.length, (i) {
+      final cfg = configs[i];
+      final double openRight  = _mainCenterR - _buttSize / 2;
+      final double openBottom = _mainBottom + _mainSize + _gap + i * (_buttSize + _gap);
+      return AnimatedPositioned(
+        duration: _animDuration, curve: _animCurve,
+        bottom: _menuOpen ? openBottom : _closedBottom,
+        right:  _menuOpen ? openRight  : _closedRight,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 200),
+          opacity: _menuOpen ? 1.0 : 0.0,
+          child: _menuCircle(_buttSize, child: cfg.child, onTap: cfg.onTap),
+        ),
       );
     });
   }
@@ -189,7 +287,9 @@ class _MainScreenState extends State<MainScreen> {
               child: BackdropFilter(
                 filter: AppDecorations.bgBlur,
                 child: Container(
-                  color: AppColors.trottleBgDark.withOpacity(0.9),
+                  decoration: BoxDecoration(
+                    color: AppColors.trottleBgDark.withOpacity(0.9),
+                  ),
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   height: 128 + 24,
                   child: _imagesLoading
@@ -238,10 +338,15 @@ class _MainScreenState extends State<MainScreen> {
           // menuButtV01 – V02 – V03 – V04 (colonne verticale, 36px)
           ..._buildMenuVCol(),
 
-          // Bouton principal (42px)
+          // menuButt — bouton principal (42px)
           Positioned(
-            bottom: 162, right: 10,
-            child: _menuCircle(42),
+            bottom: _mainBottom, right: _rightEdge,
+            child: GestureDetector(
+              onTap: () => setState(() => _menuOpen = !_menuOpen),
+              child: _menuCircle(_mainSize,
+                  child: Image.asset('assets/icones/trottle_32.webp',
+                      width: _mainSize * 0.6, height: _mainSize * 0.6)),
+            ),
           ),
         ],
       ),

@@ -393,6 +393,384 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Créer'**
   String get txtWelcomeCreateButton;
+
+  /// No description provided for @txtRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours'**
+  String get txtRoute;
+
+  /// No description provided for @txtRouteSalute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Salut '**
+  String get txtRouteSalute;
+
+  /// No description provided for @txtRouteQuestion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Où est-ce qu\'on part aujourd\'hui ?'**
+  String get txtRouteQuestion;
+
+  /// No description provided for @txtMyPictures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes photos'**
+  String get txtMyPictures;
+
+  /// No description provided for @txtMyPicturesPublished.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publiées'**
+  String get txtMyPicturesPublished;
+
+  /// No description provided for @txtMyPicturesDraft.
+  ///
+  /// In fr, this message translates to:
+  /// **'Brouillon'**
+  String get txtMyPicturesDraft;
+
+  /// No description provided for @txtMyPicturesAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter mes photos'**
+  String get txtMyPicturesAdd;
+
+  /// No description provided for @txtMyRoutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes parcours'**
+  String get txtMyRoutes;
+
+  /// No description provided for @txtMyRoutesCreated.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes parcours créés'**
+  String get txtMyRoutesCreated;
+
+  /// No description provided for @txtMyRoutesAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer un parcours'**
+  String get txtMyRoutesAdd;
+
+  /// No description provided for @txtFav.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrés'**
+  String get txtFav;
+
+  /// No description provided for @txtFavLike.
+  ///
+  /// In fr, this message translates to:
+  /// **'Like'**
+  String get txtFavLike;
+
+  /// No description provided for @txtFavFav.
+  ///
+  /// In fr, this message translates to:
+  /// **'Favoris'**
+  String get txtFavFav;
+
+  /// No description provided for @txtFavAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter à un Dossier'**
+  String get txtFavAdd;
+
+  /// No description provided for @txtPurchase.
+  ///
+  /// In fr, this message translates to:
+  /// **'Achats'**
+  String get txtPurchase;
+
+  /// No description provided for @txtPurchaseRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours'**
+  String get txtPurchaseRoute;
+
+  /// No description provided for @txtPurchaseMap.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cartes'**
+  String get txtPurchaseMap;
+
+  /// No description provided for @txtTrip.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voyage'**
+  String get txtTrip;
+
+  /// No description provided for @txtTripUpcoming.
+  ///
+  /// In fr, this message translates to:
+  /// **'À venir'**
+  String get txtTripUpcoming;
+
+  /// No description provided for @txtTripPast.
+  ///
+  /// In fr, this message translates to:
+  /// **'Passés'**
+  String get txtTripPast;
+
+  /// No description provided for @txtTrophy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trophées'**
+  String get txtTrophy;
+
+  /// No description provided for @txtTrophyPassport.
+  ///
+  /// In fr, this message translates to:
+  /// **'Passeport'**
+  String get txtTrophyPassport;
+
+  /// No description provided for @txtTrophyRewards.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accomplissements'**
+  String get txtTrophyRewards;
+
+  /// No description provided for @txtProfile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil'**
+  String get txtProfile;
+
+  /// No description provided for @txtProfileUser.
+  ///
+  /// In fr, this message translates to:
+  /// **'P.H.'**
+  String get txtProfileUser;
+
+  /// No description provided for @txtProfileMenu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon profil'**
+  String get txtProfileMenu;
+
+  /// No description provided for @txtProfilePictures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes photos'**
+  String get txtProfilePictures;
+
+  /// No description provided for @txtProfileFavorite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrés'**
+  String get txtProfileFavorite;
+
+  /// No description provided for @txtProfileRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes parcours'**
+  String get txtProfileRoute;
+
+  /// No description provided for @txtProfilePurchase.
+  ///
+  /// In fr, this message translates to:
+  /// **'Achats'**
+  String get txtProfilePurchase;
+
+  /// No description provided for @txtProfileTrip.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voyages'**
+  String get txtProfileTrip;
+
+  /// No description provided for @txtProfileTrophy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trophées'**
+  String get txtProfileTrophy;
+
+  /// No description provided for @txtProfileStats.
+  ///
+  /// In fr, this message translates to:
+  /// **'Statistiques'**
+  String get txtProfileStats;
+
+  /// No description provided for @txtProfileSettings.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réglages et confidentialité'**
+  String get txtProfileSettings;
+
+  /// No description provided for @txtVersion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Version'**
+  String get txtVersion;
+
+  /// No description provided for @txtEditProfileSave.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get txtEditProfileSave;
+
+  /// No description provided for @txtEditProfile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Éditer le profil'**
+  String get txtEditProfile;
+
+  /// No description provided for @txtEditProfilePseudo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pseudo'**
+  String get txtEditProfilePseudo;
+
+  /// No description provided for @txtEditProfilePseudoHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'P.H.'**
+  String get txtEditProfilePseudoHint;
+
+  /// No description provided for @txtEditProfileInsta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Instagram'**
+  String get txtEditProfileInsta;
+
+  /// No description provided for @txtEditProfileInstaHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'LePointGenius'**
+  String get txtEditProfileInstaHint;
+
+  /// No description provided for @txtEditProfileLocation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Localisation'**
+  String get txtEditProfileLocation;
+
+  /// No description provided for @txtEditProfileLocationHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paris, France'**
+  String get txtEditProfileLocationHint;
+
+  /// No description provided for @txtEditProfileProfil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil'**
+  String get txtEditProfileProfil;
+
+  /// No description provided for @txtEditProfileHashtag.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mots clés'**
+  String get txtEditProfileHashtag;
+
+  /// No description provided for @txtEditProfileAccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accessibilité'**
+  String get txtEditProfileAccess;
+
+  /// No description provided for @txtEditProfileLanguage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langue'**
+  String get txtEditProfileLanguage;
+
+  /// No description provided for @txtEditProfileLanguageHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Français'**
+  String get txtEditProfileLanguageHint;
+
+  /// No description provided for @txtEditProfileBirth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de naissance'**
+  String get txtEditProfileBirth;
+
+  /// No description provided for @txtEditProfileBirthHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'01 janvier 1980'**
+  String get txtEditProfileBirthHint;
+
+  /// No description provided for @txtEditProfileGender.
+  ///
+  /// In fr, this message translates to:
+  /// **'Genre'**
+  String get txtEditProfileGender;
+
+  /// No description provided for @txtEditProfileGenderHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Homme'**
+  String get txtEditProfileGenderHint;
+
+  /// No description provided for @txtEditProfileGuide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Devenir Guide'**
+  String get txtEditProfileGuide;
+
+  /// No description provided for @txtSettingsMailPassword.
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer e-mail et Mot de passe'**
+  String get txtSettingsMailPassword;
+
+  /// No description provided for @txtSettingsHelp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aide'**
+  String get txtSettingsHelp;
+
+  /// No description provided for @txtSettingsStatus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Statut du compte'**
+  String get txtSettingsStatus;
+
+  /// No description provided for @txtSettingsSubscription.
+  ///
+  /// In fr, this message translates to:
+  /// **'Abonnement'**
+  String get txtSettingsSubscription;
+
+  /// No description provided for @txtSettingsAuth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autorisations'**
+  String get txtSettingsAuth;
+
+  /// No description provided for @txtSettingsNotifications.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notifications'**
+  String get txtSettingsNotifications;
+
+  /// No description provided for @txtSettingsAbout.
+  ///
+  /// In fr, this message translates to:
+  /// **'À propos'**
+  String get txtSettingsAbout;
+
+  /// No description provided for @txtSettingsLogOut.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se déconnecter'**
+  String get txtSettingsLogOut;
+
+  /// No description provided for @txtSettingsLegal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mentions légales'**
+  String get txtSettingsLegal;
+
+  /// No description provided for @txtSettingsGeneral.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conditions générales'**
+  String get txtSettingsGeneral;
 }
 
 class _AppLocalizationsDelegate
