@@ -1,0 +1,148 @@
+{
+  "project_info": {
+    "project_number": "721054867211",
+    "project_id": "trottle-2eaf6",
+    "storage_bucket": "trottle-2eaf6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721054867211:android:007f7025d97042e8c2cc0e",
+        "android_client_info": {
+          "package_name": "voyage.trottle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721054867211-slsfnkukclrr0v78qq834ejl89dgot52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottle",
+            "certificate_hash": "51d879e48b688af3f39e44eb54edb3fbf8cecde9"
+          }
+        },
+        {
+          "client_id": "721054867211-1ackum74aav999o9bvt6o0ja9u83dkpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBol8iySebf9nDahka123A5IWsnynetZDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721054867211-1ackum74aav999o9bvt6o0ja9u83dkpd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "721054867211-2rgneojckqplgf4ljcubfthrgt0qrdfa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "voyage.trottle",
+                "app_store_id": "1599382864"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721054867211:android:320ecde9196b7c0fc2cc0e",
+        "android_client_info": {
+          "package_name": "voyage.trottleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721054867211-8rmu5emr4mqisoeca5jqo94n7se0qlg6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottleapp",
+            "certificate_hash": "a62b301bab75f0ebed9f4c371ab88a88a0f2abdf"
+          }
+        },
+        {
+          "client_id": "721054867211-f11tahp6gfcq8eomv86p7hb7rdpbeflu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottleapp",
+            "certificate_hash": "dcec6cf65c6fd1f28b0f488a00369df05d7ec21a"
+          }
+        },
+        {
+          "client_id": "721054867211-p9befbiqhtq14cf0e2lipr5t1ljcrf3r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottleapp",
+            "certificate_hash": "e070d9aa8f88d438cbfa87ea5595e12e901631c4"
+          }
+        },
+        {
+          "client_id": "721054867211-sdtfn5v0ll1d82u2n8cp0i7l0kkvmkb6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottleapp",
+            "certificate_hash": "2f0fe27767cc4b0500830e15e84e26c190b60baa"
+          }
+        },
+        {
+          "client_id": "721054867211-t1trdv2vu8gvk7o5ssul2cr7cqf5f956.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottleapp",
+            "certificate_hash": "28b97160591735d69a117c038839f14876a758aa"
+          }
+        },
+        {
+          "client_id": "721054867211-ttou95ium6t0o3pfv7gn3g2i0slajr0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottleapp",
+            "certificate_hash": "51d879e48b688af3f39e44eb54edb3fbf8cecde9"
+          }
+        },
+        {
+          "client_id": "721054867211-ulth8q515kbde9rkoes1rn2f5srk7fhv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "voyage.trottleapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "721054867211-1ackum74aav999o9bvt6o0ja9u83dkpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBol8iySebf9nDahka123A5IWsnynetZDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721054867211-1ackum74aav999o9bvt6o0ja9u83dkpd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "721054867211-2rgneojckqplgf4ljcubfthrgt0qrdfa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "voyage.trottle",
+                "app_store_id": "1599382864"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
