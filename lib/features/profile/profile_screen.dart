@@ -5,6 +5,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/menu_row.dart';
 import '../../l10n/app_localizations.dart';
+import '../nav/my_pictures_screen.dart';
 import 'edit_profile_screen.dart';
 import 'settings_screen.dart';
 
@@ -41,6 +42,27 @@ class ProfileScreen extends StatelessWidget {
         transitionDuration: const Duration(milliseconds: 400),
         reverseTransitionDuration: const Duration(milliseconds: 400),
         pageBuilder: (_, __, ___) => const EditProfileScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openMyPictures(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const MyPicturesScreen(),
         transitionsBuilder: (_, animation, __, child) => SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(1, 0),
@@ -128,6 +150,7 @@ class ProfileScreen extends StatelessWidget {
             MenuRow(
               icon: Icons.photo_camera_outlined,
               label: l.txtProfilePictures,
+              onTap: () => _openMyPictures(context),
             ),
             MenuRow(
               icon: Icons.favorite_border,

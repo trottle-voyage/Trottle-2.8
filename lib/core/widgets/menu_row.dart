@@ -16,6 +16,8 @@ class MenuRow extends StatelessWidget {
     this.divider = false,
     this.labelStyle,
     this.labelWidth,
+    this.expandable = false,
+    this.expanded = false,
   });
 
   final IconData icon;
@@ -30,6 +32,14 @@ class MenuRow extends StatelessWidget {
 
   /// Largeur override de la zone de texte. Par défaut : [textWidth] = 120.
   final double? labelWidth;
+
+  /// Si true, le chevron pointe vers le bas (replié) ou vers le haut
+  /// (déplié selon [expanded]), au lieu de pointer vers la droite.
+  final bool expandable;
+
+  /// Utilisé quand [expandable] est true : bascule l'icône entre
+  /// "déroulé" (haut) et "refermé" (bas).
+  final bool expanded;
 
   // Dimensions
   static const double horizontalMargin = 20; // identique au bloc Profil
@@ -77,11 +87,15 @@ class MenuRow extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const SizedBox(
+            SizedBox(
               width: iconSize,
               height: iconSize,
               child: Icon(
-                Icons.chevron_right,
+                expandable
+                    ? (expanded
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_down)
+                    : Icons.chevron_right,
                 color: AppColors.trottleMidGray,
                 size: iconSize,
               ),

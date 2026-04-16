@@ -394,6 +394,144 @@ abstract class AppLocalizations {
   /// **'Créer'**
   String get txtWelcomeCreateButton;
 
+  /// No description provided for @txtRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours'**
+  String get txtRoute;
+
+  /// No description provided for @txtRouteSalute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Salut '**
+  String get txtRouteSalute;
+
+  /// No description provided for @txtRouteQuestion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Où est-ce qu\'on part aujourd\'hui ?'**
+  String get txtRouteQuestion;
+
+  /// No description provided for @txtMyPictures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes photos'**
+  String get txtMyPictures;
+
+  /// No description provided for @txtMyPicturesPublished.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publiées'**
+  String get txtMyPicturesPublished;
+
+  /// No description provided for @txtMyPicturesDraft.
+  ///
+  /// In fr, this message translates to:
+  /// **'Brouillon'**
+  String get txtMyPicturesDraft;
+
+  /// No description provided for @txtMyPicturesAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter mes photos'**
+  String get txtMyPicturesAdd;
+
+  /// No description provided for @txtMyRoutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes parcours'**
+  String get txtMyRoutes;
+
+  /// No description provided for @txtMyRoutesCreated.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes parcours créés'**
+  String get txtMyRoutesCreated;
+
+  /// No description provided for @txtMyRoutesAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer un parcours'**
+  String get txtMyRoutesAdd;
+
+  /// No description provided for @txtFav.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrés'**
+  String get txtFav;
+
+  /// No description provided for @txtFavLike.
+  ///
+  /// In fr, this message translates to:
+  /// **'Like'**
+  String get txtFavLike;
+
+  /// No description provided for @txtFavFav.
+  ///
+  /// In fr, this message translates to:
+  /// **'Favoris'**
+  String get txtFavFav;
+
+  /// No description provided for @txtFavAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter à un Dossier'**
+  String get txtFavAdd;
+
+  /// No description provided for @txtPurchase.
+  ///
+  /// In fr, this message translates to:
+  /// **'Achats'**
+  String get txtPurchase;
+
+  /// No description provided for @txtPurchaseRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours'**
+  String get txtPurchaseRoute;
+
+  /// No description provided for @txtPurchaseMap.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cartes'**
+  String get txtPurchaseMap;
+
+  /// No description provided for @txtTrip.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voyage'**
+  String get txtTrip;
+
+  /// No description provided for @txtTripUpcoming.
+  ///
+  /// In fr, this message translates to:
+  /// **'À venir'**
+  String get txtTripUpcoming;
+
+  /// No description provided for @txtTripPast.
+  ///
+  /// In fr, this message translates to:
+  /// **'Passés'**
+  String get txtTripPast;
+
+  /// No description provided for @txtTrophy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trophées'**
+  String get txtTrophy;
+
+  /// No description provided for @txtTrophyPassport.
+  ///
+  /// In fr, this message translates to:
+  /// **'Passeport'**
+  String get txtTrophyPassport;
+
+  /// No description provided for @txtTrophyRewards.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accomplissements'**
+  String get txtTrophyRewards;
+
   /// No description provided for @txtProfile.
   ///
   /// In fr, this message translates to:

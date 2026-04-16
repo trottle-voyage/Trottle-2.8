@@ -6,6 +6,7 @@ import '../../core/services/storage_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../nav/route_screen.dart';
 import '../profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -118,6 +119,27 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  void _openRoute() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const RouteScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
   // Rangée horizontale — index 0 = H03 (le plus à droite), index 2 = H01
   List<Widget> _buildMenuHRow() {
     final configs = [
@@ -154,8 +176,9 @@ class _MainScreenState extends State<MainScreen> {
       (child: null as Widget?, onTap: null as VoidCallback?),
       // V03 — vide pour l'instant
       (child: null as Widget?, onTap: null as VoidCallback?),
-      // V02 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
+      // V02 — parcours
+      (child: const Icon(Icons.route_outlined, color: AppColors.trottleWhite, size: 20),
+       onTap: _openRoute as VoidCallback?),
       // V01 — profil
       (child: const Icon(Icons.person, color: AppColors.trottleWhite, size: 20),
        onTap: _openProfile as VoidCallback?),

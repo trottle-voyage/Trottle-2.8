@@ -161,6 +161,75 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtWelcomeCreateButton => 'Créer';
 
   @override
+  String get txtRoute => 'Parcours';
+
+  @override
+  String get txtRouteSalute => 'Salut ';
+
+  @override
+  String get txtRouteQuestion => 'Où est-ce qu\'on part aujourd\'hui ?';
+
+  @override
+  String get txtMyPictures => 'Mes photos';
+
+  @override
+  String get txtMyPicturesPublished => 'Publiées';
+
+  @override
+  String get txtMyPicturesDraft => 'Brouillon';
+
+  @override
+  String get txtMyPicturesAdd => 'Ajouter mes photos';
+
+  @override
+  String get txtMyRoutes => 'Mes parcours';
+
+  @override
+  String get txtMyRoutesCreated => 'Mes parcours créés';
+
+  @override
+  String get txtMyRoutesAdd => 'Créer un parcours';
+
+  @override
+  String get txtFav => 'Enregistrés';
+
+  @override
+  String get txtFavLike => 'Like';
+
+  @override
+  String get txtFavFav => 'Favoris';
+
+  @override
+  String get txtFavAdd => 'Ajouter à un Dossier';
+
+  @override
+  String get txtPurchase => 'Achats';
+
+  @override
+  String get txtPurchaseRoute => 'Parcours';
+
+  @override
+  String get txtPurchaseMap => 'Cartes';
+
+  @override
+  String get txtTrip => 'Voyage';
+
+  @override
+  String get txtTripUpcoming => 'À venir';
+
+  @override
+  String get txtTripPast => 'Passés';
+
+  @override
+  String get txtTrophy => 'Trophées';
+
+  @override
+  String get txtTrophyPassport => 'Passeport';
+
+  @override
+  String get txtTrophyRewards => 'Accomplissements';
+
+  @override
   String get txtProfile => 'Profil';
 
   @override

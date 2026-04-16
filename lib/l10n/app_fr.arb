@@ -58,6 +58,36 @@
   "txtWelcomeSearch": "Centres d'intéret",
   "txtWelcomeCreateButton": "Créer",
 
+  "txtRoute": "Parcours",
+  "txtRouteSalute": "Salut ",
+  "txtRouteQuestion": "Où est-ce qu'on part aujourd'hui ?",
+
+  "txtMyPictures": "Mes photos",
+  "txtMyPicturesPublished": "Publiées",
+  "txtMyPicturesDraft": "Brouillon",
+  "txtMyPicturesAdd": "Ajouter mes photos",
+
+  "txtMyRoutes": "Mes parcours",
+  "txtMyRoutesCreated": "Mes parcours créés",
+  "txtMyRoutesAdd": "Créer un parcours",
+
+  "txtFav": "Enregistrés",
+  "txtFavLike": "Like",
+  "txtFavFav": "Favoris",
+  "txtFavAdd": "Ajouter à un Dossier",
+
+  "txtPurchase": "Achats",
+  "txtPurchaseRoute": "Parcours",
+  "txtPurchaseMap": "Cartes",
+
+  "txtTrip": "Voyage",
+  "txtTripUpcoming": "À venir",
+  "txtTripPast": "Passés",
+
+  "txtTrophy": "Trophées",
+  "txtTrophyPassport": "Passeport",
+  "txtTrophyRewards": "Accomplissements",
+
   "txtProfile": "Profil",
   "txtProfileUser": "P.H.",
   "txtProfileMenu": "Mon profil",
