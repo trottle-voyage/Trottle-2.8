@@ -159,4 +159,124 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get txtWelcomeCreateButton => 'Créer';
+
+  @override
+  String get txtProfile => 'Profil';
+
+  @override
+  String get txtProfileUser => 'P.H.';
+
+  @override
+  String get txtProfileMenu => 'Mon profil';
+
+  @override
+  String get txtProfilePictures => 'Mes photos';
+
+  @override
+  String get txtProfileFavorite => 'Enregistrés';
+
+  @override
+  String get txtProfileRoute => 'Mes parcours';
+
+  @override
+  String get txtProfilePurchase => 'Achats';
+
+  @override
+  String get txtProfileTrip => 'Voyages';
+
+  @override
+  String get txtProfileTrophy => 'Trophées';
+
+  @override
+  String get txtProfileStats => 'Statistiques';
+
+  @override
+  String get txtProfileSettings => 'Réglages et confidentialité';
+
+  @override
+  String get txtVersion => 'Version';
+
+  @override
+  String get txtEditProfileSave => 'Enregistrer';
+
+  @override
+  String get txtEditProfile => 'Éditer le profil';
+
+  @override
+  String get txtEditProfilePseudo => 'Pseudo';
+
+  @override
+  String get txtEditProfilePseudoHint => 'P.H.';
+
+  @override
+  String get txtEditProfileInsta => 'Instagram';
+
+  @override
+  String get txtEditProfileInstaHint => 'LePointGenius';
+
+  @override
+  String get txtEditProfileLocation => 'Localisation';
+
+  @override
+  String get txtEditProfileLocationHint => 'Paris, France';
+
+  @override
+  String get txtEditProfileProfil => 'Profil';
+
+  @override
+  String get txtEditProfileHashtag => 'Mots clés';
+
+  @override
+  String get txtEditProfileAccess => 'Accessibilité';
+
+  @override
+  String get txtEditProfileLanguage => 'Langue';
+
+  @override
+  String get txtEditProfileLanguageHint => 'Français';
+
+  @override
+  String get txtEditProfileBirth => 'Date de naissance';
+
+  @override
+  String get txtEditProfileBirthHint => '01 janvier 1980';
+
+  @override
+  String get txtEditProfileGender => 'Genre';
+
+  @override
+  String get txtEditProfileGenderHint => 'Homme';
+
+  @override
+  String get txtEditProfileGuide => 'Devenir Guide';
+
+  @override
+  String get txtSettingsMailPassword => 'Changer e-mail et Mot de passe';
+
+  @override
+  String get txtSettingsHelp => 'Aide';
+
+  @override
+  String get txtSettingsStatus => 'Statut du compte';
+
+  @override
+  String get txtSettingsSubscription => 'Abonnement';
+
+  @override
+  String get txtSettingsAuth => 'Autorisations';
+
+  @override
+  String get txtSettingsNotifications => 'Notifications';
+
+  @override
+  String get txtSettingsAbout => 'À propos';
+
+  @override
+  String get txtSettingsLogOut => 'Se déconnecter';
+
+  @override
+  String get txtSettingsLegal => 'Mentions légales';
+
+  @override
+  String get txtSettingsGeneral => 'Conditions générales';
 }

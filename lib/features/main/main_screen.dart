@@ -6,6 +6,7 @@ import '../../core/services/storage_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -96,6 +97,27 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  void _openProfile() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const ProfileScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
   // Rangée horizontale — index 0 = H03 (le plus à droite), index 2 = H01
   List<Widget> _buildMenuHRow() {
     final configs = [
@@ -136,7 +158,7 @@ class _MainScreenState extends State<MainScreen> {
       (child: null as Widget?, onTap: null as VoidCallback?),
       // V01 — profil
       (child: const Icon(Icons.person, color: AppColors.trottleWhite, size: 20),
-       onTap: null as VoidCallback?), // navigation vers profil — à brancher
+       onTap: _openProfile as VoidCallback?),
     ];
 
     return List.generate(configs.length, (i) {
