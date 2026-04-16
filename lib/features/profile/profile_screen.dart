@@ -5,9 +5,16 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/menu_row.dart';
 import '../../l10n/app_localizations.dart';
+import '../infos/version_screen.dart';
+import '../nav/fav_screen.dart';
 import '../nav/my_pictures_screen.dart';
+import '../nav/my_route_screen.dart';
+import '../nav/purchase_screen.dart';
+import '../nav/trip_screen.dart';
+import 'trophy_screen.dart';
 import 'edit_profile_screen.dart';
 import 'settings_screen.dart';
+import 'stats_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -63,6 +70,153 @@ class ProfileScreen extends StatelessWidget {
         transitionDuration: const Duration(milliseconds: 400),
         reverseTransitionDuration: const Duration(milliseconds: 400),
         pageBuilder: (_, __, ___) => const MyPicturesScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openMyRoute(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const MyRouteScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openFav(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const FavScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openPurchase(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const PurchaseScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openTrip(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const TripScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openTrophy(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const TrophyScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openStats(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const StatsScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openVersion(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const VersionScreen(),
         transitionsBuilder: (_, animation, __, child) => SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(1, 0),
@@ -155,27 +309,33 @@ class ProfileScreen extends StatelessWidget {
             MenuRow(
               icon: Icons.favorite_border,
               label: l.txtProfileFavorite,
+              onTap: () => _openFav(context),
             ),
             MenuRow(
               icon: Icons.route_outlined,
               label: l.txtProfileRoute,
+              onTap: () => _openMyRoute(context),
             ),
             MenuRow(
               icon: Icons.shopping_cart_outlined,
               label: l.txtProfilePurchase,
+              onTap: () => _openPurchase(context),
             ),
             MenuRow(
               icon: Icons.luggage_outlined,
               label: l.txtProfileTrip,
               divider: true,
+              onTap: () => _openTrip(context),
             ),
             MenuRow(
               icon: Icons.emoji_events_outlined,
               label: l.txtProfileTrophy,
+              onTap: () => _openTrophy(context),
             ),
             MenuRow(
               icon: Icons.bar_chart_outlined,
               label: l.txtProfileStats,
+              onTap: () => _openStats(context),
             ),
             MenuRow(
               icon: Icons.settings_outlined,
@@ -192,10 +352,14 @@ class ProfileScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 30),
-                  child: Text(
-                    '${l.txtVersion} ${AppConstants.appVersion}',
-                    style: AppTextStyles.subTitleMedium
-                        .copyWith(color: AppColors.trottleWhite),
+                  child: GestureDetector(
+                    onTap: () => _openVersion(context),
+                    behavior: HitTestBehavior.opaque,
+                    child: Text(
+                      '${l.txtVersion} ${AppConstants.appVersion}',
+                      style: AppTextStyles.subTitleMedium
+                          .copyWith(color: AppColors.trottleWhite),
+                    ),
                   ),
                 ),
               ),

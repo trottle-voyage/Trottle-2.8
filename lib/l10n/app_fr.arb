@@ -3,7 +3,6 @@
 
   "appName": "Trottle",
 
-// Panneau Connexion
   "txtLoginTitle": "Connexion",
   "txtLoginEmail": "e-mail ou utilisateur",
   "txtLoginEmailHint": "utilisateur@mail.com",
@@ -15,7 +14,6 @@
   "txtLoginCreateAccount1": "Pas encore de compte ?",
   "txtLoginCreateAccount2": "Créez-le gratuitement",
 
-// Panneau Mot de passe oublié
   "txtForgotPasswordTitle": "Mot de passe oublié",
   "txtForgotPasswordEmail": "Saisissez votre e-mail",
   "txtForgotPasswordEmailHint": "utilisateur@mail.com",
@@ -58,10 +56,19 @@
   "txtWelcomeSearch": "Centres d'intéret",
   "txtWelcomeCreateButton": "Créer",
 
-  "txtRoute": "Parcours",
-  "txtRouteSalute": "Salut ",
-  "txtRouteQuestion": "Où est-ce qu'on part aujourd'hui ?",
-
+  "txtProfile": "Profil",
+  "txtProfileUser": "P.H.",
+  "txtProfileMenu": "Mon profil",
+  "txtProfilePictures": "Mes photos",
+  "txtProfileFavorite": "Enregistrés",
+  "txtProfileRoute": "Mes parcours",
+  "txtProfilePurchase": "Achats",
+  "txtProfileTrip": "Voyages",
+  "txtProfileTrophy": "Trophées",
+  "txtProfileStats": "Statistiques",
+  "txtProfileSettings": "Réglages et confidentialité",
+  "txtVersion": "Version",
+ 
   "txtMyPictures": "Mes photos",
   "txtMyPicturesPublished": "Publiées",
   "txtMyPicturesDraft": "Brouillon",
@@ -86,20 +93,10 @@
 
   "txtTrophy": "Trophées",
   "txtTrophyPassport": "Passeport",
+  "txtTrophyPassportCount": "/194",
   "txtTrophyRewards": "Accomplissements",
 
-  "txtProfile": "Profil",
-  "txtProfileUser": "P.H.",
-  "txtProfileMenu": "Mon profil",
-  "txtProfilePictures": "Mes photos",
-  "txtProfileFavorite": "Enregistrés",
-  "txtProfileRoute": "Mes parcours",
-  "txtProfilePurchase": "Achats",
-  "txtProfileTrip": "Voyages",
-  "txtProfileTrophy": "Trophées",
-  "txtProfileStats": "Statistiques",
-  "txtProfileSettings": "Réglages et confidentialité",
-  "txtVersion": "Version",
+  "txtStats": "Statistiques",
 
   "txtEditProfileSave": "Enregistrer",
   "txtEditProfile": "Éditer le profil",
@@ -119,6 +116,9 @@
   "txtEditProfileGender": "Genre",
   "txtEditProfileGenderHint": "Homme",
   "txtEditProfileGuide": "Devenir Guide",
+  "txtRoute": "Parcours",
+  "txtRouteSalute": "Salut ",
+  "txtRouteQuestion": "Où est-ce qu'on part aujourd'hui ?",
 
   "txtSettingsMailPassword": "Changer e-mail et Mot de passe",
   "txtSettingsHelp": "Aide",
@@ -129,5 +129,7 @@
   "txtSettingsAbout": "À propos",
   "txtSettingsLogOut": "Se déconnecter",
   "txtSettingsLegal": "Mentions légales",
-  "txtSettingsGeneral": "Conditions générales"
+  "txtSettingsGeneral": "Conditions générales",
+
+  "txtVersionDetails": "🎨 Design & UI\n• Transitions splash panel : slide horizontal complet X-axis uniquement, cadres entiers hors écran\n• Navigation Splash → Main : slide depuis le bas, ease in/out\n• Glassmorphisme carrousel et boutons Main : BackdropFilter + trottleBgDark 90%\n• Module BackArrowBar partagé : flèche retour identique sur toutes les pages (slot trailing optionnel)\n• Module MenuRow partagé : icône + label + chevron >, paramètres expandable/divider/labelStyle/labelWidth\n• Module FieldRow partagé : champ éditable inline, readOnly + onTap\n• Module DropdownFieldRow : menu déroulant en popup Overlay, aligné sous le hint\n• Module LocationFieldRow : recherche OSM Nominatim inline avec debounce 350 ms\n\n📱 Nouvelles pages\n• Main → Profile (slide droite)\n• Profile : avatar, menu complet, version cliquable\n• EditProfile : photo, pseudo, Instagram, localisation OSM, profil, hashtags, accessibilité, langue, date (picker natif), genre, Devenir Guide\n• Settings : menu, Se déconnecter (retour splash), mentions légales\n• Stats, Trophées (grille stamps Passeport 64×64), Version\n• Parcours (route_screen) accessible depuis MenuButtV02\n• 6 pages nav : MyPictures, MyRoutes, Fav, Purchase, Trip, Trophy\n\n🔗 Navigation\n• Toutes les pages Profile branchées avec slide droite→gauche 400 ms\n• Se déconnecter : pushAndRemoveUntil → Splash, slide depuis le haut\n• Version accessible depuis la page de connexion ET depuis Profile\n\n🐛 Corrections\n• ClipOval → ClipRRect pour BackdropFilter fiable sur boutons circulaires\n• Slide Y verrouillé (Alignment.bottomCenter sur Stack)\n• Dropdown langue : passage inline → Overlay pour éviter conflits de layout\n• txtVersion dupliqué dans app_fr.arb : nettoyé"
 }

@@ -5,16 +5,16 @@ import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/menu_row.dart';
 import '../../l10n/app_localizations.dart';
 
-class MyPicturesScreen extends StatefulWidget {
-  const MyPicturesScreen({super.key});
+class PurchaseScreen extends StatefulWidget {
+  const PurchaseScreen({super.key});
 
   @override
-  State<MyPicturesScreen> createState() => _MyPicturesScreenState();
+  State<PurchaseScreen> createState() => _PurchaseScreenState();
 }
 
-class _MyPicturesScreenState extends State<MyPicturesScreen> {
-  bool _publishedOpen = false;
-  bool _draftOpen = false;
+class _PurchaseScreenState extends State<PurchaseScreen> {
+  bool _routeOpen = false;
+  bool _mapOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
               child: Text(
-                l.txtMyPictures,
+                l.txtPurchase,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.title
                     .copyWith(color: AppColors.trottleWhite),
@@ -42,23 +42,18 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
 
             // ── Sous-menus dépliables ──────────────────────────────────────
             MenuRow(
-              icon: Icons.file_upload_outlined,
-              label: l.txtMyPicturesPublished,
+              icon: Icons.route_outlined,
+              label: l.txtPurchaseRoute,
               expandable: true,
-              expanded: _publishedOpen,
-              onTap: () =>
-                  setState(() => _publishedOpen = !_publishedOpen),
+              expanded: _routeOpen,
+              onTap: () => setState(() => _routeOpen = !_routeOpen),
             ),
             MenuRow(
-              icon: Icons.edit_outlined,
-              label: l.txtMyPicturesDraft,
+              icon: Icons.map_outlined,
+              label: l.txtPurchaseMap,
               expandable: true,
-              expanded: _draftOpen,
-              onTap: () => setState(() => _draftOpen = !_draftOpen),
-            ),
-            MenuRow(
-              icon: Icons.add_circle_outline,
-              label: l.txtMyPicturesAdd,
+              expanded: _mapOpen,
+              onTap: () => setState(() => _mapOpen = !_mapOpen),
             ),
           ],
         ),

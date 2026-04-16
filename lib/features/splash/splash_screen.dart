@@ -9,6 +9,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../l10n/app_localizations.dart';
+import '../infos/version_screen.dart';
 import '../main/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -839,34 +840,30 @@ class _SplashScreenState extends State<SplashScreen>
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 30),
-              child: Text(AppConstants.infoVersion,
-                  style: AppTextStyles.subTitleMedium
-                      .copyWith(color: AppColors.trottleWhite)),
-            ),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(timeStr,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600)),
-                  Row(children: [
-                    Icon(hasWifi ? Icons.wifi : Icons.wifi_off,
-                        color: Colors.white, size: 20),
-                    const SizedBox(width: 6),
-                    Icon(hasMobile
-                            ? Icons.signal_cellular_alt
-                            : Icons.signal_cellular_off,
-                        color: Colors.white, size: 20),
-                    const SizedBox(width: 6),
-                    Icon(_batteryIcon(), color: Colors.white, size: 20),
-                  ]),
-                ],
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: const Duration(milliseconds: 400),
+                    reverseTransitionDuration: const Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => const VersionScreen(),
+                    transitionsBuilder: (_, animation, __, child) =>
+                        SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(1, 0),
+                        end: Offset.zero,
+                      ).animate(CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeInOut,
+                      )),
+                      child: child,
+                    ),
+                  ),
+                ),
+                child: Text(AppConstants.infoVersion,
+                    style: AppTextStyles.subTitleMedium
+                        .copyWith(color: AppColors.trottleWhite)),
               ),
             ),
           ),
