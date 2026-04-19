@@ -3,6 +3,7 @@ import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
+import '../../core/widgets/globe_background.dart';
 import '../../core/widgets/menu_row.dart';
 import '../../l10n/app_localizations.dart';
 import '../infos/version_screen.dart';
@@ -237,7 +238,17 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.trottleBgDark,
-      body: SafeArea(
+      body: Stack(
+        children: [
+          // ── Fond : dégradé radial + globe filigrane ──────────────────
+          const Positioned.fill(
+            child: GlobeBackground(
+              arcStartFraction: 0.62, // arc visible à partir du niveau "Achats"
+            ),
+          ),
+
+          // ── Contenu ──────────────────────────────────────────────────
+          SafeArea(
         top: false,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -366,7 +377,9 @@ class ProfileScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
+          ),  // SafeArea
+        ],
+      ),      // Stack
     );
   }
 }

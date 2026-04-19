@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:trottle/main.dart';
+import 'package:trottle/app.dart';
 
 void main() {
   testWidgets('HomeScreen renders correctly', (WidgetTester tester) async {

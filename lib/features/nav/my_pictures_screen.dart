@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/menu_row.dart';
@@ -21,13 +22,15 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
     final l = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: AppColors.trottleBgDark,
-      body: SafeArea(
-        top: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const BackArrowBar(),
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: AppDecorations.bgGradient,
+        child: SafeArea(
+          top: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const BackArrowBar(),
 
             // ── Titre ──────────────────────────────────────────────────────
             Padding(
@@ -60,7 +63,8 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
               icon: Icons.add_circle_outline,
               label: l.txtMyPicturesAdd,
             ),
-          ],
+            ],
+          ),
         ),
       ),
     );

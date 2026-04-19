@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../l10n/app_localizations.dart';
@@ -12,13 +13,15 @@ class StatsScreen extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: AppColors.trottleBgDark,
-      body: SafeArea(
-        top: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const BackArrowBar(),
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: AppDecorations.bgGradient,
+        child: SafeArea(
+          top: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const BackArrowBar(),
 
             // ── Titre ──────────────────────────────────────────────────────
             Padding(
@@ -30,7 +33,8 @@ class StatsScreen extends StatelessWidget {
                     .copyWith(color: AppColors.trottleWhite),
               ),
             ),
-          ],
+            ],
+          ),
         ),
       ),
     );

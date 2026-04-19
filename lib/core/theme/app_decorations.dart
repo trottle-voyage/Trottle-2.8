@@ -23,6 +23,19 @@ class AppDecorations {
     colors: [AppColors.trottleWhite, AppColors.trottleMain],
   );
 
+  /// Dégradé diagonal « pages Trottle » (haut-gauche clair → bas-droite sombre).
+  /// Réutilisable seul (`Shader`, `SweepGradient` dérivé, etc.) ou via [bgGradient].
+  static const LinearGradient trottleBgGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF0E3549), AppColors.trottleBgDark],
+  );
+
+  /// [BoxDecoration] plein écran : même gradient que [trottleBgGradient].
+  static const BoxDecoration bgGradient = BoxDecoration(
+    gradient: trottleBgGradient,
+  );
+
   // BG Blur — background blur sigma 8
   static ImageFilter get bgBlur =>
       ImageFilter.blur(sigmaX: 10, sigmaY: 10, tileMode: TileMode.clamp);
