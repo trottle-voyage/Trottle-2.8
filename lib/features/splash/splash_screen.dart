@@ -1,7 +1,4 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:battery_plus/battery_plus.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/services/gps_service.dart';
@@ -21,18 +18,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  // Heure
-  late Timer _timer;
-  late DateTime _now;
-
-  // Batterie
-  final Battery _battery = Battery();
-  int _batteryLevel = 100;
-  BatteryState _batteryState = BatteryState.unknown;
-
-  // Connectivité
-  List<ConnectivityResult> _connectivity = [ConnectivityResult.none];
-
   // Connexion
   final TextEditingController _emailController    = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -72,10 +57,6 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    _now = DateTime.now();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      setState(() => _now = DateTime.now());
-    });
     _slideController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -86,34 +67,14 @@ class _SplashScreenState extends State<SplashScreen>
       });
     _instagramFocus = FocusNode()..addListener(_onInstagramFocus);
     GpsService.instance.addListener(_onGpsChanged);
-    _initBattery();
-    _initConnectivity();
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) setState(() => _frameVisible = true);
-    });
-  }
-
-  Future<void> _initBattery() async {
-    _batteryLevel = await _battery.batteryLevel;
-    _batteryState = await _battery.batteryState;
-    setState(() {});
-    _battery.onBatteryStateChanged.listen((state) {
-      setState(() => _batteryState = state);
-    });
-  }
-
-  Future<void> _initConnectivity() async {
-    _connectivity = await Connectivity().checkConnectivity();
-    setState(() {});
-    Connectivity().onConnectivityChanged.listen((result) {
-      setState(() => _connectivity = result);
     });
   }
 
   @override
   void dispose() {
     _slideController.dispose();
-    _timer.cancel();
     _emailController.dispose();
     _passwordController.dispose();
     _forgotEmailController.dispose();
@@ -176,16 +137,6 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   // ── Widgets réutilisables ─────────────────────────────────────────────────────
-
-  IconData _batteryIcon() {
-    if (_batteryState == BatteryState.charging) return Icons.battery_charging_full;
-    if (_batteryLevel >= 90) return Icons.battery_full;
-    if (_batteryLevel >= 70) return Icons.battery_5_bar;
-    if (_batteryLevel >= 50) return Icons.battery_4_bar;
-    if (_batteryLevel >= 30) return Icons.battery_3_bar;
-    if (_batteryLevel >= 15) return Icons.battery_2_bar;
-    return Icons.battery_alert;
-  }
 
   Widget _fieldShell({required Widget child}) {
     return Container(
@@ -430,7 +381,7 @@ class _SplashScreenState extends State<SplashScreen>
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        boxShadow: [AppDecorations.dropShadow],
+        boxShadow: const [AppDecorations.dropShadow],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
@@ -703,7 +654,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: Text(
                     l.txtWelcomeInstagramDisclaimer,
                     style: AppTextStyles.subTitleMedium
-                        .copyWith(color: AppColors.trottleWhite.withOpacity(0.7)),
+                        .copyWith(color: AppColors.trottleWhite.withValues(alpha: 0.7)),
                   ),
                 ),
                 const SizedBox(width: 6),
@@ -808,11 +759,6 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-
-    final timeStr =
-        '${_now.hour.toString().padLeft(2, '0')}:${_now.minute.toString().padLeft(2, '0')}';
-    final hasWifi   = _connectivity.contains(ConnectivityResult.wifi);
-    final hasMobile = _connectivity.contains(ConnectivityResult.mobile);
 
     final newFrame = _buildFrame(_currentFormWidget(l));
 

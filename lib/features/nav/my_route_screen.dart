@@ -16,7 +16,6 @@ class MyRouteScreen extends StatefulWidget {
 
 class _MyRouteScreenState extends State<MyRouteScreen> {
   bool _createdOpen = false;
-  bool _addOpen = false;
 
   @override
   Widget build(BuildContext context) {

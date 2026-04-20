@@ -7,12 +7,12 @@ class AppDecorations {
 
   // Trottle BG Dark — opacity 90%
   static BoxDecoration get trottleBgDark => BoxDecoration(
-        color: AppColors.trottleBgDark.withOpacity(0.9),
+        color: AppColors.trottleBgDark.withValues(alpha: 0.9),
       );
 
   // Trottle Cadre — opacity 15%, border radius 24px
   static BoxDecoration get trottleCadre => BoxDecoration(
-        color: AppColors.trottleMain.withOpacity(0.4),
+        color: AppColors.trottleMain.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(24),
       );
 

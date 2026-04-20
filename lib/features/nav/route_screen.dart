@@ -64,7 +64,7 @@ class RouteScreen extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(
                           width: 1,
-                          color: AppColors.trottleMain.withOpacity(0.4),
+                          color: AppColors.trottleMain.withValues(alpha: 0.4),
                         ),
                       ),
                       child: ClipOval(

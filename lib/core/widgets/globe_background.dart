@@ -221,16 +221,16 @@ class _GlobePainter extends CustomPainter {
 
     // ── Pinceaux ──────────────────────────────────────────────────────────
     final linePaint = Paint()
-      ..color = AppColors.trottleMain.withOpacity(0.25)
+      ..color = AppColors.trottleMain.withValues(alpha: 0.25)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.9;
 
     final dotPaint = Paint()
-      ..color = AppColors.trottleMain.withOpacity(0.60)
+      ..color = AppColors.trottleMain.withValues(alpha: 0.60)
       ..style = PaintingStyle.fill;
 
     final mapPaint = Paint()
-      ..color = AppColors.trottleMain.withOpacity(0.13)
+      ..color = AppColors.trottleMain.withValues(alpha: 0.13)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.7
       ..strokeJoin = StrokeJoin.round
@@ -362,7 +362,7 @@ class _GlobePainter extends CustomPainter {
       text: TextSpan(
         text: text,
         style: TextStyle(
-          color: AppColors.trottleWhite.withOpacity(opacity),
+          color: AppColors.trottleWhite.withValues(alpha: opacity),
           fontSize: 7.5,
           fontFamily: 'Montserrat',
           letterSpacing: 0.3,

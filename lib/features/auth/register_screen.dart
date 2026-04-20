@@ -63,15 +63,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
         child: Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF0095FF).withOpacity(0.15),
+            color: const Color(0xFF0095FF).withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(28.46),
             border: Border.all(
-              color: Colors.white.withOpacity(0.25),
+              color: Colors.white.withValues(alpha: 0.25),
               width: 0.2,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.18),
+                color: Colors.black.withValues(alpha: 0.18),
                 blurRadius: 32,
                 offset: const Offset(0, 8),
               ),
@@ -176,7 +176,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: [
                       Expanded(
                         child: Divider(
-                            color: Colors.white.withOpacity(0.35), thickness: 0.5),
+                            color: Colors.white.withValues(alpha: 0.35),
+                            thickness: 0.5),
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -187,7 +188,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       Expanded(
                         child: Divider(
-                            color: Colors.white.withOpacity(0.35), thickness: 0.5),
+                            color: Colors.white.withValues(alpha: 0.35),
+                            thickness: 0.5),
                       ),
                     ],
                   ),
@@ -271,7 +273,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.88),
+        fillColor: Colors.white.withValues(alpha: 0.88),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -294,7 +296,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       width: 52,
       height: 44,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.12),
+        color: Colors.white.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.white30, width: 0.5),
       ),

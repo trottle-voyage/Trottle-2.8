@@ -73,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
           filter: AppDecorations.bgBlur,
           child: Container(
             decoration: BoxDecoration(
-              color: AppColors.trottleBgDark.withOpacity(0.9),
+              color: AppColors.trottleBgDark.withValues(alpha: 0.9),
             ),
             child: child != null ? Center(child: child) : null,
           ),
@@ -147,7 +147,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return List.generate(configs.length, (i) {
       final cfg = configs[i];
-      final double openBottom = _mainCenterB - _buttSize / 2;
+      const double openBottom = _mainCenterB - _buttSize / 2;
       final double openRight  = _rightEdge + _mainSize + _gap + i * (_buttSize + _gap);
       return AnimatedPositioned(
         duration: _animDuration, curve: _animCurve,
@@ -179,7 +179,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return List.generate(configs.length, (i) {
       final cfg = configs[i];
-      final double openRight  = _mainCenterR - _buttSize / 2;
+      const double openRight  = _mainCenterR - _buttSize / 2;
       final double openBottom = _mainBottom + _mainSize + _gap + i * (_buttSize + _gap);
       return AnimatedPositioned(
         duration: _animDuration, curve: _animCurve,
@@ -305,7 +305,7 @@ class _MainScreenState extends State<MainScreen> {
                 filter: AppDecorations.bgBlur,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.trottleBgDark.withOpacity(0.9),
+                    color: AppColors.trottleBgDark.withValues(alpha: 0.9),
                   ),
                   padding: const EdgeInsets.only(top: 12, bottom: 42),
                   height: _bandeauH,

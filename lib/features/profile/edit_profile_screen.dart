@@ -47,7 +47,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               surface: AppColors.trottleBgDark,
               onSurface: AppColors.trottleWhite,
             ),
-            dialogBackgroundColor: AppColors.trottleBgDark,
+            dialogTheme: const DialogThemeData(
+              backgroundColor: AppColors.trottleBgDark,
+            ),
           ),
           child: child!,
         );
@@ -120,7 +122,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           shape: BoxShape.circle,
                           border: Border.all(
                             width: 1,
-                            color: AppColors.trottleMain.withOpacity(0.4),
+                            color: AppColors.trottleMain.withValues(alpha: 0.4),
                           ),
                         ),
                         child: ClipOval(
