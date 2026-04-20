@@ -273,32 +273,6 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
 
-          // ── Bandeau carrousel ───────────────────────────────────────────────
-          Positioned(
-            left: 0, right: 0, bottom: 0,
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: AppDecorations.bgBlur,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.trottleBgDark.withOpacity(0.9),
-                  ),
-                  padding: const EdgeInsets.only(top: 12, bottom: 42),
-                  height: 226,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    itemCount: _photos.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 12),
-                    itemBuilder: (_, i) => PhotoCard(
-                      item:  _photos[i],
-                      width: 120,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
 
           // ── Menu ─────────────────────────────────────────────────────────
           // Constantes de positionnement
@@ -320,6 +294,33 @@ class _MainScreenState extends State<MainScreen> {
               child: _menuCircle(_mainSize,
                   child: Image.asset('assets/icones/trottle_32.webp',
                       width: _mainSize * 0.6, height: _mainSize * 0.6)),
+            ),
+          ),
+
+          // ── Bandeau carrousel ───────────────────────────────────────────────
+          Positioned(
+            left: 0, right: 0, bottom: 0,
+            child: ClipRect(
+              child: BackdropFilter(
+                filter: AppDecorations.bgBlur,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.trottleBgDark.withOpacity(0.9),
+                  ),
+                  padding: const EdgeInsets.only(top: 12, bottom: 42),
+                  height: _bandeauH,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    itemCount: _photos.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (_, i) => PhotoCard(
+                      item:  _photos[i],
+                      width: 120,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ],

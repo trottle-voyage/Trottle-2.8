@@ -538,6 +538,84 @@ abstract class AppLocalizations {
   /// **'Titre du parcours'**
   String get txtNewRouteTitleHint;
 
+  /// No description provided for @txtNewRouteHashtag.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mots clés'**
+  String get txtNewRouteHashtag;
+
+  /// No description provided for @txtNewRouteCategory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Catégorie'**
+  String get txtNewRouteCategory;
+
+  /// No description provided for @txtNewRouteDescription.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get txtNewRouteDescription;
+
+  /// No description provided for @txtNewRouteDescriptionHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get txtNewRouteDescriptionHint;
+
+  /// No description provided for @txtNewRouteDistance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Distance'**
+  String get txtNewRouteDistance;
+
+  /// No description provided for @txtNewRouteDistanceHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'10 km'**
+  String get txtNewRouteDistanceHint;
+
+  /// No description provided for @txtNewRouteDuration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée'**
+  String get txtNewRouteDuration;
+
+  /// No description provided for @txtNewRouteDurationHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'2h'**
+  String get txtNewRouteDurationHint;
+
+  /// No description provided for @txtNewRouteAccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accessibilité'**
+  String get txtNewRouteAccess;
+
+  /// No description provided for @txtNewRoutePrice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prix'**
+  String get txtNewRoutePrice;
+
+  /// No description provided for @txtNewRoutePriceHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'24,99'**
+  String get txtNewRoutePriceHint;
+
+  /// No description provided for @txtNewRouteDraft.
+  ///
+  /// In fr, this message translates to:
+  /// **'Brouillon'**
+  String get txtNewRouteDraft;
+
+  /// No description provided for @txtNewRoutePublish.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier'**
+  String get txtNewRoutePublish;
+
   /// No description provided for @txtFav.
   ///
   /// In fr, this message translates to:

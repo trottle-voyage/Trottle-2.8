@@ -6,8 +6,7 @@ import '../theme/app_text_styles.dart';
 /// Carte photo réutilisable.
 ///
 /// Layout : photo carrée [width × width] en haut,
-/// section infos (hashtag + ville + like) en bas.
-/// Hauteur totale = [width] + [infoHeight].
+/// section infos (hashtag + ville) en bas.
 class PhotoCard extends StatefulWidget {
   const PhotoCard({
     super.key,
@@ -50,15 +49,15 @@ class _PhotoCardState extends State<PhotoCard> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
 
-            // ── Photo carrée ─────────────────────────────────────────────
-            SizedBox(
+          // ── Photo carrée ─────────────────────────────────────────────
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: SizedBox(
               width: widget.width,
               height: widget.width,
               child: Stack(
@@ -98,51 +97,50 @@ class _PhotoCardState extends State<PhotoCard> {
                 ],
               ),
             ),
+          ),
 
-            // ── Section infos ─────────────────────────────────────────────
-            Container(
-              height: PhotoCard.infoHeight,
-              color: AppColors.trottleDark,
-              padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+          // ── Section infos ─────────────────────────────────────────────
+          Container(
+            color: AppColors.trottleDark,
+            padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
 
-                  // Cartouche hashtag
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.trottleMain,
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    child: Text(
-                      widget.item.hashtag,
-                      style: AppTextStyles.hashtagSmall.copyWith(
-                        color: AppColors.trottleWhite,
-                      ),
-                    ),
+                // Cartouche hashtag
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                    color: AppColors.trottleMain,
+                    borderRadius: BorderRadius.circular(3),
                   ),
-
-                  const SizedBox(height: 3),
-
-                  // Ville + drapeau
-                  Text(
-                    widget.item.flag.isEmpty
-                        ? widget.item.city
-                        : '${widget.item.flag} ${widget.item.city}',
-                    style: AppTextStyles.subTitleMedium.copyWith(
+                  child: Text(
+                    widget.item.hashtag,
+                    style: AppTextStyles.hashtagSmall.copyWith(
                       color: AppColors.trottleWhite,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
-                ],
-              ),
-            ),
+                ),
 
-          ],
-        ),
+                const SizedBox(height: 3),
+
+                // Ville + drapeau
+                Text(
+                  widget.item.flag.isEmpty
+                      ? widget.item.city
+                      : '${widget.item.flag} ${widget.item.city}',
+                  style: AppTextStyles.subTitleMedium.copyWith(
+                    color: AppColors.trottleWhite,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+
+        ],
       ),
     );
   }

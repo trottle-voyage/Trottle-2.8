@@ -233,6 +233,45 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtNewRouteTitleHint => 'Titre du parcours';
 
   @override
+  String get txtNewRouteHashtag => 'Mots clés';
+
+  @override
+  String get txtNewRouteCategory => 'Catégorie';
+
+  @override
+  String get txtNewRouteDescription => 'Description';
+
+  @override
+  String get txtNewRouteDescriptionHint => 'Description';
+
+  @override
+  String get txtNewRouteDistance => 'Distance';
+
+  @override
+  String get txtNewRouteDistanceHint => '10 km';
+
+  @override
+  String get txtNewRouteDuration => 'Durée';
+
+  @override
+  String get txtNewRouteDurationHint => '2h';
+
+  @override
+  String get txtNewRouteAccess => 'Accessibilité';
+
+  @override
+  String get txtNewRoutePrice => 'Prix';
+
+  @override
+  String get txtNewRoutePriceHint => '24,99';
+
+  @override
+  String get txtNewRouteDraft => 'Brouillon';
+
+  @override
+  String get txtNewRoutePublish => 'Publier';
+
+  @override
   String get txtFav => 'Enregistrés';
 
   @override

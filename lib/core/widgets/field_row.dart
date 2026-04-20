@@ -13,6 +13,7 @@ class FieldRow extends StatefulWidget {
     required this.icon,
     required this.label,
     required this.initialValue,
+    this.hintText,
     this.divider = false,
     this.onChanged,
     this.keyboardType,
@@ -23,6 +24,7 @@ class FieldRow extends StatefulWidget {
   final IconData icon;
   final String label;
   final String initialValue;
+  final String? hintText;
   final bool divider;
   final ValueChanged<String>? onChanged;
   final TextInputType? keyboardType;
@@ -109,10 +111,14 @@ class _FieldRowState extends State<FieldRow> {
               readOnly: widget.readOnly,
               showCursor: !widget.readOnly,
               onTap: widget.onTap,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 isCollapsed: true,
                 contentPadding: EdgeInsets.zero,
+                hintText: widget.hintText,
+                hintStyle: AppTextStyles.text.copyWith(
+                  color: AppColors.trottleWhite,
+                ),
               ),
             ),
           ),
