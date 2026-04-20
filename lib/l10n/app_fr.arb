@@ -93,9 +93,9 @@
   "txtNewRouteDurationHint": "2h",
   "txtNewRouteAccess": "Accessibilité",
   "txtNewRoutePrice": "Prix",
-  "txtNewRoutePriceHint": "24,99",
-  "txtNewRouteDraft": "Brouillon",
-  "txtNewRoutePublish": "Publier",
+  "txtNewRoutePriceHint": "prix",
+  "txtNewRoutePriceDraft": "Brouillon",
+  "txtNewRoutePricePublish": "Publier",
 
   "txtFav": "Enregistrés",
   "txtFavLike": "Like",

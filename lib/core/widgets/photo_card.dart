@@ -3,15 +3,14 @@ import '../models/photo_item.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 
-/// Carte photo réutilisable.
+/// Carte photo — cadre [width] en X, hauteur au plus juste (hug vertical), fond `TrottleDark`.
 ///
-/// Layout : photo carrée [width × width] en haut,
-/// section infos (hashtag + ville) en bas.
+/// Image carrée [width × width], puis mot-clé + pays (padding H 12, V 8) ; like sur l’image.
 class PhotoCard extends StatefulWidget {
   const PhotoCard({
     super.key,
     required this.item,
-    this.width = 120,
+    this.width = 128,
     this.onLikeChanged,
   });
 
@@ -21,8 +20,45 @@ class PhotoCard extends StatefulWidget {
   /// Callback optionnel déclenché quand l'utilisateur toggle le like.
   final ValueChanged<bool>? onLikeChanged;
 
-  /// Hauteur fixe de la section infos sous la photo.
-  static const double infoHeight = 52.0;
+  /// Rayon des coins du cadre extérieur.
+  static const double frameBorderRadius = 20;
+
+  /// Rayon des coins de la zone image.
+  static const double imageBorderRadius = 14;
+
+  /// Espace entre le bas de l’image et le bloc textes (0 = collé au padding du bloc).
+  static const double imageToKeywordGap = 0;
+
+  /// Padding horizontal du bloc textes (mot-clé + pays).
+  static const double infoPaddingH = 12;
+
+  /// Padding vertical du bloc textes (haut + bas du `Padding` infos).
+  static const double infoPaddingV = 8;
+
+  /// Hauteur min. approx. du stack mot-clé + pays (hors paddings du bloc).
+  /// Prévoir la ligne ville avec emoji (`flag`) : métriques > simple `fontSize` 12 seul.
+  static const double _infoStackMinHeight = 40;
+
+  /// Marge bas du cadre (sous le bloc textes).
+  static const double frameBottomExtra = 8;
+
+  /// Hauteur verticale approximative (image carrée + gap + bloc infos + paddings + marge bas).
+  /// Utile pour dimensionner un parent à hauteur fixe (ex. bandeau carrousel).
+  static double intrinsicHeight(double width) =>
+      width +
+      imageToKeywordGap +
+      infoPaddingV * 2 +
+      _infoStackMinHeight +
+      frameBottomExtra;
+
+  /// Ombre sous l’image : Y=2, blur=4, opacité 50 %.
+  static final List<BoxShadow> imageShadow = [
+    BoxShadow(
+      color: Colors.black.withValues(alpha: 0.5),
+      offset: const Offset(0, 2),
+      blurRadius: 4,
+    ),
+  ];
 
   @override
   State<PhotoCard> createState() => _PhotoCardState();
@@ -47,100 +83,105 @@ class _PhotoCardState extends State<PhotoCard> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+    final w = widget.width;
 
-          // ── Photo carrée ─────────────────────────────────────────────
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: SizedBox(
-              width: widget.width,
-              height: widget.width,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-
-                  // Fond de secours
-                  Container(color: AppColors.trottleDark),
-
-                  // Image
-                  Image.asset(
-                    widget.item.imageAsset,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) =>
-                        Container(color: AppColors.trottleDark),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(PhotoCard.frameBorderRadius),
+      child: Container(
+        width: w,
+        color: AppColors.trottleDark,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // ── Image [w×w] + ombre + like ───────────────────────────────
+            SizedBox(
+              width: w,
+              height: w,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(PhotoCard.imageBorderRadius),
+                  boxShadow: PhotoCard.imageShadow,
+                ),
+                child: ClipRRect(
+                  borderRadius:
+                      BorderRadius.circular(PhotoCard.imageBorderRadius),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Container(color: AppColors.trottleDark),
+                      Image.asset(
+                        widget.item.imageAsset,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) =>
+                            Container(color: AppColors.trottleDark),
+                      ),
+                      Positioned(
+                        right: 6,
+                        bottom: 6,
+                        child: GestureDetector(
+                          onTap: _toggleLike,
+                          behavior: HitTestBehavior.opaque,
+                          child: Icon(
+                            _liked ? Icons.favorite : Icons.favorite_border,
+                            size: 22,
+                            color: _liked
+                                ? AppColors.trottleMain
+                                : AppColors.trottleWhite,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+                ),
+              ),
+            ),
 
-                  // Bouton Like — haut droite
-                  Positioned(
-                    top: 6,
-                    right: 6,
-                    child: GestureDetector(
-                      onTap: _toggleLike,
-                      behavior: HitTestBehavior.opaque,
-                      child: Icon(
-                        _liked ? Icons.favorite : Icons.favorite_border,
-                        size: 18,
-                        color: _liked
-                            ? AppColors.trottleMain
-                            : AppColors.trottleWhite,
-                        shadows: const [
-                          Shadow(color: Colors.black54, blurRadius: 4),
-                        ],
+            // ── Infos : mot-clé + pays ─────────────────────────────────────
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                PhotoCard.infoPaddingH,
+                PhotoCard.infoPaddingV,
+                PhotoCard.infoPaddingH,
+                PhotoCard.infoPaddingV,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.trottleMain,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      widget.item.hashtag,
+                      style: AppTextStyles.hashtagSmall.copyWith(
+                        color: AppColors.trottleWhite,
                       ),
                     ),
+                  ),
+                  Text(
+                    widget.item.flag.isEmpty
+                        ? widget.item.city
+                        : '${widget.item.flag} ${widget.item.city}',
+                    style: AppTextStyles.subTitleMedium.copyWith(
+                      color: AppColors.trottleWhite,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
             ),
-          ),
-
-          // ── Section infos ─────────────────────────────────────────────
-          Container(
-            color: AppColors.trottleDark,
-            padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                // Cartouche hashtag
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                    color: AppColors.trottleMain,
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                  child: Text(
-                    widget.item.hashtag,
-                    style: AppTextStyles.hashtagSmall.copyWith(
-                      color: AppColors.trottleWhite,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 3),
-
-                // Ville + drapeau
-                Text(
-                  widget.item.flag.isEmpty
-                      ? widget.item.city
-                      : '${widget.item.flag} ${widget.item.city}',
-                  style: AppTextStyles.subTitleMedium.copyWith(
-                    color: AppColors.trottleWhite,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-
-        ],
+            const SizedBox(height: PhotoCard.frameBottomExtra),
+          ],
+        ),
       ),
     );
   }

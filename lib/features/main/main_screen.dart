@@ -47,18 +47,20 @@ class _MainScreenState extends State<MainScreen> {
 
   // ── Helpers menu ─────────────────────────────────────────────────────────
 
-  static const double _bandeauH  = 226; // 120 photo + 52 info + 12 top + 42 bottom
+  // Hauteur bandeau : padding ListView (12+42) + hauteur PhotoCard (voir PhotoCard.intrinsicHeight).
+  static final double _bandeauH =
+      12 + 42 + PhotoCard.intrinsicHeight(128);
   static const double _gap       = 10;
   static const double _mainSize  = 42;
   static const double _buttSize  = 36;
   static const double _rightEdge = 10;
 
-  static const double _mainBottom  = _bandeauH + _gap;                      // 162
+  static final double _mainBottom  = _bandeauH + _gap;
   static const double _mainCenterR = _rightEdge + _mainSize / 2;            // 31 (depuis right)
-  static const double _mainCenterB = _mainBottom + _mainSize / 2;           // 183 (depuis bottom)
+  static final double _mainCenterB = _mainBottom + _mainSize / 2;
 
   // Position de repli : tous les cercles secondaires partent du centre de menuButt
-  static const double _closedBottom = _mainBottom + (_mainSize - _buttSize) / 2; // 165
+  static final double _closedBottom = _mainBottom + (_mainSize - _buttSize) / 2;
   static const double _closedRight  = _rightEdge + (_mainSize - _buttSize) / 2;  // 13
 
   static const Duration _animDuration = Duration(milliseconds: 350);
@@ -147,7 +149,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return List.generate(configs.length, (i) {
       final cfg = configs[i];
-      const double openBottom = _mainCenterB - _buttSize / 2;
+      final double openBottom = _mainCenterB - _buttSize / 2;
       final double openRight  = _rightEdge + _mainSize + _gap + i * (_buttSize + _gap);
       return AnimatedPositioned(
         duration: _animDuration, curve: _animCurve,
@@ -316,7 +318,6 @@ class _MainScreenState extends State<MainScreen> {
                     separatorBuilder: (_, __) => const SizedBox(width: 12),
                     itemBuilder: (_, i) => PhotoCard(
                       item:  _photos[i],
-                      width: 120,
                     ),
                   ),
                 ),

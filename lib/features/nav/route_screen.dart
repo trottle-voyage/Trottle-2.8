@@ -108,7 +108,7 @@ class RouteScreen extends StatelessWidget {
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       const double paddingH = 20;
-                      const double gap      = 8;
+                      const double gap      = 6;
                       final double cardW    = (constraints.maxWidth - paddingH * 2 - gap) / 2;
 
                       return Padding(
