@@ -35,7 +35,7 @@ class _TrophyScreenState extends State<TrophyScreen> {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Container(
+      body: SizedBox.expand(child: Container(
         decoration: AppDecorations.bgGradient,
         child: SafeArea(
           top: false,
@@ -71,7 +71,7 @@ class _TrophyScreenState extends State<TrophyScreen> {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 

@@ -218,6 +218,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtMyRoutesAdd => 'Créer un parcours';
 
   @override
+  String get txtNewRoute => 'Nouveau parcours';
+
+  @override
+  String get txtNewRouteImport => 'Importer photos';
+
+  @override
+  String get txtNewRouteAdd => 'Ajouter photos';
+
+  @override
+  String get txtNewRouteTitle => 'Titre';
+
+  @override
+  String get txtNewRouteTitleHint => 'Titre du parcours';
+
+  @override
   String get txtFav => 'Enregistrés';
 
   @override

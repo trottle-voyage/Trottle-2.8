@@ -39,6 +39,13 @@ class AppTextStyles {
     fontSize: 14,
   );
 
+  static const TextStyle hashtagSmall = TextStyle(
+    fontFamily: 'LeagueSpartan',
+    fontWeight: FontWeight.w400, // Regular
+    fontSize: 10,
+    height: 1.0,
+  );
+
   static const TextStyle info = TextStyle(
     fontFamily: 'LeagueGothic',
     fontWeight: FontWeight.w400, // Regular

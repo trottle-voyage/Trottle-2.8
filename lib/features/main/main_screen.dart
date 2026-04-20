@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import '../../core/services/gps_service.dart';
-import '../../core/services/storage_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../core/models/photo_item.dart';
+import '../../core/widgets/photo_card.dart';
 import '../nav/route_screen.dart';
 import '../profile/profile_screen.dart';
 
@@ -19,17 +20,23 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final GpsService      _gps           = GpsService.instance;
   final MapController   _mapController = MapController();
-  List<String> _imageUrls    = [];
-  bool         _imagesLoading = false;
-  String?      _storageError;
-  bool         _menuOpen      = false;
+  bool _menuOpen = false;
+
+  static final List<PhotoItem> _photos = [
+    PhotoItem(imageAsset: 'assets/photos/img_01.webp', hashtag: 'Yoda',       city: 'Dagobah',   flag: '🌿'),
+    PhotoItem(imageAsset: 'assets/photos/img_02.webp', hashtag: 'Dark Vador', city: 'Mustafar',  flag: '🔴'),
+    PhotoItem(imageAsset: 'assets/photos/img_03.webp', hashtag: 'Luke',       city: 'Tatooine',  flag: '☀️'),
+    PhotoItem(imageAsset: 'assets/photos/img_04.webp', hashtag: 'Obi-Wan',    city: 'Coruscant', flag: '🌆'),
+    PhotoItem(imageAsset: 'assets/photos/img_05.webp', hashtag: 'R2-D2',      city: 'Naboo',     flag: '💧'),
+    PhotoItem(imageAsset: 'assets/photos/img_06.webp', hashtag: 'Chewbacca',  city: 'Kashyyyk',  flag: '🌲'),
+    PhotoItem(imageAsset: 'assets/photos/img_07.webp', hashtag: 'Han Solo',   city: 'Corellia',  flag: '🚀'),
+  ];
 
   @override
   void initState() {
     super.initState();
     _gps.addListener(_onGpsChanged);
     _gps.fetchCurrentPosition();
-    _loadImages();
   }
 
   @override
@@ -38,23 +45,9 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
-  Future<void> _loadImages() async {
-    setState(() => _imagesLoading = true);
-    try {
-      final urls = await StorageService.instance
-          .listLastImages('64x64', count: 10);
-      if (mounted) setState(() => _imageUrls = urls);
-    } catch (e) {
-      debugPrint('StorageService error: $e');
-      if (mounted) setState(() => _storageError = e.toString());
-    } finally {
-      if (mounted) setState(() => _imagesLoading = false);
-    }
-  }
-
   // ── Helpers menu ─────────────────────────────────────────────────────────
 
-  static const double _bandeauH  = 152;
+  static const double _bandeauH  = 226; // 120 photo + 52 info + 12 top + 42 bottom
   static const double _gap       = 10;
   static const double _mainSize  = 42;
   static const double _buttSize  = 36;
@@ -280,7 +273,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
 
-          // ── Bandeau images ───────────────────────────────────────────────
+          // ── Bandeau carrousel ───────────────────────────────────────────────
           Positioned(
             left: 0, right: 0, bottom: 0,
             child: ClipRect(
@@ -290,37 +283,18 @@ class _MainScreenState extends State<MainScreen> {
                   decoration: BoxDecoration(
                     color: AppColors.trottleBgDark.withOpacity(0.9),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  height: 128 + 24,
-                  child: _imagesLoading
-                      ? const Center(child: CircularProgressIndicator(color: AppColors.trottleMain))
-                      : _storageError != null
-                          ? Center(child: Text(_storageError!,
-                              style: AppTextStyles.subTitleMedium
-                                  .copyWith(color: AppColors.trottleFerrari),
-                              textAlign: TextAlign.center))
-                          : _imageUrls.isEmpty
-                              ? const SizedBox.shrink()
-                              : ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                                  itemCount: _imageUrls.length,
-                                  separatorBuilder: (_, __) => const SizedBox(width: 12),
-                                  itemBuilder: (_, i) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      _imageUrls[i],
-                                      width: 128, height: 128, fit: BoxFit.cover,
-                                      loadingBuilder: (_, child, progress) =>
-                                          progress == null ? child
-                                              : Container(
-                                                  width: 128, height: 128,
-                                                  color: AppColors.trottleDark,
-                                                  child: const Center(child: CircularProgressIndicator(
-                                                      color: AppColors.trottleMain, strokeWidth: 2))),
-                                    ),
-                                  ),
-                                ),
+                  padding: const EdgeInsets.only(top: 12, bottom: 42),
+                  height: 226,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    itemCount: _photos.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (_, i) => PhotoCard(
+                      item:  _photos[i],
+                      width: 120,
+                    ),
+                  ),
                 ),
               ),
             ),

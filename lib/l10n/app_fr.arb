@@ -78,6 +78,12 @@
   "txtMyRoutesCreated": "Mes parcours créés",
   "txtMyRoutesAdd": "Créer un parcours",
 
+  "txtNewRoute": "Nouveau parcours",
+  "txtNewRouteImport": "Importer photos",
+  "txtNewRouteAdd": "Ajouter photos",
+  "txtNewRouteTitle": "Titre",
+  "txtNewRouteTitleHint": "Titre du parcours",
+
   "txtFav": "Enregistrés",
   "txtFavLike": "Like",
   "txtFavFav": "Favoris",

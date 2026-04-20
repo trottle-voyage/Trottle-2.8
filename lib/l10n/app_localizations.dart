@@ -508,6 +508,36 @@ abstract class AppLocalizations {
   /// **'Créer un parcours'**
   String get txtMyRoutesAdd;
 
+  /// No description provided for @txtNewRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau parcours'**
+  String get txtNewRoute;
+
+  /// No description provided for @txtNewRouteImport.
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer photos'**
+  String get txtNewRouteImport;
+
+  /// No description provided for @txtNewRouteAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter photos'**
+  String get txtNewRouteAdd;
+
+  /// No description provided for @txtNewRouteTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre'**
+  String get txtNewRouteTitle;
+
+  /// No description provided for @txtNewRouteTitleHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre du parcours'**
+  String get txtNewRouteTitleHint;
+
   /// No description provided for @txtFav.
   ///
   /// In fr, this message translates to:
