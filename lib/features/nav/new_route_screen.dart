@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:io';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
@@ -6,13 +8,54 @@ import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/field_row.dart';
 import '../../l10n/app_localizations.dart';
 
-class NewRouteScreen extends StatelessWidget {
+class NewRouteScreen extends StatefulWidget {
   const NewRouteScreen({super.key});
 
+  @override
+  State<NewRouteScreen> createState() => _NewRouteScreenState();
+}
+
+class _NewRouteScreenState extends State<NewRouteScreen> {
+  /// Dimensions des boutons action AVANT import (état initial).
   static const double _btnW = 160;
   static const double _btnH = 85;
 
+  /// Dimensions des tuiles action APRÈS import (dans la grille).
+  static const double _actionTileSize = 112;
+  static const double _gridGap        = 6;
+
   static const Widget _divider = _FieldDivider();
+
+  final List<String> _photos = [];
+
+  Future<void> _importPhotos() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: true,
+    );
+    if (result != null && result.files.isNotEmpty) {
+      setState(() {
+        for (final f in result.files) {
+          if (f.path != null) _photos.add(f.path!);
+        }
+      });
+    }
+  }
+
+  Future<void> _addPhoto() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+    if (result != null && result.files.isNotEmpty) {
+      final path = result.files.first.path;
+      if (path != null) setState(() => _photos.add(path));
+    }
+  }
+
+  void _removePhoto(int index) {
+    setState(() => _photos.removeAt(index));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,146 +63,286 @@ class NewRouteScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: SizedBox.expand(child: Container(
-        decoration: AppDecorations.bgGradient,
-        child: SafeArea(
-          top: false,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const BackArrowBar(),
+      body: SizedBox.expand(
+        child: Container(
+          decoration: AppDecorations.bgGradient,
+          child: SafeArea(
+            top: false,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const BackArrowBar(),
 
-              // ── Titre ──────────────────────────────────────────────────────
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-                child: Text(
-                  l.txtNewRoute,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.title
-                      .copyWith(color: AppColors.trottleWhite),
+                // ── Titre ─────────────────────────────────────────────────
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                  child: Text(
+                    l.txtNewRoute,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.title
+                        .copyWith(color: AppColors.trottleWhite),
+                  ),
                 ),
-              ),
 
-              const SizedBox(height: 16),
+                // ── Corps scrollable ──────────────────────────────────────
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
 
-              // ── Deux boutons import / ajout ────────────────────────────────
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _ActionButton(
-                      width: _btnW,
-                      height: _btnH,
-                      icon: const Icon(
-                        Icons.smartphone_outlined,
-                        color: AppColors.trottleWhite,
-                        size: 28,
+                        const SizedBox(height: 8),
+
+                        // ── Zone photos ──────────────────────────────────
+                        if (_photos.isEmpty)
+                          // État initial — deux grands boutons côte à côte
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                _ActionTile(
+                                  width:  _btnW,
+                                  height: _btnH,
+                                  icon:   const Icon(
+                                    Icons.smartphone_outlined,
+                                    color: AppColors.trottleWhite,
+                                    size: 28,
+                                  ),
+                                  label: l.txtNewRouteImport,
+                                  onTap: _importPhotos,
+                                ),
+                                _ActionTile(
+                                  width:  _btnW,
+                                  height: _btnH,
+                                  icon:   Image.asset(
+                                    'assets/icones/trottle_32.webp',
+                                    width: 28,
+                                    height: 28,
+                                    color: AppColors.trottleWhite,
+                                  ),
+                                  label: l.txtNewRouteAdd,
+                                  onTap: _addPhoto,
+                                ),
+                              ],
+                            ),
+                          )
+                        else
+                          // Grille photos + boutons 112×112 à la fin
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                final tileW =
+                                    (constraints.maxWidth - _gridGap * 2) / 3;
+
+                                return Wrap(
+                                  spacing:    _gridGap,
+                                  runSpacing: _gridGap,
+                                  children: [
+                                    for (int i = 0; i < _photos.length; i++)
+                                      _PhotoTile(
+                                        path:     _photos[i],
+                                        index:    i,
+                                        size:     tileW,
+                                        onRemove: () => _removePhoto(i),
+                                      ),
+                                    _ActionTile(
+                                      width:  _actionTileSize,
+                                      height: _actionTileSize,
+                                      icon:   const Icon(
+                                        Icons.smartphone_outlined,
+                                        color: AppColors.trottleWhite,
+                                        size: 24,
+                                      ),
+                                      label: l.txtNewRouteImport,
+                                      onTap: _importPhotos,
+                                    ),
+                                    _ActionTile(
+                                      width:  _actionTileSize,
+                                      height: _actionTileSize,
+                                      icon:   Image.asset(
+                                        'assets/icones/trottle_32.webp',
+                                        width: 24,
+                                        height: 24,
+                                        color: AppColors.trottleWhite,
+                                      ),
+                                      label: l.txtNewRouteAdd,
+                                      onTap: _addPhoto,
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+
+                        const SizedBox(height: 16),
+
+                        // ── Champs ──────────────────────────────────────
+                        FieldRow(
+                          icon: Icons.edit_outlined,
+                          label: l.txtNewRouteTitle,
+                          initialValue: '',
+                          hintText: l.txtNewRouteTitleHint,
+                        ),
+                        _divider,
+                        FieldRow(
+                          icon: Icons.tag,
+                          label: l.txtNewRouteHashtag,
+                          initialValue: '',
+                        ),
+                        FieldRow(
+                          icon: Icons.hiking_outlined,
+                          label: l.txtNewRouteCategory,
+                          initialValue: '',
+                        ),
+                        FieldRow(
+                          icon: Icons.edit_outlined,
+                          label: l.txtNewRouteDescription,
+                          initialValue: '',
+                          hintText: l.txtNewRouteDescriptionHint,
+                        ),
+                        _divider,
+                        FieldRow(
+                          icon: Icons.route_outlined,
+                          label: l.txtNewRouteDistance,
+                          initialValue: '',
+                          hintText: l.txtNewRouteDistanceHint,
+                          keyboardType: TextInputType.number,
+                        ),
+                        FieldRow(
+                          icon: Icons.timer_outlined,
+                          label: l.txtNewRouteDuration,
+                          initialValue: '',
+                          hintText: l.txtNewRouteDurationHint,
+                        ),
+                        FieldRow(
+                          icon: Icons.accessible_outlined,
+                          label: l.txtNewRouteAccess,
+                          initialValue: '',
+                        ),
+                        _PriceRow(
+                          label: l.txtNewRoutePrice,
+                          hint:  l.txtNewRoutePriceHint,
+                        ),
+                        _divider,
+
+                        const SizedBox(height: 24),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // ── Boutons verrouillés en bas ────────────────────────────
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 28),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      _TextButton(
+                        label: l.txtNewRouteDraft,
+                        color: AppColors.trottleMidGray,
+                        onTap: () {},
                       ),
-                      label: l.txtNewRouteImport,
-                      onTap: () {},
-                    ),
-                    _ActionButton(
-                      width: _btnW,
-                      height: _btnH,
-                      icon: Image.asset(
-                        'assets/icones/trottle_32.webp',
-                        width: 28,
-                        height: 28,
-                        color: AppColors.trottleWhite,
+                      const SizedBox(width: 10),
+                      _TextButton(
+                        label: l.txtNewRoutePublish,
+                        color: AppColors.trottleLightBlue,
+                        onTap: () {},
                       ),
-                      label: l.txtNewRouteAdd,
-                      onTap: () {},
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // ── Champs ────────────────────────────────────────────────────
-              FieldRow(
-                icon: Icons.edit_outlined,
-                label: l.txtNewRouteTitle,
-                initialValue: '',
-                hintText: l.txtNewRouteTitleHint,
-              ),
-              _divider,
-              FieldRow(
-                icon: Icons.tag,
-                label: l.txtNewRouteHashtag,
-                initialValue: '',
-              ),
-              FieldRow(
-                icon: Icons.hiking_outlined,
-                label: l.txtNewRouteCategory,
-                initialValue: '',
-              ),
-              FieldRow(
-                icon: Icons.edit_outlined,
-                label: l.txtNewRouteDescription,
-                initialValue: '',
-                hintText: l.txtNewRouteDescriptionHint,
-              ),
-              _divider,
-              FieldRow(
-                icon: Icons.route_outlined,
-                label: l.txtNewRouteDistance,
-                initialValue: '',
-                hintText: l.txtNewRouteDistanceHint,
-                keyboardType: TextInputType.number,
-              ),
-              FieldRow(
-                icon: Icons.timer_outlined,
-                label: l.txtNewRouteDuration,
-                initialValue: '',
-                hintText: l.txtNewRouteDurationHint,
-              ),
-              FieldRow(
-                icon: Icons.accessible_outlined,
-                label: l.txtNewRouteAccess,
-                initialValue: '',
-              ),
-              _PriceRow(
-                label: l.txtNewRoutePrice,
-                hint: l.txtNewRoutePriceHint,
-              ),
-              _divider,
-
-              const SizedBox(height: 16),
-
-              // ── Boutons Brouillon / Publier ────────────────────────────────
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    _TextButton(
-                      label: l.txtNewRouteDraft,
-                      color: AppColors.trottleMidGray,
-                      onTap: () {},
-                    ),
-                    const SizedBox(width: 10),
-                    _TextButton(
-                      label: l.txtNewRoutePublish,
-                      color: AppColors.trottleLightBlue,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 }
 
-// ── Widget bouton action ──────────────────────────────────────────────────────
+// ── Tuile photo importée ──────────────────────────────────────────────────────
 
-class _ActionButton extends StatelessWidget {
-  const _ActionButton({
+class _PhotoTile extends StatelessWidget {
+  const _PhotoTile({
+    required this.path,
+    required this.index,
+    required this.size,
+    required this.onRemove,
+  });
+
+  final String       path;
+  final int          index;
+  final double       size;
+  final VoidCallback onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width:  size,
+      height: size,
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.file(
+                File(path),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          // Badge numéro
+          Positioned(
+            top: 4, left: 4,
+            child: Container(
+              width: 20, height: 20,
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.55),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  '${index + 1}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    height: 1,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // Supprimer
+          Positioned(
+            top: 4, right: 4,
+            child: GestureDetector(
+              onTap: onRemove,
+              behavior: HitTestBehavior.opaque,
+              child: Container(
+                width: 20, height: 20,
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.55),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.close, color: Colors.white, size: 12),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Tuile action générique ────────────────────────────────────────────────────
+
+class _ActionTile extends StatelessWidget {
+  const _ActionTile({
     required this.width,
     required this.height,
     required this.icon,
@@ -167,10 +350,10 @@ class _ActionButton extends StatelessWidget {
     required this.onTap,
   });
 
-  final double    width;
-  final double    height;
-  final Widget    icon;
-  final String    label;
+  final double       width;
+  final double       height;
+  final Widget       icon;
+  final String       label;
   final VoidCallback onTap;
 
   @override
@@ -193,7 +376,7 @@ class _ActionButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             icon,
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
             Text(
               label,
               style: AppTextStyles.text.copyWith(
@@ -208,7 +391,7 @@ class _ActionButton extends StatelessWidget {
   }
 }
 
-// ── Ligne Prix : dropdown devise + champ montant ─────────────────────────────
+// ── Ligne Prix ────────────────────────────────────────────────────────────────
 
 class _PriceRow extends StatefulWidget {
   const _PriceRow({required this.label, required this.hint});
@@ -220,7 +403,7 @@ class _PriceRow extends StatefulWidget {
 }
 
 class _PriceRowState extends State<_PriceRow> {
-  static const _currencies = ['€', '\$', '£', '¥'];
+  static const _currencies = ['€', '\$', '£', '¥', 'CHF'];
   String _currency = '€';
 
   @override
@@ -233,7 +416,6 @@ class _PriceRowState extends State<_PriceRow> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Icône
           const SizedBox(
             width: FieldRow.iconSize,
             height: FieldRow.iconSize,
@@ -244,12 +426,10 @@ class _PriceRowState extends State<_PriceRow> {
             ),
           ),
           const SizedBox(width: FieldRow.gap),
-          // Label
           SizedBox(
             width: FieldRow.textWidth,
             child: Text(widget.label, style: style),
           ),
-          // Dropdown devise (compact)
           DropdownButton<String>(
             value: _currency,
             dropdownColor: const Color(0xFF0A2540),
@@ -263,7 +443,6 @@ class _PriceRowState extends State<_PriceRow> {
             onChanged: (v) => setState(() => _currency = v!),
           ),
           const SizedBox(width: 4),
-          // Champ montant
           Expanded(
             child: TextField(
               style: style,

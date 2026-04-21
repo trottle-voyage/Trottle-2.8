@@ -7,6 +7,7 @@ import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/models/photo_item.dart';
 import '../../core/widgets/photo_card.dart';
+import '../../core/widgets/photo_detail_sheet.dart';
 import '../nav/route_screen.dart';
 import '../profile/profile_screen.dart';
 import 'search_popup.dart';
@@ -25,13 +26,96 @@ class _MainScreenState extends State<MainScreen> {
   bool _searchOpen = false;
 
   static final List<PhotoItem> _photos = [
-    PhotoItem(imageAsset: 'assets/photos/img_01.webp', hashtag: 'Yoda',       city: 'Dagobah',   flag: '🌿'),
-    PhotoItem(imageAsset: 'assets/photos/img_02.webp', hashtag: 'Dark Vador', city: 'Mustafar',  flag: '🔴'),
-    PhotoItem(imageAsset: 'assets/photos/img_03.webp', hashtag: 'Luke',       city: 'Tatooine',  flag: '☀️'),
-    PhotoItem(imageAsset: 'assets/photos/img_04.webp', hashtag: 'Obi-Wan',    city: 'Coruscant', flag: '🌆'),
-    PhotoItem(imageAsset: 'assets/photos/img_05.webp', hashtag: 'R2-D2',      city: 'Naboo',     flag: '💧'),
-    PhotoItem(imageAsset: 'assets/photos/img_06.webp', hashtag: 'Chewbacca',  city: 'Kashyyyk',  flag: '🌲'),
-    PhotoItem(imageAsset: 'assets/photos/img_07.webp', hashtag: 'Han Solo',   city: 'Corellia',  flag: '🚀'),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_01.webp',
+      hashtag:     'Yoda',
+      city:        'Dagobah',
+      flag:        '🌿',
+      title:       'La cabane de Yoda',
+      keywords:    ['Statue', 'Insolite', 'Patrimoine'],
+      dateLabel:   'Le 12 mai 2025',
+      user:        'ObiWanKenobi',
+      description: 'La cabane de Yoda, nichée dans les marécages de Dagobah, '
+          'est un symbole de sagesse et d\'humilité. Ce maître Jedi légendaire '
+          'y vécut ses dernières années en exil, loin des conflits de la galaxie.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_02.webp',
+      hashtag:     'Dark Vador',
+      city:        'Mustafar',
+      flag:        '🔴',
+      title:       'Château de Dark Vador',
+      keywords:    ['Monument', 'Insolite'],
+      dateLabel:   'Le 3 juin 2025',
+      user:        'DarthSidious',
+      description: 'Érigé sur la lave de Mustafar, le château de Vador '
+          'est à la fois forteresse et lieu de méditation. Son architecture '
+          'sombre reflète la dualité entre la Force et l\'Obscurité.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_03.webp',
+      hashtag:     'Luke',
+      city:        'Tatooine',
+      flag:        '☀️',
+      title:       'Ferme des Lars',
+      keywords:    ['Lieu de tournage', 'Patrimoine'],
+      dateLabel:   'Le 18 juillet 2025',
+      user:        'LukeSkywalker',
+      description: 'La ferme souterraine des Lars sur Tatooine, où Luke grandit, '
+          'est devenue un lieu culte pour les fans du monde entier.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_04.webp',
+      hashtag:     'Obi-Wan',
+      city:        'Coruscant',
+      flag:        '🌆',
+      title:       'Temple Jedi',
+      keywords:    ['Monument', 'Patrimoine', 'Randonnée'],
+      dateLabel:   'Le 28 août 2025',
+      user:        'ObiWanKenobi',
+      description: 'Le Temple Jedi de Coruscant fut le siège de l\'Ordre pendant '
+          'des millénaires. Aujourd\'hui classé, il témoigne de la grandeur '
+          'd\'une civilisation disparue.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_05.webp',
+      hashtag:     'R2-D2',
+      city:        'Naboo',
+      flag:        '💧',
+      title:       'Palais Royal de Naboo',
+      keywords:    ['Monument', 'Insolite'],
+      dateLabel:   'Le 5 septembre 2025',
+      user:        'AnakinSkywalker',
+      description: 'Le palais royal de Naboo est l\'une des architectures '
+          'les plus élégantes de la galaxie. Ses jardins aquatiques et ses '
+          'coupoles dorées en font un joyau du patrimoine universel.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_06.webp',
+      hashtag:     'Chewbacca',
+      city:        'Kashyyyk',
+      flag:        '🌲',
+      title:       'Forêt de Kashyyyk',
+      keywords:    ['Randonnée', 'Patrimoine'],
+      dateLabel:   'Le 1 octobre 2025',
+      user:        'HanSolo',
+      description: 'Les gigantesques wroshyr de Kashyyyk s\'élèvent à '
+          'plusieurs centaines de mètres. Une randonnée dans leurs cimes '
+          'offre des panoramas à couper le souffle.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_07.webp',
+      hashtag:     'Han Solo',
+      city:        'Corellia',
+      flag:        '🚀',
+      title:       'Chantiers navals de Corellia',
+      keywords:    ['Insolite', 'Lieu de tournage'],
+      dateLabel:   'Le 15 octobre 2025',
+      user:        'HanSolo',
+      description: 'Les chantiers navals de Corellia, berceau du Faucon '
+          'Millenium, sont un haut lieu de la culture spatiale. Visites '
+          'guidées disponibles toute l\'année.',
+    ),
   ];
 
   @override
@@ -336,11 +420,13 @@ class _MainScreenState extends State<MainScreen> {
                   height: _bandeauH,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     itemCount: _photos.length,
                     separatorBuilder: (_, __) => const SizedBox(width: 12),
                     itemBuilder: (_, i) => PhotoCard(
-                      item:  _photos[i],
+                      item:       _photos[i],
+                      onImageTap: () =>
+                          showPhotoDetail(context, _photos, i),
                     ),
                   ),
                 ),

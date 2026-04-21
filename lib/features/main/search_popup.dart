@@ -51,8 +51,8 @@ class _SearchPopupState extends State<SearchPopup> {
     final l = AppLocalizations.of(context)!;
 
     final cats = [
-      _Cat(l.txtSearchLast,    AppColors.trottleMain, null),
-      _Cat(l.txtSearchRoute,   AppColors.trottleMain, _goToRoute),
+      _Cat(l.txtSearchLast,    AppColors.trottleLightBlue, null),
+      _Cat(l.txtSearchRoute,   AppColors.trottleOrange, _goToRoute),
       _Cat('Incontournable',   AppColors.trottleMain, null),
       _Cat('Monument',         AppColors.trottleMain, null),
       _Cat('Randonnée',        AppColors.trottleMain, null),

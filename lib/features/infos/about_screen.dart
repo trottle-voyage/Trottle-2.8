@@ -4,6 +4,7 @@ import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../l10n/app_localizations.dart';
+import '../main/main_screen.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -59,7 +60,7 @@ class AboutScreen extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: AppColors.trottleMain,
+                                  color: AppColors.trottleFerrari,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
@@ -71,32 +72,12 @@ class AboutScreen extends StatelessWidget {
                                 ),
                               ),
 
-                              const SizedBox(height: 14),
+                              const SizedBox(height: 18),
 
-                              // Brand TROTTLE — TROT blanc / TLE trottleMain
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: l.txtAboutBrand1,
-                                      style: AppTextStyles.info.copyWith(
-                                        color: AppColors.trottleWhite,
-                                        fontSize: 56,
-                                        fontWeight: FontWeight.w700,
-                                        height: 1.0,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: l.txtAboutBrand2,
-                                      style: AppTextStyles.info.copyWith(
-                                        color: AppColors.trottleMain,
-                                        fontSize: 56,
-                                        fontWeight: FontWeight.w700,
-                                        height: 1.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              // Logo Trottle full white
+                              Image.asset(
+                                'assets/logos/logo_full_white.webp',
+                                height: 156,
                               ),
 
                               const SizedBox(height: 10),
@@ -215,7 +196,7 @@ class AboutScreen extends StatelessWidget {
 
                         const SizedBox(height: 28),
 
-                        // ── Les 4+1 Univers — 2+2+1 centré ───────────────────
+                        // ── Les 6 Univers — 3 rangées de 2 ───────────────────
                         _SectionTitle(text: l.txtAboutUniversTitle),
                         const SizedBox(height: 12),
                         LayoutBuilder(builder: (ctx, constraints) {
@@ -223,48 +204,22 @@ class AboutScreen extends StatelessWidget {
                           return Column(
                             children: [
                               Row(children: [
-                                SizedBox(
-                                    width: cardW,
-                                    child: _UniversCard(
-                                        icon: Icons.terrain,
-                                        title: l.txtAboutUnivers1,
-                                        subtitle: l.txtAboutUnivers1Sub)),
+                                SizedBox(width: cardW, child: _UniversCard(icon: Icons.terrain,                   title: l.txtAboutUnivers1, subtitle: l.txtAboutUnivers1Sub)),
                                 const SizedBox(width: 10),
-                                SizedBox(
-                                    width: cardW,
-                                    child: _UniversCard(
-                                        icon: Icons.directions_bike_outlined,
-                                        title: l.txtAboutUnivers2,
-                                        subtitle: l.txtAboutUnivers2Sub)),
+                                SizedBox(width: cardW, child: _UniversCard(icon: Icons.directions_bike_outlined,  title: l.txtAboutUnivers2, subtitle: l.txtAboutUnivers2Sub)),
                               ]),
                               const SizedBox(height: 10),
                               Row(children: [
-                                SizedBox(
-                                    width: cardW,
-                                    child: _UniversCard(
-                                        icon: Icons.two_wheeler_outlined,
-                                        title: l.txtAboutUnivers3,
-                                        subtitle: l.txtAboutUnivers3Sub)),
+                                SizedBox(width: cardW, child: _UniversCard(icon: Icons.two_wheeler_outlined,      title: l.txtAboutUnivers3, subtitle: l.txtAboutUnivers3Sub)),
                                 const SizedBox(width: 10),
-                                SizedBox(
-                                    width: cardW,
-                                    child: _UniversCard(
-                                        icon: Icons.brush_outlined,
-                                        title: l.txtAboutUnivers4,
-                                        subtitle: l.txtAboutUnivers4Sub)),
+                                SizedBox(width: cardW, child: _UniversCard(icon: Icons.brush_outlined,            title: l.txtAboutUnivers4, subtitle: l.txtAboutUnivers4Sub)),
                               ]),
                               const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                      width: cardW,
-                                      child: _UniversCard(
-                                          icon: Icons.theaters,
-                                          title: l.txtAboutUnivers5,
-                                          subtitle: l.txtAboutUnivers5Sub)),
-                                ],
-                              ),
+                              Row(children: [
+                                SizedBox(width: cardW, child: _UniversCard(icon: Icons.theaters,                  title: l.txtAboutUnivers5, subtitle: l.txtAboutUnivers5Sub)),
+                                const SizedBox(width: 10),
+                                SizedBox(width: cardW, child: _UniversCard(icon: Icons.account_balance_outlined,  title: l.txtAboutUnivers6, subtitle: l.txtAboutUnivers6Sub)),
+                              ]),
                             ],
                           );
                         }),
@@ -294,14 +249,40 @@ class AboutScreen extends StatelessWidget {
 
                         const SizedBox(height: 36),
 
-                        // ── CTA ───────────────────────────────────────────────
+                        // ── CTA → Map ─────────────────────────────────────────
                         Center(
-                          child: Text(
-                            l.txtAboutCta,
-                            textAlign: TextAlign.center,
-                            style: AppTextStyles.subTitleBig.copyWith(
-                              color: AppColors.trottleWhite,
-                              fontWeight: FontWeight.w600,
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration:
+                                    const Duration(milliseconds: 400),
+                                reverseTransitionDuration:
+                                    const Duration(milliseconds: 400),
+                                pageBuilder: (_, __, ___) =>
+                                    const MainScreen(),
+                                transitionsBuilder:
+                                    (_, animation, __, child) =>
+                                        SlideTransition(
+                                  position: Tween<Offset>(
+                                    begin: const Offset(0, 1),
+                                    end: Offset.zero,
+                                  ).animate(CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeInOut,
+                                  )),
+                                  child: child,
+                                ),
+                              ),
+                            ),
+                            behavior: HitTestBehavior.opaque,
+                            child: Text(
+                              l.txtAboutCta,
+                              textAlign: TextAlign.center,
+                              style: AppTextStyles.subTitleBig.copyWith(
+                                color: AppColors.trottleWhite,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),

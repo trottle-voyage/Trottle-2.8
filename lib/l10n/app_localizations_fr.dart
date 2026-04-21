@@ -341,7 +341,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtStats => 'Statistiques';
 
   @override
-  String get txtEditProfileSave => 'Enregistrer';
+  String get txtEditProfileSave => 'Enregistrer le profil';
 
   @override
   String get txtEditProfile => 'Éditer le profil';
@@ -434,6 +434,44 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtSettingsGeneral => 'Conditions générales';
 
   @override
+  String get txtMailPwdEmailSection => 'Adresse e-mail';
+
+  @override
+  String get txtMailPwdNewEmail => 'Nouvel e-mail';
+
+  @override
+  String get txtMailPwdNewEmailHint => 'nouveau@email.com';
+
+  @override
+  String get txtMailPwdConfirmEmail => 'Confirmer l\'e-mail';
+
+  @override
+  String get txtMailPwdInfoEmail =>
+      'Un e-mail de confirmation sera envoyé à votre nouvelle adresse.';
+
+  @override
+  String get txtMailPwdPasswordSection => 'Mot de passe';
+
+  @override
+  String get txtMailPwdCurrent => 'Mot de passe actuel';
+
+  @override
+  String get txtMailPwdNew => 'Nouveau mot de passe';
+
+  @override
+  String get txtMailPwdConfirmNew => 'Confirmer';
+
+  @override
+  String get txtMailPwdHint => '••••••••';
+
+  @override
+  String get txtMailPwdInfoPassword =>
+      'Minimum 8 caractères. Combinez lettres, chiffres et symboles.';
+
+  @override
+  String get txtMailPwdSave => 'Enregistrer les modifications';
+
+  @override
   String get txtAbout => 'À propos';
 
   @override
@@ -473,7 +511,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtAboutStat1Label => 'application';
 
   @override
-  String get txtAboutStat2Value => '4';
+  String get txtAboutStat2Value => '6';
 
   @override
   String get txtAboutStat2Label => 'univers';
@@ -496,7 +534,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trottle est née d\'une passion pour l\'exploration et le partage. Nous croyons que les meilleures aventures sont celles que l\'on vit ensemble, guidés par une communauté de passionnés.';
 
   @override
-  String get txtAboutUniversTitle => 'Les 4 Univers';
+  String get txtAboutUniversTitle => 'Les 6 principaux univers';
 
   @override
   String get txtAboutUnivers1 => 'Randonnée';
@@ -527,6 +565,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get txtAboutUnivers5Sub => 'Cinéma & séries';
+
+  @override
+  String get txtAboutUnivers6 => 'Patrimoine';
+
+  @override
+  String get txtAboutUnivers6Sub => 'Histoire & monuments';
 
   @override
   String get txtAboutWhyTitle => 'Pourquoi Trottle ?';

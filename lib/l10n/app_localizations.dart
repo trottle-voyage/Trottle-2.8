@@ -757,7 +757,7 @@ abstract class AppLocalizations {
   /// No description provided for @txtEditProfileSave.
   ///
   /// In fr, this message translates to:
-  /// **'Enregistrer'**
+  /// **'Enregistrer le profil'**
   String get txtEditProfileSave;
 
   /// No description provided for @txtEditProfile.
@@ -940,6 +940,78 @@ abstract class AppLocalizations {
   /// **'Conditions générales'**
   String get txtSettingsGeneral;
 
+  /// No description provided for @txtMailPwdEmailSection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail'**
+  String get txtMailPwdEmailSection;
+
+  /// No description provided for @txtMailPwdNewEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvel e-mail'**
+  String get txtMailPwdNewEmail;
+
+  /// No description provided for @txtMailPwdNewEmailHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'nouveau@email.com'**
+  String get txtMailPwdNewEmailHint;
+
+  /// No description provided for @txtMailPwdConfirmEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer l\'e-mail'**
+  String get txtMailPwdConfirmEmail;
+
+  /// No description provided for @txtMailPwdInfoEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un e-mail de confirmation sera envoyé à votre nouvelle adresse.'**
+  String get txtMailPwdInfoEmail;
+
+  /// No description provided for @txtMailPwdPasswordSection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe'**
+  String get txtMailPwdPasswordSection;
+
+  /// No description provided for @txtMailPwdCurrent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe actuel'**
+  String get txtMailPwdCurrent;
+
+  /// No description provided for @txtMailPwdNew.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau mot de passe'**
+  String get txtMailPwdNew;
+
+  /// No description provided for @txtMailPwdConfirmNew.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer'**
+  String get txtMailPwdConfirmNew;
+
+  /// No description provided for @txtMailPwdHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'••••••••'**
+  String get txtMailPwdHint;
+
+  /// No description provided for @txtMailPwdInfoPassword.
+  ///
+  /// In fr, this message translates to:
+  /// **'Minimum 8 caractères. Combinez lettres, chiffres et symboles.'**
+  String get txtMailPwdInfoPassword;
+
+  /// No description provided for @txtMailPwdSave.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer les modifications'**
+  String get txtMailPwdSave;
+
   /// No description provided for @txtAbout.
   ///
   /// In fr, this message translates to:
@@ -1021,7 +1093,7 @@ abstract class AppLocalizations {
   /// No description provided for @txtAboutStat2Value.
   ///
   /// In fr, this message translates to:
-  /// **'4'**
+  /// **'6'**
   String get txtAboutStat2Value;
 
   /// No description provided for @txtAboutStat2Label.
@@ -1063,7 +1135,7 @@ abstract class AppLocalizations {
   /// No description provided for @txtAboutUniversTitle.
   ///
   /// In fr, this message translates to:
-  /// **'Les 4 Univers'**
+  /// **'Les 6 principaux univers'**
   String get txtAboutUniversTitle;
 
   /// No description provided for @txtAboutUnivers1.
@@ -1125,6 +1197,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Cinéma & séries'**
   String get txtAboutUnivers5Sub;
+
+  /// No description provided for @txtAboutUnivers6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patrimoine'**
+  String get txtAboutUnivers6;
+
+  /// No description provided for @txtAboutUnivers6Sub.
+  ///
+  /// In fr, this message translates to:
+  /// **'Histoire & monuments'**
+  String get txtAboutUnivers6Sub;
 
   /// No description provided for @txtAboutWhyTitle.
   ///
