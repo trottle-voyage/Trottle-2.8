@@ -161,8 +161,9 @@ class _PhotoCardState extends State<PhotoCard> {
                     ),
                     child: Text(
                       widget.item.hashtag,
-                      style: AppTextStyles.hashtagSmall.copyWith(
+                      style: AppTextStyles.hashtag.copyWith(
                         color: AppColors.trottleWhite,
+                        fontSize: 14,
                       ),
                     ),
                   ),

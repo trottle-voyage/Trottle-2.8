@@ -4,8 +4,10 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
+import '../../core/widgets/menu_row.dart';
 import '../../core/widgets/route_card.dart';
 import '../../l10n/app_localizations.dart';
+import 'new_route_screen.dart';
 
 class RouteScreen extends StatelessWidget {
   const RouteScreen({super.key});
@@ -127,6 +129,41 @@ class RouteScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
+              // ══ PARTIE FIXE BAS ════════════════════════════════════════════
+
+              // ── Stroke délimiteur ────────────────────────────────────────
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                height: 0.5,
+                color: AppColors.trottleDark,
+              ),
+
+              // ── Créer un parcours ────────────────────────────────────────
+              MenuRow(
+                icon: Icons.add_circle_outline,
+                label: l.txtMyRoutesAdd,
+                onTap: () => Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: const Duration(milliseconds: 400),
+                    reverseTransitionDuration: const Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => const NewRouteScreen(),
+                    transitionsBuilder: (_, animation, __, child) => SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(1, 0),
+                        end: Offset.zero,
+                      ).animate(CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeInOut,
+                      )),
+                      child: child,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 24),
             ],
           ),
         ),

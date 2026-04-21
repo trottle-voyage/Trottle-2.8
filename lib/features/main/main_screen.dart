@@ -9,6 +9,7 @@ import '../../core/models/photo_item.dart';
 import '../../core/widgets/photo_card.dart';
 import '../nav/route_screen.dart';
 import '../profile/profile_screen.dart';
+import 'search_popup.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,7 +21,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final GpsService      _gps           = GpsService.instance;
   final MapController   _mapController = MapController();
-  bool _menuOpen = false;
+  bool _menuOpen   = false;
+  bool _searchOpen = false;
 
   static final List<PhotoItem> _photos = [
     PhotoItem(imageAsset: 'assets/photos/img_01.webp', hashtag: 'Yoda',       city: 'Dagobah',   flag: '🌿'),
@@ -139,12 +141,14 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> _buildMenuHRow() {
     final configs = [
       // H03 — recentrage carte
-      (child: const Icon(Icons.my_location, color: AppColors.trottleWhite, size: 20),
+      (child: const Icon(Icons.my_location,      color: AppColors.trottleWhite, size: 20) as Widget?,
        onTap: _recenterMap as VoidCallback?),
-      // H02 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
-      // H01 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
+      // H02 — voiture
+      (child: const Icon(Icons.directions_car_outlined, color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: null as VoidCallback?),
+      // H01 — carte
+      (child: const Icon(Icons.map_outlined,      color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: null as VoidCallback?),
     ];
 
     return List.generate(configs.length, (i) {
@@ -167,15 +171,17 @@ class _MainScreenState extends State<MainScreen> {
   // Colonne verticale — index 0 = V04 (le plus bas), index 3 = V01 (le plus haut)
   List<Widget> _buildMenuVCol() {
     final configs = [
-      // V04 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
-      // V03 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
-      // V02 — parcours
-      (child: const Icon(Icons.route_outlined, color: AppColors.trottleWhite, size: 20),
+      // V04 — loupe
+      (child: const Icon(Icons.search,            color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: (() => setState(() => _searchOpen = !_searchOpen)) as VoidCallback?),
+      // V03 — circuit
+      (child: const Icon(Icons.route_outlined,    color: AppColors.trottleWhite, size: 20) as Widget?,
        onTap: _openRoute as VoidCallback?),
+      // V02 — appareil photo +
+      (child: const Icon(Icons.add_a_photo_outlined, color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: null as VoidCallback?),
       // V01 — profil
-      (child: const Icon(Icons.person, color: AppColors.trottleWhite, size: 20),
+      (child: const Icon(Icons.person,            color: AppColors.trottleWhite, size: 20) as Widget?,
        onTap: _openProfile as VoidCallback?),
     ];
 
@@ -296,6 +302,23 @@ class _MainScreenState extends State<MainScreen> {
               child: _menuCircle(_mainSize,
                   child: Image.asset('assets/icones/trottle_32.webp',
                       width: _mainSize * 0.6, height: _mainSize * 0.6)),
+            ),
+          ),
+
+          // ── Popup recherche ──────────────────────────────────────────────────
+          Positioned(
+            left:   8,
+            right:  8,
+            bottom: _bandeauH + _mainSize + _gap * 2,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 300),
+              opacity: _searchOpen ? 1.0 : 0.0,
+              child: IgnorePointer(
+                ignoring: !_searchOpen,
+                child: SearchPopup(
+                  onClose: () => setState(() => _searchOpen = false),
+                ),
+              ),
             ),
           ),
 
