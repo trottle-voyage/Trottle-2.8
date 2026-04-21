@@ -94,8 +94,8 @@
   "txtNewRouteAccess": "Accessibilité",
   "txtNewRoutePrice": "Prix",
   "txtNewRoutePriceHint": "prix",
-  "txtNewRoutePriceDraft": "Brouillon",
-  "txtNewRoutePricePublish": "Publier",
+  "txtNewRouteDraft": "Brouillon",
+  "txtNewRoutePublish": "Publier",
 
   "txtFav": "Enregistrés",
   "txtFavLike": "Like",

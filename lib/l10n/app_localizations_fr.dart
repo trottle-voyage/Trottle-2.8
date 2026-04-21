@@ -263,7 +263,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtNewRoutePrice => 'Prix';
 
   @override
-  String get txtNewRoutePriceHint => '24,99';
+  String get txtNewRoutePriceHint => 'prix';
 
   @override
   String get txtNewRouteDraft => 'Brouillon';

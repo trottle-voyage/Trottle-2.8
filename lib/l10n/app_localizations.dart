@@ -601,7 +601,7 @@ abstract class AppLocalizations {
   /// No description provided for @txtNewRoutePriceHint.
   ///
   /// In fr, this message translates to:
-  /// **'24,99'**
+  /// **'prix'**
   String get txtNewRoutePriceHint;
 
   /// No description provided for @txtNewRouteDraft.
