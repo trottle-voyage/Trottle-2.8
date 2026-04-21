@@ -49,9 +49,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: const Color(0xFF0095FF).withOpacity(0.15),
+              color: const Color(0xFF0095FF).withValues(alpha: 0.15),
               border: Border.all(
-                color: Colors.white.withOpacity(0.25),
+                color: Colors.white.withValues(alpha: 0.25),
                 width: 0.2,
               ),
             ),
@@ -145,7 +145,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               hintStyle: const TextStyle(color: Colors.grey, fontSize: 13),
                               prefixIcon: const Icon(Icons.search, color: Colors.grey, size: 20),
                               filled: true,
-                              fillColor: Colors.white.withOpacity(0.88),
+                              fillColor: Colors.white.withValues(alpha: 0.88),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
@@ -175,7 +175,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   decoration: BoxDecoration(
                                     color: selected
                                         ? const Color(0xFF0099FF)
-                                        : Colors.white.withOpacity(0.18),
+                                        : Colors.white.withValues(alpha: 0.18),
                                     borderRadius: BorderRadius.circular(20),
                                     border: Border.all(
                                       color: selected
@@ -263,7 +263,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.88),
+        fillColor: Colors.white.withValues(alpha: 0.88),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,

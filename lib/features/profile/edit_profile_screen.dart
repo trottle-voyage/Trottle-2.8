@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/dropdown_field_row.dart';
@@ -46,7 +47,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               surface: AppColors.trottleBgDark,
               onSurface: AppColors.trottleWhite,
             ),
-            dialogBackgroundColor: AppColors.trottleBgDark,
+            dialogTheme: const DialogThemeData(
+              backgroundColor: AppColors.trottleBgDark,
+            ),
           ),
           child: child!,
         );
@@ -69,12 +72,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final l = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: AppColors.trottleBgDark,
-      body: SafeArea(
-        top: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+      backgroundColor: Colors.transparent,
+      body: SizedBox.expand(child: Container(
+        decoration: AppDecorations.bgGradient,
+        child: SafeArea(
+          top: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
             // ── Barre du haut : flèche retour + "Enregistrer" ─────────────
             BackArrowBar(
               trailing: GestureDetector(
@@ -117,7 +122,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           shape: BoxShape.circle,
                           border: Border.all(
                             width: 1,
-                            color: AppColors.trottleMain.withOpacity(0.4),
+                            color: AppColors.trottleMain.withValues(alpha: 0.4),
                           ),
                         ),
                         child: ClipOval(
@@ -217,9 +222,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               icon: Icons.travel_explore_outlined,
               label: l.txtEditProfileGuide,
             ),
-          ],
+            ],
+          ),
         ),
-      ),
+      )),
     );
   }
 }

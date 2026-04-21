@@ -48,7 +48,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtForgotPasswordEmail => 'Saisissez votre e-mail';
 
   @override
-  String get txtForgotPasswordEmailHint => 'Adresse@email.com';
+  String get txtForgotPasswordEmailHint => 'utilisateur@mail.com';
 
   @override
   String get txtForgotPasswordButton => 'Envoyer';
@@ -161,13 +161,40 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtWelcomeCreateButton => 'Créer';
 
   @override
-  String get txtRoute => 'Parcours';
+  String get txtProfile => 'Profil';
 
   @override
-  String get txtRouteSalute => 'Salut ';
+  String get txtProfileUser => 'P.H.';
 
   @override
-  String get txtRouteQuestion => 'Où est-ce qu\'on part aujourd\'hui ?';
+  String get txtProfileMenu => 'Mon profil';
+
+  @override
+  String get txtProfilePictures => 'Mes photos';
+
+  @override
+  String get txtProfileFavorite => 'Enregistrés';
+
+  @override
+  String get txtProfileRoute => 'Mes parcours';
+
+  @override
+  String get txtProfilePurchase => 'Achats';
+
+  @override
+  String get txtProfileTrip => 'Voyages';
+
+  @override
+  String get txtProfileTrophy => 'Trophées';
+
+  @override
+  String get txtProfileStats => 'Statistiques';
+
+  @override
+  String get txtProfileSettings => 'Réglages et confidentialité';
+
+  @override
+  String get txtVersion => 'Version';
 
   @override
   String get txtMyPictures => 'Mes photos';
@@ -189,6 +216,60 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get txtMyRoutesAdd => 'Créer un parcours';
+
+  @override
+  String get txtNewRoute => 'Nouveau parcours';
+
+  @override
+  String get txtNewRouteImport => 'Importer photos';
+
+  @override
+  String get txtNewRouteAdd => 'Ajouter photos';
+
+  @override
+  String get txtNewRouteTitle => 'Titre';
+
+  @override
+  String get txtNewRouteTitleHint => 'Titre du parcours';
+
+  @override
+  String get txtNewRouteHashtag => 'Mots clés';
+
+  @override
+  String get txtNewRouteCategory => 'Catégorie';
+
+  @override
+  String get txtNewRouteDescription => 'Description';
+
+  @override
+  String get txtNewRouteDescriptionHint => 'Description';
+
+  @override
+  String get txtNewRouteDistance => 'Distance';
+
+  @override
+  String get txtNewRouteDistanceHint => '10 km';
+
+  @override
+  String get txtNewRouteDuration => 'Durée';
+
+  @override
+  String get txtNewRouteDurationHint => '2h';
+
+  @override
+  String get txtNewRouteAccess => 'Accessibilité';
+
+  @override
+  String get txtNewRoutePrice => 'Prix';
+
+  @override
+  String get txtNewRoutePriceHint => '24,99';
+
+  @override
+  String get txtNewRouteDraft => 'Brouillon';
+
+  @override
+  String get txtNewRoutePublish => 'Publier';
 
   @override
   String get txtFav => 'Enregistrés';
@@ -227,43 +308,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtTrophyPassport => 'Passeport';
 
   @override
+  String get txtTrophyPassportCount => '/194';
+
+  @override
   String get txtTrophyRewards => 'Accomplissements';
 
   @override
-  String get txtProfile => 'Profil';
-
-  @override
-  String get txtProfileUser => 'P.H.';
-
-  @override
-  String get txtProfileMenu => 'Mon profil';
-
-  @override
-  String get txtProfilePictures => 'Mes photos';
-
-  @override
-  String get txtProfileFavorite => 'Enregistrés';
-
-  @override
-  String get txtProfileRoute => 'Mes parcours';
-
-  @override
-  String get txtProfilePurchase => 'Achats';
-
-  @override
-  String get txtProfileTrip => 'Voyages';
-
-  @override
-  String get txtProfileTrophy => 'Trophées';
-
-  @override
-  String get txtProfileStats => 'Statistiques';
-
-  @override
-  String get txtProfileSettings => 'Réglages et confidentialité';
-
-  @override
-  String get txtVersion => 'Version';
+  String get txtStats => 'Statistiques';
 
   @override
   String get txtEditProfileSave => 'Enregistrer';
@@ -320,6 +371,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtEditProfileGuide => 'Devenir Guide';
 
   @override
+  String get txtRoute => 'Parcours';
+
+  @override
+  String get txtRouteSalute => 'Salut ';
+
+  @override
+  String get txtRouteQuestion => 'Où est-ce qu\'on part aujourd\'hui ?';
+
+  @override
   String get txtSettingsMailPassword => 'Changer e-mail et Mot de passe';
 
   @override
@@ -348,4 +408,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get txtSettingsGeneral => 'Conditions générales';
+
+  @override
+  String get txtVersionDetails =>
+      '🎨 Design & UI\n• Transitions splash panel : slide horizontal complet X-axis uniquement, cadres entiers hors écran\n• Navigation Splash → Main : slide depuis le bas, ease in/out\n• Glassmorphisme carrousel et boutons Main : BackdropFilter + trottleBgDark 90%\n• Module BackArrowBar partagé : flèche retour identique sur toutes les pages (slot trailing optionnel)\n• Module MenuRow partagé : icône + label + chevron >, paramètres expandable/divider/labelStyle/labelWidth\n• Module FieldRow partagé : champ éditable inline, readOnly + onTap\n• Module DropdownFieldRow : menu déroulant en popup Overlay, aligné sous le hint\n• Module LocationFieldRow : recherche OSM Nominatim inline avec debounce 350 ms\n\n📱 Nouvelles pages\n• Main → Profile (slide droite)\n• Profile : avatar, menu complet, version cliquable\n• EditProfile : photo, pseudo, Instagram, localisation OSM, profil, hashtags, accessibilité, langue, date (picker natif), genre, Devenir Guide\n• Settings : menu, Se déconnecter (retour splash), mentions légales\n• Stats, Trophées (grille stamps Passeport 64×64), Version\n• Parcours (route_screen) accessible depuis MenuButtV02\n• 6 pages nav : MyPictures, MyRoutes, Fav, Purchase, Trip, Trophy\n\n🔗 Navigation\n• Toutes les pages Profile branchées avec slide droite→gauche 400 ms\n• Se déconnecter : pushAndRemoveUntil → Splash, slide depuis le haut\n• Version accessible depuis la page de connexion ET depuis Profile\n\n🐛 Corrections\n• ClipOval → ClipRRect pour BackdropFilter fiable sur boutons circulaires\n• Slide Y verrouillé (Alignment.bottomCenter sur Stack)\n• Dropdown langue : passage inline → Overlay pour éviter conflits de layout\n• txtVersion dupliqué dans app_fr.arb : nettoyé';
 }

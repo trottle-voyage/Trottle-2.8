@@ -175,7 +175,7 @@ abstract class AppLocalizations {
   /// No description provided for @txtForgotPasswordEmailHint.
   ///
   /// In fr, this message translates to:
-  /// **'Adresse@email.com'**
+  /// **'utilisateur@mail.com'**
   String get txtForgotPasswordEmailHint;
 
   /// No description provided for @txtForgotPasswordButton.
@@ -394,23 +394,77 @@ abstract class AppLocalizations {
   /// **'Créer'**
   String get txtWelcomeCreateButton;
 
-  /// No description provided for @txtRoute.
+  /// No description provided for @txtProfile.
   ///
   /// In fr, this message translates to:
-  /// **'Parcours'**
-  String get txtRoute;
+  /// **'Profil'**
+  String get txtProfile;
 
-  /// No description provided for @txtRouteSalute.
+  /// No description provided for @txtProfileUser.
   ///
   /// In fr, this message translates to:
-  /// **'Salut '**
-  String get txtRouteSalute;
+  /// **'P.H.'**
+  String get txtProfileUser;
 
-  /// No description provided for @txtRouteQuestion.
+  /// No description provided for @txtProfileMenu.
   ///
   /// In fr, this message translates to:
-  /// **'Où est-ce qu\'on part aujourd\'hui ?'**
-  String get txtRouteQuestion;
+  /// **'Mon profil'**
+  String get txtProfileMenu;
+
+  /// No description provided for @txtProfilePictures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes photos'**
+  String get txtProfilePictures;
+
+  /// No description provided for @txtProfileFavorite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrés'**
+  String get txtProfileFavorite;
+
+  /// No description provided for @txtProfileRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes parcours'**
+  String get txtProfileRoute;
+
+  /// No description provided for @txtProfilePurchase.
+  ///
+  /// In fr, this message translates to:
+  /// **'Achats'**
+  String get txtProfilePurchase;
+
+  /// No description provided for @txtProfileTrip.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voyages'**
+  String get txtProfileTrip;
+
+  /// No description provided for @txtProfileTrophy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trophées'**
+  String get txtProfileTrophy;
+
+  /// No description provided for @txtProfileStats.
+  ///
+  /// In fr, this message translates to:
+  /// **'Statistiques'**
+  String get txtProfileStats;
+
+  /// No description provided for @txtProfileSettings.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réglages et confidentialité'**
+  String get txtProfileSettings;
+
+  /// No description provided for @txtVersion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Version'**
+  String get txtVersion;
 
   /// No description provided for @txtMyPictures.
   ///
@@ -453,6 +507,114 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Créer un parcours'**
   String get txtMyRoutesAdd;
+
+  /// No description provided for @txtNewRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau parcours'**
+  String get txtNewRoute;
+
+  /// No description provided for @txtNewRouteImport.
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer photos'**
+  String get txtNewRouteImport;
+
+  /// No description provided for @txtNewRouteAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter photos'**
+  String get txtNewRouteAdd;
+
+  /// No description provided for @txtNewRouteTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre'**
+  String get txtNewRouteTitle;
+
+  /// No description provided for @txtNewRouteTitleHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre du parcours'**
+  String get txtNewRouteTitleHint;
+
+  /// No description provided for @txtNewRouteHashtag.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mots clés'**
+  String get txtNewRouteHashtag;
+
+  /// No description provided for @txtNewRouteCategory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Catégorie'**
+  String get txtNewRouteCategory;
+
+  /// No description provided for @txtNewRouteDescription.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get txtNewRouteDescription;
+
+  /// No description provided for @txtNewRouteDescriptionHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get txtNewRouteDescriptionHint;
+
+  /// No description provided for @txtNewRouteDistance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Distance'**
+  String get txtNewRouteDistance;
+
+  /// No description provided for @txtNewRouteDistanceHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'10 km'**
+  String get txtNewRouteDistanceHint;
+
+  /// No description provided for @txtNewRouteDuration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée'**
+  String get txtNewRouteDuration;
+
+  /// No description provided for @txtNewRouteDurationHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'2h'**
+  String get txtNewRouteDurationHint;
+
+  /// No description provided for @txtNewRouteAccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accessibilité'**
+  String get txtNewRouteAccess;
+
+  /// No description provided for @txtNewRoutePrice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prix'**
+  String get txtNewRoutePrice;
+
+  /// No description provided for @txtNewRoutePriceHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'24,99'**
+  String get txtNewRoutePriceHint;
+
+  /// No description provided for @txtNewRouteDraft.
+  ///
+  /// In fr, this message translates to:
+  /// **'Brouillon'**
+  String get txtNewRouteDraft;
+
+  /// No description provided for @txtNewRoutePublish.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier'**
+  String get txtNewRoutePublish;
 
   /// No description provided for @txtFav.
   ///
@@ -526,83 +688,23 @@ abstract class AppLocalizations {
   /// **'Passeport'**
   String get txtTrophyPassport;
 
+  /// No description provided for @txtTrophyPassportCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'/194'**
+  String get txtTrophyPassportCount;
+
   /// No description provided for @txtTrophyRewards.
   ///
   /// In fr, this message translates to:
   /// **'Accomplissements'**
   String get txtTrophyRewards;
 
-  /// No description provided for @txtProfile.
-  ///
-  /// In fr, this message translates to:
-  /// **'Profil'**
-  String get txtProfile;
-
-  /// No description provided for @txtProfileUser.
-  ///
-  /// In fr, this message translates to:
-  /// **'P.H.'**
-  String get txtProfileUser;
-
-  /// No description provided for @txtProfileMenu.
-  ///
-  /// In fr, this message translates to:
-  /// **'Mon profil'**
-  String get txtProfileMenu;
-
-  /// No description provided for @txtProfilePictures.
-  ///
-  /// In fr, this message translates to:
-  /// **'Mes photos'**
-  String get txtProfilePictures;
-
-  /// No description provided for @txtProfileFavorite.
-  ///
-  /// In fr, this message translates to:
-  /// **'Enregistrés'**
-  String get txtProfileFavorite;
-
-  /// No description provided for @txtProfileRoute.
-  ///
-  /// In fr, this message translates to:
-  /// **'Mes parcours'**
-  String get txtProfileRoute;
-
-  /// No description provided for @txtProfilePurchase.
-  ///
-  /// In fr, this message translates to:
-  /// **'Achats'**
-  String get txtProfilePurchase;
-
-  /// No description provided for @txtProfileTrip.
-  ///
-  /// In fr, this message translates to:
-  /// **'Voyages'**
-  String get txtProfileTrip;
-
-  /// No description provided for @txtProfileTrophy.
-  ///
-  /// In fr, this message translates to:
-  /// **'Trophées'**
-  String get txtProfileTrophy;
-
-  /// No description provided for @txtProfileStats.
+  /// No description provided for @txtStats.
   ///
   /// In fr, this message translates to:
   /// **'Statistiques'**
-  String get txtProfileStats;
-
-  /// No description provided for @txtProfileSettings.
-  ///
-  /// In fr, this message translates to:
-  /// **'Réglages et confidentialité'**
-  String get txtProfileSettings;
-
-  /// No description provided for @txtVersion.
-  ///
-  /// In fr, this message translates to:
-  /// **'Version'**
-  String get txtVersion;
+  String get txtStats;
 
   /// No description provided for @txtEditProfileSave.
   ///
@@ -712,6 +814,24 @@ abstract class AppLocalizations {
   /// **'Devenir Guide'**
   String get txtEditProfileGuide;
 
+  /// No description provided for @txtRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours'**
+  String get txtRoute;
+
+  /// No description provided for @txtRouteSalute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Salut '**
+  String get txtRouteSalute;
+
+  /// No description provided for @txtRouteQuestion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Où est-ce qu\'on part aujourd\'hui ?'**
+  String get txtRouteQuestion;
+
   /// No description provided for @txtSettingsMailPassword.
   ///
   /// In fr, this message translates to:
@@ -771,6 +891,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Conditions générales'**
   String get txtSettingsGeneral;
+
+  /// No description provided for @txtVersionDetails.
+  ///
+  /// In fr, this message translates to:
+  /// **'🎨 Design & UI\n• Transitions splash panel : slide horizontal complet X-axis uniquement, cadres entiers hors écran\n• Navigation Splash → Main : slide depuis le bas, ease in/out\n• Glassmorphisme carrousel et boutons Main : BackdropFilter + trottleBgDark 90%\n• Module BackArrowBar partagé : flèche retour identique sur toutes les pages (slot trailing optionnel)\n• Module MenuRow partagé : icône + label + chevron >, paramètres expandable/divider/labelStyle/labelWidth\n• Module FieldRow partagé : champ éditable inline, readOnly + onTap\n• Module DropdownFieldRow : menu déroulant en popup Overlay, aligné sous le hint\n• Module LocationFieldRow : recherche OSM Nominatim inline avec debounce 350 ms\n\n📱 Nouvelles pages\n• Main → Profile (slide droite)\n• Profile : avatar, menu complet, version cliquable\n• EditProfile : photo, pseudo, Instagram, localisation OSM, profil, hashtags, accessibilité, langue, date (picker natif), genre, Devenir Guide\n• Settings : menu, Se déconnecter (retour splash), mentions légales\n• Stats, Trophées (grille stamps Passeport 64×64), Version\n• Parcours (route_screen) accessible depuis MenuButtV02\n• 6 pages nav : MyPictures, MyRoutes, Fav, Purchase, Trip, Trophy\n\n🔗 Navigation\n• Toutes les pages Profile branchées avec slide droite→gauche 400 ms\n• Se déconnecter : pushAndRemoveUntil → Splash, slide depuis le haut\n• Version accessible depuis la page de connexion ET depuis Profile\n\n🐛 Corrections\n• ClipOval → ClipRRect pour BackdropFilter fiable sur boutons circulaires\n• Slide Y verrouillé (Alignment.bottomCenter sur Stack)\n• Dropdown langue : passage inline → Overlay pour éviter conflits de layout\n• txtVersion dupliqué dans app_fr.arb : nettoyé'**
+  String get txtVersionDetails;
 }
 
 class _AppLocalizationsDelegate
