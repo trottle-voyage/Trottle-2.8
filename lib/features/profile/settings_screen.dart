@@ -5,10 +5,54 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/menu_row.dart';
 import '../../l10n/app_localizations.dart';
+import '../infos/about_screen.dart';
 import '../splash/splash_screen.dart';
+import 'mail_password_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
+
+  void _openMailPassword(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const MailPasswordScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  void _openAbout(BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        reverseTransitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, __, ___) => const AboutScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          )),
+          child: child,
+        ),
+      ),
+    );
+  }
 
   void _logOut(BuildContext context) {
     Navigator.pushAndRemoveUntil(
@@ -70,6 +114,7 @@ class SettingsScreen extends StatelessWidget {
               label: l.txtSettingsMailPassword,
               labelWidth: 300,
               divider: true,
+              onTap: () => _openMailPassword(context),
             ),
             MenuRow(
               icon: Icons.help_outline,
@@ -95,6 +140,7 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.info_outline,
               label: l.txtSettingsAbout,
               divider: true,
+              onTap: () => _openAbout(context),
             ),
 
             // ── Se déconnecter ─────────────────────────────────────────────

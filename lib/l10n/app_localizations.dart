@@ -394,6 +394,54 @@ abstract class AppLocalizations {
   /// **'Créer'**
   String get txtWelcomeCreateButton;
 
+  /// No description provided for @txtSearch.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recherche par mot clé'**
+  String get txtSearch;
+
+  /// No description provided for @txtSearchReco.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recommandations'**
+  String get txtSearchReco;
+
+  /// No description provided for @txtSearchOptions.
+  ///
+  /// In fr, this message translates to:
+  /// **'+ Plus d’options'**
+  String get txtSearchOptions;
+
+  /// No description provided for @txtSearchLast.
+  ///
+  /// In fr, this message translates to:
+  /// **'⏱️ Ajoutés récemment'**
+  String get txtSearchLast;
+
+  /// No description provided for @txtSearchRoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours'**
+  String get txtSearchRoute;
+
+  /// No description provided for @txtSearchAroundMe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autour de moi'**
+  String get txtSearchAroundMe;
+
+  /// No description provided for @txtSearchCity.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ville'**
+  String get txtSearchCity;
+
+  /// No description provided for @txtSearchWorld.
+  ///
+  /// In fr, this message translates to:
+  /// **'Monde entier'**
+  String get txtSearchWorld;
+
   /// No description provided for @txtProfile.
   ///
   /// In fr, this message translates to:
@@ -709,7 +757,7 @@ abstract class AppLocalizations {
   /// No description provided for @txtEditProfileSave.
   ///
   /// In fr, this message translates to:
-  /// **'Enregistrer'**
+  /// **'Enregistrer le profil'**
   String get txtEditProfileSave;
 
   /// No description provided for @txtEditProfile.
@@ -891,6 +939,342 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Conditions générales'**
   String get txtSettingsGeneral;
+
+  /// No description provided for @txtMailPwdEmailSection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail'**
+  String get txtMailPwdEmailSection;
+
+  /// No description provided for @txtMailPwdNewEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvel e-mail'**
+  String get txtMailPwdNewEmail;
+
+  /// No description provided for @txtMailPwdNewEmailHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'nouveau@email.com'**
+  String get txtMailPwdNewEmailHint;
+
+  /// No description provided for @txtMailPwdConfirmEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer l\'e-mail'**
+  String get txtMailPwdConfirmEmail;
+
+  /// No description provided for @txtMailPwdInfoEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un e-mail de confirmation sera envoyé à votre nouvelle adresse.'**
+  String get txtMailPwdInfoEmail;
+
+  /// No description provided for @txtMailPwdPasswordSection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe'**
+  String get txtMailPwdPasswordSection;
+
+  /// No description provided for @txtMailPwdCurrent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe actuel'**
+  String get txtMailPwdCurrent;
+
+  /// No description provided for @txtMailPwdNew.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau mot de passe'**
+  String get txtMailPwdNew;
+
+  /// No description provided for @txtMailPwdConfirmNew.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer'**
+  String get txtMailPwdConfirmNew;
+
+  /// No description provided for @txtMailPwdHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'••••••••'**
+  String get txtMailPwdHint;
+
+  /// No description provided for @txtMailPwdInfoPassword.
+  ///
+  /// In fr, this message translates to:
+  /// **'Minimum 8 caractères. Combinez lettres, chiffres et symboles.'**
+  String get txtMailPwdInfoPassword;
+
+  /// No description provided for @txtMailPwdSave.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer les modifications'**
+  String get txtMailPwdSave;
+
+  /// No description provided for @txtAbout.
+  ///
+  /// In fr, this message translates to:
+  /// **'À propos'**
+  String get txtAbout;
+
+  /// No description provided for @txtAboutBeta.
+  ///
+  /// In fr, this message translates to:
+  /// **'BETA'**
+  String get txtAboutBeta;
+
+  /// No description provided for @txtAboutBrand1.
+  ///
+  /// In fr, this message translates to:
+  /// **'TROT'**
+  String get txtAboutBrand1;
+
+  /// No description provided for @txtAboutBrand2.
+  ///
+  /// In fr, this message translates to:
+  /// **'TLE'**
+  String get txtAboutBrand2;
+
+  /// No description provided for @txtAboutTagline.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'appli qui fait bouger les aventuriers'**
+  String get txtAboutTagline;
+
+  /// No description provided for @txtAboutTag1.
+  ///
+  /// In fr, this message translates to:
+  /// **'Randonnée'**
+  String get txtAboutTag1;
+
+  /// No description provided for @txtAboutTag2.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cyclisme'**
+  String get txtAboutTag2;
+
+  /// No description provided for @txtAboutTag3.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moto'**
+  String get txtAboutTag3;
+
+  /// No description provided for @txtAboutTag4.
+  ///
+  /// In fr, this message translates to:
+  /// **'Point de vue'**
+  String get txtAboutTag4;
+
+  /// No description provided for @txtAboutTag5.
+  ///
+  /// In fr, this message translates to:
+  /// **'Street Art'**
+  String get txtAboutTag5;
+
+  /// No description provided for @txtAboutTag6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lieu de tournage'**
+  String get txtAboutTag6;
+
+  /// No description provided for @txtAboutStat1Value.
+  ///
+  /// In fr, this message translates to:
+  /// **'1'**
+  String get txtAboutStat1Value;
+
+  /// No description provided for @txtAboutStat1Label.
+  ///
+  /// In fr, this message translates to:
+  /// **'application'**
+  String get txtAboutStat1Label;
+
+  /// No description provided for @txtAboutStat2Value.
+  ///
+  /// In fr, this message translates to:
+  /// **'6'**
+  String get txtAboutStat2Value;
+
+  /// No description provided for @txtAboutStat2Label.
+  ///
+  /// In fr, this message translates to:
+  /// **'univers'**
+  String get txtAboutStat2Label;
+
+  /// No description provided for @txtAboutStat3Value.
+  ///
+  /// In fr, this message translates to:
+  /// **'∞'**
+  String get txtAboutStat3Value;
+
+  /// No description provided for @txtAboutStat3Label.
+  ///
+  /// In fr, this message translates to:
+  /// **'aventures'**
+  String get txtAboutStat3Label;
+
+  /// No description provided for @txtAboutVisionTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notre Vision'**
+  String get txtAboutVisionTitle;
+
+  /// No description provided for @txtAboutVisionQuote.
+  ///
+  /// In fr, this message translates to:
+  /// **'« Chaque lieu mérite d\'être découvert, chaque chemin mérite d\'être partagé. »'**
+  String get txtAboutVisionQuote;
+
+  /// No description provided for @txtAboutVisionBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trottle est née d\'une passion pour l\'exploration et le partage. Nous croyons que les meilleures aventures sont celles que l\'on vit ensemble, guidés par une communauté de passionnés.'**
+  String get txtAboutVisionBody;
+
+  /// No description provided for @txtAboutUniversTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les 6 principaux univers'**
+  String get txtAboutUniversTitle;
+
+  /// No description provided for @txtAboutUnivers1.
+  ///
+  /// In fr, this message translates to:
+  /// **'Randonnée'**
+  String get txtAboutUnivers1;
+
+  /// No description provided for @txtAboutUnivers1Sub.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sentiers & nature'**
+  String get txtAboutUnivers1Sub;
+
+  /// No description provided for @txtAboutUnivers2.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cyclisme'**
+  String get txtAboutUnivers2;
+
+  /// No description provided for @txtAboutUnivers2Sub.
+  ///
+  /// In fr, this message translates to:
+  /// **'Routes & pistes'**
+  String get txtAboutUnivers2Sub;
+
+  /// No description provided for @txtAboutUnivers3.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moto'**
+  String get txtAboutUnivers3;
+
+  /// No description provided for @txtAboutUnivers3Sub.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liberté & grand air'**
+  String get txtAboutUnivers3Sub;
+
+  /// No description provided for @txtAboutUnivers4.
+  ///
+  /// In fr, this message translates to:
+  /// **'Street Art'**
+  String get txtAboutUnivers4;
+
+  /// No description provided for @txtAboutUnivers4Sub.
+  ///
+  /// In fr, this message translates to:
+  /// **'Graffitis & fresques'**
+  String get txtAboutUnivers4Sub;
+
+  /// No description provided for @txtAboutUnivers5.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lieux de tournage'**
+  String get txtAboutUnivers5;
+
+  /// No description provided for @txtAboutUnivers5Sub.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cinéma & séries'**
+  String get txtAboutUnivers5Sub;
+
+  /// No description provided for @txtAboutUnivers6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patrimoine'**
+  String get txtAboutUnivers6;
+
+  /// No description provided for @txtAboutUnivers6Sub.
+  ///
+  /// In fr, this message translates to:
+  /// **'Histoire & monuments'**
+  String get txtAboutUnivers6Sub;
+
+  /// No description provided for @txtAboutWhyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pourquoi Trottle ?'**
+  String get txtAboutWhyTitle;
+
+  /// No description provided for @txtAboutWhy1Icon.
+  ///
+  /// In fr, this message translates to:
+  /// **'👥'**
+  String get txtAboutWhy1Icon;
+
+  /// No description provided for @txtAboutWhy1Title.
+  ///
+  /// In fr, this message translates to:
+  /// **'Communauté'**
+  String get txtAboutWhy1Title;
+
+  /// No description provided for @txtAboutWhy1Body.
+  ///
+  /// In fr, this message translates to:
+  /// **'Des milliers de trottlers partagent leurs parcours et leurs découvertes au quotidien.'**
+  String get txtAboutWhy1Body;
+
+  /// No description provided for @txtAboutWhy2Icon.
+  ///
+  /// In fr, this message translates to:
+  /// **'✅'**
+  String get txtAboutWhy2Icon;
+
+  /// No description provided for @txtAboutWhy2Title.
+  ///
+  /// In fr, this message translates to:
+  /// **'Authenticité'**
+  String get txtAboutWhy2Title;
+
+  /// No description provided for @txtAboutWhy2Body.
+  ///
+  /// In fr, this message translates to:
+  /// **'Des lieux vérifiés, des parcours testés, une communauté de confiance.'**
+  String get txtAboutWhy2Body;
+
+  /// No description provided for @txtAboutWhy3Icon.
+  ///
+  /// In fr, this message translates to:
+  /// **'🧭'**
+  String get txtAboutWhy3Icon;
+
+  /// No description provided for @txtAboutWhy3Title.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liberté'**
+  String get txtAboutWhy3Title;
+
+  /// No description provided for @txtAboutWhy3Body.
+  ///
+  /// In fr, this message translates to:
+  /// **'Explorez à votre rythme, sans contraintes. Trottle s\'adapte à chaque aventurier.'**
+  String get txtAboutWhy3Body;
+
+  /// No description provided for @txtAboutCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prêt à Trottler ?'**
+  String get txtAboutCta;
 
   /// No description provided for @txtVersionDetails.
   ///

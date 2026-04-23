@@ -161,6 +161,30 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtWelcomeCreateButton => 'Créer';
 
   @override
+  String get txtSearch => 'Recherche par mot clé';
+
+  @override
+  String get txtSearchReco => 'Recommandations';
+
+  @override
+  String get txtSearchOptions => '+ Plus d’options';
+
+  @override
+  String get txtSearchLast => '⏱️ Ajoutés récemment';
+
+  @override
+  String get txtSearchRoute => 'Parcours';
+
+  @override
+  String get txtSearchAroundMe => 'Autour de moi';
+
+  @override
+  String get txtSearchCity => 'Ville';
+
+  @override
+  String get txtSearchWorld => 'Monde entier';
+
+  @override
   String get txtProfile => 'Profil';
 
   @override
@@ -317,7 +341,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get txtStats => 'Statistiques';
 
   @override
-  String get txtEditProfileSave => 'Enregistrer';
+  String get txtEditProfileSave => 'Enregistrer le profil';
 
   @override
   String get txtEditProfile => 'Éditer le profil';
@@ -408,6 +432,181 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get txtSettingsGeneral => 'Conditions générales';
+
+  @override
+  String get txtMailPwdEmailSection => 'Adresse e-mail';
+
+  @override
+  String get txtMailPwdNewEmail => 'Nouvel e-mail';
+
+  @override
+  String get txtMailPwdNewEmailHint => 'nouveau@email.com';
+
+  @override
+  String get txtMailPwdConfirmEmail => 'Confirmer l\'e-mail';
+
+  @override
+  String get txtMailPwdInfoEmail =>
+      'Un e-mail de confirmation sera envoyé à votre nouvelle adresse.';
+
+  @override
+  String get txtMailPwdPasswordSection => 'Mot de passe';
+
+  @override
+  String get txtMailPwdCurrent => 'Mot de passe actuel';
+
+  @override
+  String get txtMailPwdNew => 'Nouveau mot de passe';
+
+  @override
+  String get txtMailPwdConfirmNew => 'Confirmer';
+
+  @override
+  String get txtMailPwdHint => '••••••••';
+
+  @override
+  String get txtMailPwdInfoPassword =>
+      'Minimum 8 caractères. Combinez lettres, chiffres et symboles.';
+
+  @override
+  String get txtMailPwdSave => 'Enregistrer les modifications';
+
+  @override
+  String get txtAbout => 'À propos';
+
+  @override
+  String get txtAboutBeta => 'BETA';
+
+  @override
+  String get txtAboutBrand1 => 'TROT';
+
+  @override
+  String get txtAboutBrand2 => 'TLE';
+
+  @override
+  String get txtAboutTagline => 'L\'appli qui fait bouger les aventuriers';
+
+  @override
+  String get txtAboutTag1 => 'Randonnée';
+
+  @override
+  String get txtAboutTag2 => 'Cyclisme';
+
+  @override
+  String get txtAboutTag3 => 'Moto';
+
+  @override
+  String get txtAboutTag4 => 'Point de vue';
+
+  @override
+  String get txtAboutTag5 => 'Street Art';
+
+  @override
+  String get txtAboutTag6 => 'Lieu de tournage';
+
+  @override
+  String get txtAboutStat1Value => '1';
+
+  @override
+  String get txtAboutStat1Label => 'application';
+
+  @override
+  String get txtAboutStat2Value => '6';
+
+  @override
+  String get txtAboutStat2Label => 'univers';
+
+  @override
+  String get txtAboutStat3Value => '∞';
+
+  @override
+  String get txtAboutStat3Label => 'aventures';
+
+  @override
+  String get txtAboutVisionTitle => 'Notre Vision';
+
+  @override
+  String get txtAboutVisionQuote =>
+      '« Chaque lieu mérite d\'être découvert, chaque chemin mérite d\'être partagé. »';
+
+  @override
+  String get txtAboutVisionBody =>
+      'Trottle est née d\'une passion pour l\'exploration et le partage. Nous croyons que les meilleures aventures sont celles que l\'on vit ensemble, guidés par une communauté de passionnés.';
+
+  @override
+  String get txtAboutUniversTitle => 'Les 6 principaux univers';
+
+  @override
+  String get txtAboutUnivers1 => 'Randonnée';
+
+  @override
+  String get txtAboutUnivers1Sub => 'Sentiers & nature';
+
+  @override
+  String get txtAboutUnivers2 => 'Cyclisme';
+
+  @override
+  String get txtAboutUnivers2Sub => 'Routes & pistes';
+
+  @override
+  String get txtAboutUnivers3 => 'Moto';
+
+  @override
+  String get txtAboutUnivers3Sub => 'Liberté & grand air';
+
+  @override
+  String get txtAboutUnivers4 => 'Street Art';
+
+  @override
+  String get txtAboutUnivers4Sub => 'Graffitis & fresques';
+
+  @override
+  String get txtAboutUnivers5 => 'Lieux de tournage';
+
+  @override
+  String get txtAboutUnivers5Sub => 'Cinéma & séries';
+
+  @override
+  String get txtAboutUnivers6 => 'Patrimoine';
+
+  @override
+  String get txtAboutUnivers6Sub => 'Histoire & monuments';
+
+  @override
+  String get txtAboutWhyTitle => 'Pourquoi Trottle ?';
+
+  @override
+  String get txtAboutWhy1Icon => '👥';
+
+  @override
+  String get txtAboutWhy1Title => 'Communauté';
+
+  @override
+  String get txtAboutWhy1Body =>
+      'Des milliers de trottlers partagent leurs parcours et leurs découvertes au quotidien.';
+
+  @override
+  String get txtAboutWhy2Icon => '✅';
+
+  @override
+  String get txtAboutWhy2Title => 'Authenticité';
+
+  @override
+  String get txtAboutWhy2Body =>
+      'Des lieux vérifiés, des parcours testés, une communauté de confiance.';
+
+  @override
+  String get txtAboutWhy3Icon => '🧭';
+
+  @override
+  String get txtAboutWhy3Title => 'Liberté';
+
+  @override
+  String get txtAboutWhy3Body =>
+      'Explorez à votre rythme, sans contraintes. Trottle s\'adapte à chaque aventurier.';
+
+  @override
+  String get txtAboutCta => 'Prêt à Trottler ?';
 
   @override
   String get txtVersionDetails =>

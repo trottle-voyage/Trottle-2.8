@@ -12,6 +12,7 @@ class PhotoCard extends StatefulWidget {
     required this.item,
     this.width = 128,
     this.onLikeChanged,
+    this.onImageTap,
   });
 
   final PhotoItem item;
@@ -19,6 +20,9 @@ class PhotoCard extends StatefulWidget {
 
   /// Callback optionnel déclenché quand l'utilisateur toggle le like.
   final ValueChanged<bool>? onLikeChanged;
+
+  /// Callback optionnel déclenché quand l'utilisateur tape sur l'image.
+  final VoidCallback? onImageTap;
 
   /// Rayon des coins du cadre extérieur.
   static const double frameBorderRadius = 20;
@@ -30,17 +34,17 @@ class PhotoCard extends StatefulWidget {
   static const double imageToKeywordGap = 0;
 
   /// Padding horizontal du bloc textes (mot-clé + pays).
-  static const double infoPaddingH = 12;
+  static const double infoPaddingH = 6;
 
   /// Padding vertical du bloc textes (haut + bas du `Padding` infos).
   static const double infoPaddingV = 8;
 
-  /// Hauteur min. approx. du stack mot-clé + pays (hors paddings du bloc).
-  /// Prévoir la ligne ville avec emoji (`flag`) : métriques > simple `fontSize` 12 seul.
-  static const double _infoStackMinHeight = 40;
+  /// Hauteur réelle du stack mot-clé + pays :
+  /// chip hashtagSmall (10pt + v:2 → ~14px) + ville (subTitleMedium 12pt → ~14px) = 28px.
+  static const double _infoStackMinHeight = 34;
 
-  /// Marge bas du cadre (sous le bloc textes).
-  static const double frameBottomExtra = 8;
+  /// Marge bas du cadre.
+  static const double frameBottomExtra = 0;
 
   /// Hauteur verticale approximative (image carrée + gap + bloc infos + paddings + marge bas).
   /// Utile pour dimensionner un parent à hauteur fixe (ex. bandeau carrousel).
@@ -111,11 +115,16 @@ class _PhotoCardState extends State<PhotoCard> {
                     fit: StackFit.expand,
                     children: [
                       Container(color: AppColors.trottleDark),
-                      Image.asset(
-                        widget.item.imageAsset,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) =>
-                            Container(color: AppColors.trottleDark),
+                      // Image + zone de tap (sous le bouton like)
+                      GestureDetector(
+                        onTap: widget.onImageTap,
+                        behavior: HitTestBehavior.opaque,
+                        child: Image.asset(
+                          widget.item.imageAsset,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) =>
+                              Container(color: AppColors.trottleDark),
+                        ),
                       ),
                       Positioned(
                         right: 6,
@@ -166,6 +175,7 @@ class _PhotoCardState extends State<PhotoCard> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 2),
                   Text(
                     widget.item.flag.isEmpty
                         ? widget.item.city
