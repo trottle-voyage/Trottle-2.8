@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import '../../core/services/gps_service.dart';
-import '../../core/services/storage_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_decorations.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../core/models/photo_item.dart';
+import '../../core/widgets/photo_card.dart';
+import '../../core/widgets/photo_detail_sheet.dart';
 import '../nav/route_screen.dart';
 import '../profile/profile_screen.dart';
+import 'search_popup.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,17 +22,107 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final GpsService      _gps           = GpsService.instance;
   final MapController   _mapController = MapController();
-  List<String> _imageUrls    = [];
-  bool         _imagesLoading = false;
-  String?      _storageError;
-  bool         _menuOpen      = false;
+  bool _menuOpen   = false;
+  bool _searchOpen = false;
+
+  static final List<PhotoItem> _photos = [
+    PhotoItem(
+      imageAsset:  'assets/photos/img_01.webp',
+      hashtag:     'Yoda',
+      city:        'Dagobah',
+      flag:        '🌿',
+      title:       'La cabane de Yoda',
+      keywords:    ['Statue', 'Insolite', 'Patrimoine'],
+      dateLabel:   'Le 12 mai 2025',
+      user:        'ObiWanKenobi',
+      description: 'La cabane de Yoda, nichée dans les marécages de Dagobah, '
+          'est un symbole de sagesse et d\'humilité. Ce maître Jedi légendaire '
+          'y vécut ses dernières années en exil, loin des conflits de la galaxie.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_02.webp',
+      hashtag:     'Dark Vador',
+      city:        'Mustafar',
+      flag:        '🔴',
+      title:       'Château de Dark Vador',
+      keywords:    ['Monument', 'Insolite'],
+      dateLabel:   'Le 3 juin 2025',
+      user:        'DarthSidious',
+      description: 'Érigé sur la lave de Mustafar, le château de Vador '
+          'est à la fois forteresse et lieu de méditation. Son architecture '
+          'sombre reflète la dualité entre la Force et l\'Obscurité.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_03.webp',
+      hashtag:     'Luke',
+      city:        'Tatooine',
+      flag:        '☀️',
+      title:       'Ferme des Lars',
+      keywords:    ['Lieu de tournage', 'Patrimoine'],
+      dateLabel:   'Le 18 juillet 2025',
+      user:        'LukeSkywalker',
+      description: 'La ferme souterraine des Lars sur Tatooine, où Luke grandit, '
+          'est devenue un lieu culte pour les fans du monde entier.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_04.webp',
+      hashtag:     'Obi-Wan',
+      city:        'Coruscant',
+      flag:        '🌆',
+      title:       'Temple Jedi',
+      keywords:    ['Monument', 'Patrimoine', 'Randonnée'],
+      dateLabel:   'Le 28 août 2025',
+      user:        'ObiWanKenobi',
+      description: 'Le Temple Jedi de Coruscant fut le siège de l\'Ordre pendant '
+          'des millénaires. Aujourd\'hui classé, il témoigne de la grandeur '
+          'd\'une civilisation disparue.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_05.webp',
+      hashtag:     'R2-D2',
+      city:        'Naboo',
+      flag:        '💧',
+      title:       'Palais Royal de Naboo',
+      keywords:    ['Monument', 'Insolite'],
+      dateLabel:   'Le 5 septembre 2025',
+      user:        'AnakinSkywalker',
+      description: 'Le palais royal de Naboo est l\'une des architectures '
+          'les plus élégantes de la galaxie. Ses jardins aquatiques et ses '
+          'coupoles dorées en font un joyau du patrimoine universel.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_06.webp',
+      hashtag:     'Chewbacca',
+      city:        'Kashyyyk',
+      flag:        '🌲',
+      title:       'Forêt de Kashyyyk',
+      keywords:    ['Randonnée', 'Patrimoine'],
+      dateLabel:   'Le 1 octobre 2025',
+      user:        'HanSolo',
+      description: 'Les gigantesques wroshyr de Kashyyyk s\'élèvent à '
+          'plusieurs centaines de mètres. Une randonnée dans leurs cimes '
+          'offre des panoramas à couper le souffle.',
+    ),
+    PhotoItem(
+      imageAsset:  'assets/photos/img_07.webp',
+      hashtag:     'Han Solo',
+      city:        'Corellia',
+      flag:        '🚀',
+      title:       'Chantiers navals de Corellia',
+      keywords:    ['Insolite', 'Lieu de tournage'],
+      dateLabel:   'Le 15 octobre 2025',
+      user:        'HanSolo',
+      description: 'Les chantiers navals de Corellia, berceau du Faucon '
+          'Millenium, sont un haut lieu de la culture spatiale. Visites '
+          'guidées disponibles toute l\'année.',
+    ),
+  ];
 
   @override
   void initState() {
     super.initState();
     _gps.addListener(_onGpsChanged);
     _gps.fetchCurrentPosition();
-    _loadImages();
   }
 
   @override
@@ -38,34 +131,22 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
-  Future<void> _loadImages() async {
-    setState(() => _imagesLoading = true);
-    try {
-      final urls = await StorageService.instance
-          .listLastImages('64x64', count: 10);
-      if (mounted) setState(() => _imageUrls = urls);
-    } catch (e) {
-      debugPrint('StorageService error: $e');
-      if (mounted) setState(() => _storageError = e.toString());
-    } finally {
-      if (mounted) setState(() => _imagesLoading = false);
-    }
-  }
-
   // ── Helpers menu ─────────────────────────────────────────────────────────
 
-  static const double _bandeauH  = 152;
+  // Hauteur bandeau : padding ListView (12+42) + hauteur PhotoCard (voir PhotoCard.intrinsicHeight).
+  static final double _bandeauH =
+      12 + 42 + PhotoCard.intrinsicHeight(128);
   static const double _gap       = 10;
   static const double _mainSize  = 42;
   static const double _buttSize  = 36;
   static const double _rightEdge = 10;
 
-  static const double _mainBottom  = _bandeauH + _gap;                      // 162
+  static final double _mainBottom  = _bandeauH + _gap;
   static const double _mainCenterR = _rightEdge + _mainSize / 2;            // 31 (depuis right)
-  static const double _mainCenterB = _mainBottom + _mainSize / 2;           // 183 (depuis bottom)
+  static final double _mainCenterB = _mainBottom + _mainSize / 2;
 
   // Position de repli : tous les cercles secondaires partent du centre de menuButt
-  static const double _closedBottom = _mainBottom + (_mainSize - _buttSize) / 2; // 165
+  static final double _closedBottom = _mainBottom + (_mainSize - _buttSize) / 2;
   static const double _closedRight  = _rightEdge + (_mainSize - _buttSize) / 2;  // 13
 
   static const Duration _animDuration = Duration(milliseconds: 350);
@@ -80,7 +161,7 @@ class _MainScreenState extends State<MainScreen> {
           filter: AppDecorations.bgBlur,
           child: Container(
             decoration: BoxDecoration(
-              color: AppColors.trottleBgDark.withOpacity(0.9),
+              color: AppColors.trottleBgDark.withValues(alpha: 0.9),
             ),
             child: child != null ? Center(child: child) : null,
           ),
@@ -144,12 +225,14 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> _buildMenuHRow() {
     final configs = [
       // H03 — recentrage carte
-      (child: const Icon(Icons.my_location, color: AppColors.trottleWhite, size: 20),
+      (child: const Icon(Icons.my_location,      color: AppColors.trottleWhite, size: 20) as Widget?,
        onTap: _recenterMap as VoidCallback?),
-      // H02 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
-      // H01 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
+      // H02 — voiture
+      (child: const Icon(Icons.directions_car_outlined, color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: null as VoidCallback?),
+      // H01 — carte
+      (child: const Icon(Icons.map_outlined,      color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: null as VoidCallback?),
     ];
 
     return List.generate(configs.length, (i) {
@@ -172,21 +255,23 @@ class _MainScreenState extends State<MainScreen> {
   // Colonne verticale — index 0 = V04 (le plus bas), index 3 = V01 (le plus haut)
   List<Widget> _buildMenuVCol() {
     final configs = [
-      // V04 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
-      // V03 — vide pour l'instant
-      (child: null as Widget?, onTap: null as VoidCallback?),
-      // V02 — parcours
-      (child: const Icon(Icons.route_outlined, color: AppColors.trottleWhite, size: 20),
+      // V04 — loupe
+      (child: const Icon(Icons.search,            color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: (() => setState(() => _searchOpen = !_searchOpen)) as VoidCallback?),
+      // V03 — circuit
+      (child: const Icon(Icons.route_outlined,    color: AppColors.trottleWhite, size: 20) as Widget?,
        onTap: _openRoute as VoidCallback?),
+      // V02 — appareil photo +
+      (child: const Icon(Icons.add_a_photo_outlined, color: AppColors.trottleWhite, size: 20) as Widget?,
+       onTap: null as VoidCallback?),
       // V01 — profil
-      (child: const Icon(Icons.person, color: AppColors.trottleWhite, size: 20),
+      (child: const Icon(Icons.person,            color: AppColors.trottleWhite, size: 20) as Widget?,
        onTap: _openProfile as VoidCallback?),
     ];
 
     return List.generate(configs.length, (i) {
       final cfg = configs[i];
-      final double openRight  = _mainCenterR - _buttSize / 2;
+      const double openRight  = _mainCenterR - _buttSize / 2;
       final double openBottom = _mainBottom + _mainSize + _gap + i * (_buttSize + _gap);
       return AnimatedPositioned(
         duration: _animDuration, curve: _animCurve,
@@ -280,51 +365,6 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
 
-          // ── Bandeau images ───────────────────────────────────────────────
-          Positioned(
-            left: 0, right: 0, bottom: 0,
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: AppDecorations.bgBlur,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.trottleBgDark.withOpacity(0.9),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  height: 128 + 24,
-                  child: _imagesLoading
-                      ? const Center(child: CircularProgressIndicator(color: AppColors.trottleMain))
-                      : _storageError != null
-                          ? Center(child: Text(_storageError!,
-                              style: AppTextStyles.subTitleMedium
-                                  .copyWith(color: AppColors.trottleFerrari),
-                              textAlign: TextAlign.center))
-                          : _imageUrls.isEmpty
-                              ? const SizedBox.shrink()
-                              : ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                                  itemCount: _imageUrls.length,
-                                  separatorBuilder: (_, __) => const SizedBox(width: 12),
-                                  itemBuilder: (_, i) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      _imageUrls[i],
-                                      width: 128, height: 128, fit: BoxFit.cover,
-                                      loadingBuilder: (_, child, progress) =>
-                                          progress == null ? child
-                                              : Container(
-                                                  width: 128, height: 128,
-                                                  color: AppColors.trottleDark,
-                                                  child: const Center(child: CircularProgressIndicator(
-                                                      color: AppColors.trottleMain, strokeWidth: 2))),
-                                    ),
-                                  ),
-                                ),
-                ),
-              ),
-            ),
-          ),
 
           // ── Menu ─────────────────────────────────────────────────────────
           // Constantes de positionnement
@@ -346,6 +386,51 @@ class _MainScreenState extends State<MainScreen> {
               child: _menuCircle(_mainSize,
                   child: Image.asset('assets/icones/trottle_32.webp',
                       width: _mainSize * 0.6, height: _mainSize * 0.6)),
+            ),
+          ),
+
+          // ── Popup recherche ──────────────────────────────────────────────────
+          Positioned(
+            left:   8,
+            right:  8,
+            bottom: _bandeauH + _mainSize + _gap * 2,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 300),
+              opacity: _searchOpen ? 1.0 : 0.0,
+              child: IgnorePointer(
+                ignoring: !_searchOpen,
+                child: SearchPopup(
+                  onClose: () => setState(() => _searchOpen = false),
+                ),
+              ),
+            ),
+          ),
+
+          // ── Bandeau carrousel ───────────────────────────────────────────────
+          Positioned(
+            left: 0, right: 0, bottom: 0,
+            child: ClipRect(
+              child: BackdropFilter(
+                filter: AppDecorations.bgBlur,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.trottleBgDark.withValues(alpha: 0.9),
+                  ),
+                  padding: const EdgeInsets.only(top: 12, bottom: 42),
+                  height: _bandeauH,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    itemCount: _photos.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (_, i) => PhotoCard(
+                      item:       _photos[i],
+                      onImageTap: () =>
+                          showPhotoDetail(context, _photos, i),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../core/widgets/outer_shadow_rrect.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -50,32 +51,30 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   Widget _buildCard(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(28.46),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-        child: Container(
-          decoration: BoxDecoration(
-            color: const Color(0xFF0095FF).withOpacity(0.15),
-            borderRadius: BorderRadius.circular(28.46),
-            border: Border.all(
-              color: Colors.white.withOpacity(0.25),
-              width: 0.2,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.18),
-                blurRadius: 32,
-                offset: const Offset(0, 8),
+    return OuterShadowRRect(
+      borderRadius: 28.46,
+      shadowColor: Colors.black.withValues(alpha: 0.18),
+      blurRadius: 32,
+      offset: const Offset(0, 8),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(28.46),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFF0095FF).withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(28.46),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.25),
+                width: 0.2,
               ),
-            ],
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
               // Titre avec retour
               Row(
                 children: [
@@ -140,7 +139,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
               // Espace réservé pour équilibrer
               const SizedBox(),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -169,7 +169,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.88),
+        fillColor: Colors.white.withValues(alpha: 0.88),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,

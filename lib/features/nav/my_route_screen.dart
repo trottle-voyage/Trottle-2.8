@@ -5,17 +5,17 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/menu_row.dart';
 import '../../l10n/app_localizations.dart';
+import 'new_route_screen.dart';
 
-class MyPicturesScreen extends StatefulWidget {
-  const MyPicturesScreen({super.key});
+class MyRouteScreen extends StatefulWidget {
+  const MyRouteScreen({super.key});
 
   @override
-  State<MyPicturesScreen> createState() => _MyPicturesScreenState();
+  State<MyRouteScreen> createState() => _MyRouteScreenState();
 }
 
-class _MyPicturesScreenState extends State<MyPicturesScreen> {
-  bool _publishedOpen = false;
-  bool _draftOpen = false;
+class _MyRouteScreenState extends State<MyRouteScreen> {
+  bool _createdOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
               child: Text(
-                l.txtMyPictures,
+                l.txtMyRoutes,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.title
                     .copyWith(color: AppColors.trottleWhite),
@@ -45,23 +45,33 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
 
             // ── Sous-menus dépliables ──────────────────────────────────────
             MenuRow(
-              icon: Icons.file_upload_outlined,
-              label: l.txtMyPicturesPublished,
+              icon: Icons.route_outlined,
+              label: l.txtMyRoutesCreated,
               expandable: true,
-              expanded: _publishedOpen,
-              onTap: () =>
-                  setState(() => _publishedOpen = !_publishedOpen),
-            ),
-            MenuRow(
-              icon: Icons.edit_outlined,
-              label: l.txtMyPicturesDraft,
-              expandable: true,
-              expanded: _draftOpen,
-              onTap: () => setState(() => _draftOpen = !_draftOpen),
+              expanded: _createdOpen,
+              onTap: () => setState(() => _createdOpen = !_createdOpen),
             ),
             MenuRow(
               icon: Icons.add_circle_outline,
-              label: l.txtMyPicturesAdd,
+              label: l.txtMyRoutesAdd,
+              onTap: () => Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionDuration: const Duration(milliseconds: 400),
+                  reverseTransitionDuration: const Duration(milliseconds: 400),
+                  pageBuilder: (_, __, ___) => const NewRouteScreen(),
+                  transitionsBuilder: (_, animation, __, child) => SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(1, 0),
+                      end: Offset.zero,
+                    ).animate(CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeInOut,
+                    )),
+                    child: child,
+                  ),
+                ),
+              ),
             ),
             ],
           ),

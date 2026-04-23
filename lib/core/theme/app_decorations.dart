@@ -7,12 +7,12 @@ class AppDecorations {
 
   // Trottle BG Dark — opacity 90%
   static BoxDecoration get trottleBgDark => BoxDecoration(
-        color: AppColors.trottleBgDark.withOpacity(0.9),
+        color: AppColors.trottleBgDark.withValues(alpha: 0.9),
       );
 
   // Trottle Cadre — opacity 15%, border radius 24px
   static BoxDecoration get trottleCadre => BoxDecoration(
-        color: AppColors.trottleMain.withOpacity(0.4),
+        color: AppColors.trottleMain.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(24),
       );
 
@@ -21,6 +21,19 @@ class AppDecorations {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [AppColors.trottleWhite, AppColors.trottleMain],
+  );
+
+  /// Dégradé diagonal « pages Trottle » (haut-gauche clair → bas-droite sombre).
+  /// Réutilisable seul (`Shader`, `SweepGradient` dérivé, etc.) ou via [bgGradient].
+  static const LinearGradient trottleBgGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF0E3549), AppColors.trottleBgDark],
+  );
+
+  /// [BoxDecoration] plein écran : même gradient que [trottleBgGradient].
+  static const BoxDecoration bgGradient = BoxDecoration(
+    gradient: trottleBgGradient,
   );
 
   // BG Blur — background blur sigma 8

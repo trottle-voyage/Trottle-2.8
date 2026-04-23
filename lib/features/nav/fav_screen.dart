@@ -6,16 +6,17 @@ import '../../core/widgets/back_arrow_bar.dart';
 import '../../core/widgets/menu_row.dart';
 import '../../l10n/app_localizations.dart';
 
-class MyPicturesScreen extends StatefulWidget {
-  const MyPicturesScreen({super.key});
+class FavScreen extends StatefulWidget {
+  const FavScreen({super.key});
 
   @override
-  State<MyPicturesScreen> createState() => _MyPicturesScreenState();
+  State<FavScreen> createState() => _FavScreenState();
 }
 
-class _MyPicturesScreenState extends State<MyPicturesScreen> {
-  bool _publishedOpen = false;
-  bool _draftOpen = false;
+class _FavScreenState extends State<FavScreen> {
+  bool _likeOpen = false;
+  bool _favOpen = false;
+  bool _folderOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
               child: Text(
-                l.txtMyPictures,
+                l.txtFav,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.title
                     .copyWith(color: AppColors.trottleWhite),
@@ -45,23 +46,25 @@ class _MyPicturesScreenState extends State<MyPicturesScreen> {
 
             // ── Sous-menus dépliables ──────────────────────────────────────
             MenuRow(
-              icon: Icons.file_upload_outlined,
-              label: l.txtMyPicturesPublished,
+              icon: Icons.favorite_border,
+              label: l.txtFavLike,
               expandable: true,
-              expanded: _publishedOpen,
-              onTap: () =>
-                  setState(() => _publishedOpen = !_publishedOpen),
+              expanded: _likeOpen,
+              onTap: () => setState(() => _likeOpen = !_likeOpen),
             ),
             MenuRow(
-              icon: Icons.edit_outlined,
-              label: l.txtMyPicturesDraft,
+              icon: Icons.bookmark_border,
+              label: l.txtFavFav,
               expandable: true,
-              expanded: _draftOpen,
-              onTap: () => setState(() => _draftOpen = !_draftOpen),
+              expanded: _favOpen,
+              onTap: () => setState(() => _favOpen = !_favOpen),
             ),
             MenuRow(
-              icon: Icons.add_circle_outline,
-              label: l.txtMyPicturesAdd,
+              icon: Icons.folder_outlined,
+              label: l.txtFavAdd,
+              expandable: true,
+              expanded: _folderOpen,
+              onTap: () => setState(() => _folderOpen = !_folderOpen),
             ),
             ],
           ),
